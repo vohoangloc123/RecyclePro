@@ -1,0 +1,119 @@
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SignUpActivity"
+
+    >
+
+    <LinearLayout
+        android:id="@+id/containerLayout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:gravity="center"
+        android:background="@drawable/background"
+
+        >
+
+        <!-- Tiêu đề "Welcome to RecyclePro" -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Welcome to RecyclePro"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:layout_marginTop="150dp"
+
+            />
+
+        <!-- Tiêu đề phụ "Let's help the world to Reduce, Reuse, Recycle" -->
+        <TextView
+            android:id="@+id/subtitleTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Let's help the world to Reduce, Reuse, Recycle"
+            android:textSize="18sp"
+            android:textColor="#888888"
+            android:layout_marginTop="16dp"
+            />
+
+        <!-- Input: Username -->
+        <EditText
+            android:id="@+id/usernameEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:hint="Enter username"
+            android:padding="12dp"
+            android:layout_marginHorizontal="15dp"
+            android:background="@drawable/rounded_edittext" />
+
+        <!-- Input: Email -->
+        <EditText
+            android:id="@+id/emailEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:hint="Enter email"
+            android:padding="12dp"
+            android:layout_marginHorizontal="15dp"
+            android:background="@drawable/rounded_edittext" />
+
+        <!-- Input: Password -->
+        <EditText
+            android:id="@+id/passwordEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:hint="Enter password"
+            android:inputType="textPassword"
+            android:padding="12dp"
+            android:layout_marginHorizontal="15dp"
+            android:background="@drawable/rounded_edittext" />
+
+        <!-- Input: Confirm Password -->
+        <EditText
+            android:id="@+id/confirmPasswordEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:hint="Confirm password"
+            android:inputType="textPassword"
+            android:padding="12dp"
+            android:layout_marginHorizontal="15dp"
+            android:background="@drawable/rounded_edittext" />
+
+        <!-- Button: Sign up -->
+        <Button
+            android:id="@+id/signUpButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="Sign up"
+            android:backgroundTint="#50C2C9"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            android:padding="12dp"
+            android:layout_marginHorizontal="20dp"
+            app:cornerRadius="5dp" />
+
+        <!-- Đoạn chữ "Already have an account? Sign in" -->
+        <TextView
+            android:id="@+id/signInTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Already have an account? Sign in"
+            android:textColor="#333333"
+            android:textSize="16sp"
+            android:layout_marginTop="24dp"
+            android:layout_gravity="center_horizontal" />
+
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

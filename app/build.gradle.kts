@@ -29,6 +29,7 @@ android {
 }
 
 dependencies {
+    implementation("com.google.guava:listenablefuture:9999.0-empty-to-avoid-conflict-with-guava")
     //dynamoDB
     implementation("com.amazonaws:aws-android-sdk-core:2.75.0")
     implementation("com.amazonaws:aws-android-sdk-ddb:2.75.0")

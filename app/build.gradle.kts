@@ -29,7 +29,11 @@ android {
 }
 
 dependencies {
-
+    //dynamoDB
+    implementation("com.amazonaws:aws-android-sdk-core:2.75.0")
+    implementation("com.amazonaws:aws-android-sdk-ddb:2.75.0")
+    implementation("com.amazonaws:aws-android-sdk-ddb-document:2.4.5")
+    implementation("com.amazonaws:aws-android-sdk-s3:2.75.0")
     implementation(libs.appcompat)
     implementation(libs.material)
     implementation(libs.activity)

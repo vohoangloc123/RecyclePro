@@ -42,81 +42,6 @@
                 android:textColor="@color/white"
                 android:textSize="20dp" />
         </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="131dp"
-            android:orientation="vertical">
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="70dp"
-                android:orientation="horizontal">
-                <TextView
-                    android:layout_width="70dp"
-                    android:layout_height="70dp"
-                    android:text="Pic 1"
-                    android:textSize="20dp"/>
-                <TextView
-                    android:layout_width="70dp"
-                    android:layout_height="70dp"
-                    android:text="Pic 2"
-                    android:textSize="20dp"/>
-                <TextView
-                    android:layout_width="70dp"
-                    android:layout_height="70dp"
-                    android:text="Pic 3"
-                    android:textSize="20dp"/>
-                <TextView
-                    android:layout_width="70dp"
-                    android:layout_height="70dp"
-                    android:text="Pic 4"
-                    android:textSize="20dp"/>
-                <TextView
-                    android:layout_width="70dp"
-                    android:layout_height="70dp"
-                    android:text="Pic 5"
-                    android:textSize="20dp"/>
-                <TextView
-                    android:layout_width="70dp"
-                    android:layout_height="70dp"
-                    android:text="Pic 6"
-                    android:textSize="20dp"/>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="70dp"
-                android:orientation="horizontal">
-                <ImageButton
-                    android:layout_width="70dp"
-                    android:layout_height="70dp"
-                    android:background="@color/green2"
-                    android:src="@drawable/baseline_camera_alt_24"/>
-                <ImageButton
-                    android:layout_width="70dp"
-                    android:layout_height="70dp"
-                    android:background="@color/green2"
-                    android:src="@drawable/baseline_camera_alt_24"/>
-                <ImageButton
-                    android:layout_width="70dp"
-                    android:layout_height="70dp"
-                    android:background="@color/green2"
-                    android:src="@drawable/baseline_camera_alt_24"/>
-                <ImageButton
-                    android:layout_width="70dp"
-                    android:layout_height="70dp"
-                    android:background="@color/green2"
-                    android:src="@drawable/baseline_camera_alt_24"/>
-                <ImageButton
-                    android:layout_width="70dp"
-                    android:layout_height="70dp"
-                    android:background="@color/green2"
-                    android:src="@drawable/baseline_camera_alt_24"/>
-                <ImageButton
-                    android:layout_width="70dp"
-                    android:layout_height="70dp"
-                    android:background="@color/green2"
-                    android:src="@drawable/baseline_camera_alt_24"/>
-            </LinearLayout>
-        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -129,7 +54,7 @@
                 android:layout_width="142dp"
                 android:layout_height="37dp"
                 android:layout_marginTop="10dp"
-                android:layout_weight="1"
+
                 android:paddingLeft="20dp"
                 android:text="Name"
                 android:textColor="@color/borderColor"
@@ -138,56 +63,21 @@
 
             <EditText
                 android:id="@+id/etName"
-                android:layout_width="240dp"
-                android:layout_height="40dp"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/rounded_edittext"
-                android:ems="10"
-                android:hint="name"
-                android:inputType="text"
-                android:textColor="@color/black"
-                android:textSize="15dp"
-                android:textStyle="bold"
-                />
-        </LinearLayout>
-
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="69dp"
-            android:background=""
-            android:orientation="horizontal"
-            android:paddingTop="5dp">
-            <TextView
-                android:id="@+id/textView3"
-                android:layout_width="142dp"
+                android:layout_width="150dp"
                 android:layout_height="37dp"
-                android:layout_marginTop="10dp"
                 android:layout_weight="1"
-                android:paddingLeft="20dp"
-                android:text="ID"
-                android:textColor="@color/borderColor"
-                android:textSize="18dp"
-                android:textStyle="bold" />
-
-            <EditText
-                android:id="@+id/etID"
-                android:layout_width="240dp"
-                android:layout_height="40dp"
-                android:layout_marginTop="10dp"
                 android:background="@drawable/rounded_edittext"
                 android:ems="10"
-                android:hint="ID"
                 android:inputType="text"
                 android:textColor="@color/black"
                 android:textSize="15dp"
                 android:textStyle="bold"
-
                 />
-
-
         </LinearLayout>
+
+
+
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="69dp"
@@ -196,7 +86,6 @@
                 android:id="@+id/textView8"
                 android:layout_width="142dp"
                 android:layout_height="37dp"
-                android:layout_weight="1"
                 android:paddingLeft="20dp"
                 android:text="Phone"
                 android:textColor="@color/borderColor"
@@ -210,7 +99,6 @@
                 android:layout_weight="1"
                 android:background="@drawable/rounded_edittext"
                 android:ems="10"
-                android:hint="phone"
                 android:inputType="text"
                 android:paddingTop="15dp"
                 android:textColor="@color/black"
@@ -220,31 +108,138 @@
 
         </LinearLayout>
 
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="69dp"
             android:orientation="horizontal"
             android:paddingTop="15dp">
             <TextView
-                android:id="@+id/textView6"
                 android:layout_width="142dp"
                 android:layout_height="37dp"
-                android:layout_weight="1"
                 android:paddingLeft="20dp"
-                android:text="Email"
+                android:text="Product name"
                 android:textColor="@color/borderColor"
                 android:textSize="18dp"
                 android:textStyle="bold" />
             <EditText
-                android:id="@+id/etEmail"
+                android:id="@+id/etProductName"
                 android:layout_width="150dp"
                 android:layout_height="37dp"
                 android:layout_weight="1"
                 android:background="@drawable/rounded_edittext"
-                android:text="email"
                 android:textColor="@color/borderColor"
                 android:textSize="15dp"
                 android:textStyle="bold" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="69dp"
+            android:orientation="horizontal"
+            android:paddingTop="15dp">
+            <TextView
+                android:layout_width="142dp"
+                android:layout_height="37dp"
+                android:paddingLeft="20dp"
+                android:text="Case"
+                android:textColor="@color/borderColor"
+                android:textSize="18dp"
+                android:textStyle="bold" />
+            <EditText
+                android:id="@+id/etCase"
+                android:layout_width="150dp"
+                android:layout_height="37dp"
+                android:layout_weight="1"
+                android:background="@drawable/rounded_edittext"
+                android:textColor="@color/borderColor"
+                android:textSize="15dp"
+                android:textStyle="bold" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="69dp"
+            android:orientation="horizontal"
+            android:paddingTop="15dp">
+            <TextView
+                android:layout_width="142dp"
+                android:layout_height="37dp"
+                android:paddingLeft="20dp"
+                android:text="Date"
+                android:textColor="@color/borderColor"
+                android:textSize="18dp"
+                android:textStyle="bold" />
+            <EditText
+                android:id="@+id/etPurchasedDate"
+                android:layout_width="150dp"
+                android:layout_height="37dp"
+                android:layout_weight="1"
+                android:background="@drawable/rounded_edittext"
+                android:text=""
+                android:textColor="@color/borderColor"
+                android:textSize="15dp"
+                android:textStyle="bold" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="69dp"
+            android:background=""
+            android:orientation="horizontal"
+            android:paddingTop="5dp">
+            <TextView
+                android:layout_width="142dp"
+                android:layout_height="37dp"
+                android:layout_marginTop="10dp"
+                android:paddingLeft="20dp"
+                android:text="Battery"
+                android:textColor="@color/borderColor"
+                android:textSize="18dp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/etBattery"
+                android:layout_width="150dp"
+                android:layout_height="37dp"
+                android:layout_weight="1"
+                android:background="@drawable/rounded_edittext"
+                android:ems="10"
+                android:inputType="text"
+                android:textColor="@color/black"
+                android:textSize="15dp"
+                android:textStyle="bold"
+                />
+
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="69dp"
+            android:background=""
+            android:orientation="horizontal"
+            android:paddingTop="5dp">
+            <TextView
+                android:layout_width="142dp"
+                android:layout_height="37dp"
+                android:layout_marginTop="10dp"
+                android:paddingLeft="20dp"
+                android:text="Describe"
+                android:textColor="@color/borderColor"
+                android:textSize="18dp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/etDescribe"
+                android:layout_width="150dp"
+                android:layout_height="37dp"
+                android:layout_weight="1"
+                android:background="@drawable/rounded_edittext"
+                android:ems="10"
+                android:inputType="text"
+                android:textColor="@color/black"
+                android:textSize="15dp"
+                android:textStyle="bold"
+                />
+
+
         </LinearLayout>
         <RelativeLayout
             android:layout_marginBottom="10dp"

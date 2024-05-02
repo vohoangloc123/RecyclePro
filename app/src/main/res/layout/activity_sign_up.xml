@@ -40,7 +40,7 @@
             android:layout_height="wrap_content"
             android:text="Let's help the world to Reduce, Reuse, Recycle"
             android:textSize="18sp"
-            android:textColor="#888888"
+            android:textColor="#555555"
             android:layout_marginTop="16dp"
             />
 
@@ -97,7 +97,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
             android:text="Sign up"
-            android:backgroundTint="#50C2C9"
+            android:backgroundTint="@color/green5"
             android:textColor="#FFFFFF"
             android:textSize="18sp"
             android:padding="12dp"

@@ -5,10 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/recycleAssessorSide">
-
     <!-- TODO: Update blank fragment layout -->
-
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -16,16 +13,13 @@
         android:orientation="vertical"
         tools:layout_editor_absoluteX="0dp"
         tools:layout_editor_absoluteY="-37dp">
-
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="75dp"
             android:background="@color/green5"
             android:orientation="horizontal">
-
             <ImageButton
-                android:id="@+id/imageButton"
+                android:id="@+id/btnBack"
                 android:layout_width="84dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"

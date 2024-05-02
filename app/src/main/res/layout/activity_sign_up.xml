@@ -4,10 +4,8 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SignUpActivity"
-
+    tools:context=".activities.SignUp"
     >
-
     <LinearLayout
         android:id="@+id/containerLayout"
         android:layout_width="0dp"
@@ -19,7 +17,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:gravity="center"
         android:background="@drawable/background"
-
         >
 
         <!-- Tiêu đề "Welcome to RecyclePro" -->
@@ -29,10 +26,7 @@
             android:text="Welcome to RecyclePro"
             android:textSize="24sp"
             android:textStyle="bold"
-            android:layout_marginTop="150dp"
-
             />
-
         <!-- Tiêu đề phụ "Let's help the world to Reduce, Reuse, Recycle" -->
         <TextView
             android:id="@+id/subtitleTextView"
@@ -46,7 +40,7 @@
 
         <!-- Input: Username -->
         <EditText
-            android:id="@+id/usernameEditText"
+            android:id="@+id/etUserName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
@@ -57,7 +51,7 @@
 
         <!-- Input: Email -->
         <EditText
-            android:id="@+id/emailEditText"
+            android:id="@+id/etEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -68,7 +62,7 @@
 
         <!-- Input: Password -->
         <EditText
-            android:id="@+id/passwordEditText"
+            android:id="@+id/etPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -80,7 +74,7 @@
 
         <!-- Input: Confirm Password -->
         <EditText
-            android:id="@+id/confirmPasswordEditText"
+            android:id="@+id/etRepassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -92,7 +86,7 @@
 
         <!-- Button: Sign up -->
         <Button
-            android:id="@+id/signUpButton"
+            android:id="@+id/btnSignUp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"

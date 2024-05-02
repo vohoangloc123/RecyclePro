@@ -16,9 +16,7 @@
         android:background="@color/green5"
         android:orientation="horizontal"
         app:layout_constraintTop_toTopOf="parent"
-
         >
-
         <ImageButton
             android:id="@+id/imageButton"
             android:layout_width="84dp"
@@ -63,38 +61,24 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:layout_weight="1">
-                >
-
-<!--                <TextView-->
-<!--                    android:id="@+id/textView2"-->
-<!--                    android:layout_width="142dp"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:gravity="center_vertical"-->
-<!--                    android:text="Name"-->
-<!--                    android:textSize="18sp"-->
-<!--                    android:textStyle="bold"-->
-<!--                    android:textColor="#228B22"-->
-
-<!--                />-->
 
                 <EditText
-                    android:id="@+id/etName"
+                    android:id="@+id/etCustomerName"
                     android:layout_width="0dp"
                     android:layout_height="40dp"
                     android:layout_weight="1"
                     android:background="@drawable/rounded_edittext"
                     android:ems="10"
+                    android:hint="Enter your name"
                     android:inputType="text"
+                    android:paddingStart="10dp"
+                    android:paddingTop="10dp"
+                    android:paddingEnd="10dp"
+                    android:paddingBottom="10dp"
                     android:textColor="@color/black"
                     android:textSize="15sp"
-                    android:textStyle="bold"
-                    android:hint="Enter your name"
-                    android:paddingStart="10dp"
-                    android:paddingEnd="10dp"
-                    android:paddingTop="10dp"
-                    android:paddingBottom="10dp"
-                    />
-                    />
+                    android:textStyle="bold" />
+                />
             </LinearLayout>
 
             <!-- Phone -->
@@ -104,19 +88,6 @@
                 android:layout_marginTop="16dp"
                 android:orientation="horizontal"
                 android:layout_weight="1">
-                >
-
-<!--                <TextView-->
-<!--                    android:id="@+id/textView8"-->
-<!--                    android:layout_width="142dp"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:gravity="center_vertical"-->
-<!--                    android:text="Phone"-->
-<!--                    android:textSize="18sp"-->
-<!--                    android:textStyle="bold"-->
-<!--                    android:textColor="#228B22"-->
-
-<!--                    />-->
 
                 <EditText
                     android:id="@+id/etPhone"
@@ -145,19 +116,6 @@
                 android:layout_marginTop="16dp"
                 android:orientation="horizontal"
                 android:layout_weight="1">
-                >
-
-<!--                <TextView-->
-<!--                    android:id="@+id/textView3"-->
-<!--                    android:layout_width="142dp"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:gravity="center_vertical"-->
-<!--                    android:text="Product name"-->
-<!--                    android:textSize="18sp"-->
-<!--                    android:textStyle="bold"-->
-<!--                    android:textColor="#228B22"-->
-
-<!--                    />-->
 
                 <EditText
                     android:id="@+id/etProductName"
@@ -183,20 +141,6 @@
                 android:layout_marginTop="16dp"
                 android:orientation="horizontal"
                 android:layout_weight="1">
-                >
-
-<!--                <TextView-->
-<!--                    android:id="@+id/textView4"-->
-<!--                    android:layout_width="142dp"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:gravity="center_vertical"-->
-<!--                    android:text="Case"-->
-<!--                    android:textSize="18sp"-->
-<!--                    android:textStyle="bold"-->
-<!--                    android:textColor="#228B22"-->
-
-<!--                    />-->
-
                 <EditText
                     android:id="@+id/etCase"
                     android:layout_width="0dp"
@@ -221,7 +165,6 @@
                 android:layout_marginTop="16dp"
                 android:orientation="horizontal"
                 android:layout_weight="1">
-                >
 
                 <TextView
                     android:id="@+id/textView5"
@@ -253,18 +196,6 @@
                 android:layout_marginTop="16dp"
                 android:orientation="horizontal"
                 android:layout_weight="1">
-                >
-
-<!--                <TextView-->
-<!--                    android:id="@+id/textView6"-->
-<!--                    android:layout_width="142dp"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:gravity="center_vertical"-->
-<!--                    android:text="Battery"-->
-<!--                    android:textSize="18sp"-->
-<!--                    android:textStyle="bold"-->
-<!--                    android:textColor="#228B22"-->
-<!--                    />-->
 
                 <EditText
                     android:id="@+id/etBattery"
@@ -290,21 +221,8 @@
                 android:layout_marginTop="16dp"
                 android:orientation="horizontal"
                 android:layout_weight="1">
-                >
 
-<!--                <TextView-->
-<!--                    android:id="@+id/textView7"-->
-<!--                    android:layout_width="142dp"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:gravity="center_vertical"-->
-<!--                    android:text="Describe"-->
-<!--                    android:textSize="18sp"-->
-<!--                    android:textStyle="bold"-->
-<!--                    android:textColor="#228B22"-->
-
-<!--                    />-->
-
-                <TextView
+                <EditText
                     android:id="@+id/etDescribe"
                     android:layout_width="0dp"
                     android:layout_height="100dp"
@@ -321,7 +239,6 @@
                     />
             </LinearLayout>
 
-            <!-- Button -->
             <Button
                 android:id="@+id/btnSave"
                 android:layout_width="match_parent"

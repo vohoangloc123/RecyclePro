@@ -13,6 +13,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.example.recyclepro.R;
+import com.example.recyclepro.Validation.Regex;
 import com.example.recyclepro.dynamoDB.DynamoDBManager;
 
 public class SignUp extends AppCompatActivity {
@@ -22,6 +23,7 @@ public class SignUp extends AppCompatActivity {
     private EditText etUserName;
     private Button btnSignUp;
     private DynamoDBManager dynamoDBManager;
+    private Regex regex;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,6 +34,7 @@ public class SignUp extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+        regex=new Regex();
         dynamoDBManager=new DynamoDBManager(this);
         etEmail=findViewById(R.id.etEmail);
         etPassword=findViewById(R.id.etPassword);

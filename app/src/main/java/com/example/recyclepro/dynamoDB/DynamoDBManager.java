@@ -77,11 +77,9 @@ public class DynamoDBManager {
     }
     private AmazonDynamoDBClient ddbClient;
     public void SubmitProductInformationforRecycling(String productID, String customerName,String phone,String productName, String caseDescribe, String purchasedDate, String battery, String describe, String state) {
-        Log.d("Check464", "OnSubmitProduct");
         try {
             if (ddbClient == null) {
                 initializeDynamoDB();
-                Log.d("Check464", "Connecting");
             }
 
             new Thread(new Runnable() {
@@ -106,7 +104,6 @@ public class DynamoDBManager {
 
                         // Thực hiện yêu cầu chèn mục và nhận kết quả
                         PutItemResult result = ddbClient.putItem(putItemRequest);
-                        Log.d("Check464", String.valueOf(result));
 
                     } catch (Exception e) {
                         Log.e("Error", "Exception occurred: ", e);
@@ -122,7 +119,6 @@ public class DynamoDBManager {
         try {
             if (ddbClient == null) {
                 initializeDynamoDB();
-                Log.d("Check464", "Connecting");
             }
             new Thread(new Runnable() {
                 @Override
@@ -169,11 +165,9 @@ public class DynamoDBManager {
         void onFound1(String id,String customerName, String productName);
     }
     public void createAccount(String email, String password, String userName,String role) {
-        Log.d("Check464", "OnSubmitProduct");
         try {
             if (ddbClient == null) {
                 initializeDynamoDB();
-                Log.d("Check464", "Connecting");
             }
 
             new Thread(new Runnable() {
@@ -193,7 +187,6 @@ public class DynamoDBManager {
 
                         // Thực hiện yêu cầu chèn mục và nhận kết quả
                         PutItemResult result = ddbClient.putItem(putItemRequest);
-                        Log.d("Check464", String.valueOf(result));
 
                     } catch (Exception e) {
                         Log.e("Error", "Exception occurred: ", e);
@@ -209,7 +202,6 @@ public class DynamoDBManager {
         try {
             if (ddbClient == null) {
                 initializeDynamoDB();
-                Log.d("Check464", "Connecting");
             }
 
             // Tạo một biến boolean để lưu kết quả kiểm tra
@@ -250,4 +242,61 @@ public class DynamoDBManager {
             return false; // Trả về false nếu có lỗi xảy ra
         }
     }
+    public interface LoadUsersCallback {
+        void onLoginSuccess(String role);
+        void onLoginFailure();
+    }
+    public boolean loadUsers(String email, String password, LoadUsersCallback callback) {
+        try {
+            if (ddbClient == null) {
+                initializeDynamoDB();
+            }
+
+            // Tạo một biến boolean để lưu kết quả kiểm tra
+            AtomicBoolean isAuthenticated = new AtomicBoolean(false);
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        // Tạo một yêu cầu truy vấn
+                        HashMap<String, Condition> scanFilter = new HashMap<String, Condition>();
+                        Condition condition = new Condition()
+                                .withComparisonOperator(ComparisonOperator.EQ.toString())
+                                .withAttributeValueList(new AttributeValue().withS(email));
+                        scanFilter.put("email", condition);
+
+                        ScanRequest scanRequest = new ScanRequest("Users").withScanFilter(scanFilter);
+                        ScanResult scanResult = ddbClient.scan(scanRequest);
+
+                        for (Map<String, AttributeValue> item : scanResult.getItems()) {
+                            String storedPassword = item.get("password").getS(); // Lấy mật khẩu đã lưu
+                            Log.d("Check464", storedPassword);
+                            // Kiểm tra mật khẩu
+                            if (storedPassword.equals(password)) {
+                                // Mật khẩu đúng, đánh dấu xác thực thành công và thoát khỏi vòng lặp
+                                String role = item.get("role").getS();
+                                callback.onLoginSuccess(role);
+                                isAuthenticated.set(true);
+                                return;
+                            } else {
+                            }
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            }).start();
+
+            Thread.sleep(1000);
+
+
+            return isAuthenticated.get();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+
+
 }

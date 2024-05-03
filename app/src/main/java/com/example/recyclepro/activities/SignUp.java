@@ -24,6 +24,8 @@ public class SignUp extends AppCompatActivity {
     private Button btnSignUp;
     private DynamoDBManager dynamoDBManager;
     private Regex regex;
+
+    private Button btnSignIn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,6 +42,13 @@ public class SignUp extends AppCompatActivity {
         etPassword=findViewById(R.id.etPassword);
         etRepassword=findViewById(R.id.etRepassword);
         etUserName=findViewById(R.id.etUserName);
+
+        btnSignIn = findViewById(R.id.btnSignIn);
+        btnSignIn.setOnClickListener(v -> {
+            Intent intent = new Intent(this, SignIn.class);
+            startActivity(intent);
+        });
+
         btnSignUp=findViewById(R.id.btnSignUp);
         btnSignUp.setOnClickListener(v -> {
             String email = etEmail.getText().toString().trim();

@@ -23,6 +23,7 @@
             android:exported="false" />
         <activity
             android:name=".activities.CustomerSide"
+            android:windowSoftInputMode="adjustResize"
             android:exported="false" />
         <activity
             android:name=".activities.SignIn"

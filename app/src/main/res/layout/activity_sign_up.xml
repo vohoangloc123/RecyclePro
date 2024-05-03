@@ -91,23 +91,44 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
             android:text="Sign up"
-            android:backgroundTint="@color/green5"
-            android:textColor="#FFFFFF"
+            android:backgroundTint="@color/button_color"
+            android:textColor="@color/white"
             android:textSize="18sp"
             android:padding="12dp"
             android:layout_marginHorizontal="20dp"
             app:cornerRadius="5dp" />
 
         <!-- Đoạn chữ "Already have an account? Sign in" -->
-        <TextView
-            android:id="@+id/signInTextView"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:id="@+id/signInLayout"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Already have an account? Sign in"
-            android:textColor="#333333"
-            android:textSize="16sp"
+            android:orientation="horizontal"
             android:layout_marginTop="24dp"
-            android:layout_gravity="center_horizontal" />
+            android:gravity="center_horizontal">
+
+            <!-- TextView "Already have an account?" -->
+            <TextView
+                android:id="@+id/alreadyTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Already have an account?"
+                android:textColor="#333333"
+                android:textSize="16sp"/>
+
+            <!-- Button "Sign in" -->
+            <Button
+                android:id="@+id/btnSignIn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Sign in"
+                android:textSize="16sp"
+                android:textColor="@color/button_color"
+                android:background="@android:color/transparent"
+                android:layout_marginStart="8dp"/>
+
+        </LinearLayout>
+
 
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -16,14 +16,14 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="75dp"
-            android:background="@color/green5"
+            android:background="@color/button_color"
             android:orientation="horizontal">
             <ImageButton
                 android:id="@+id/btnBack"
                 android:layout_width="84dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:backgroundTint="@color/green5"
+                android:backgroundTint="@color/button_color"
                 android:src="@drawable/baseline_arrow_left_24" />
 
             <TextView

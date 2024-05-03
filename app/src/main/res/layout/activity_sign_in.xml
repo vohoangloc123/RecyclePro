@@ -24,7 +24,7 @@
             android:layout_width="match_parent"
             android:layout_height="100dp"
             android:src="@drawable/baseline_recycling_24"
-            android:layout_marginTop="100dp"
+            android:layout_marginTop="50dp"
             />
 
         <TextView
@@ -70,7 +70,7 @@
             android:layout_width="match_parent"
             android:layout_height="58dp"
             android:layout_marginTop="20dp"
-            android:backgroundTint="@color/green5"
+            android:backgroundTint="@color/button_color"
             android:text="Sign in"
             android:textColor="@color/white"
             android:textSize="20dp"
@@ -81,7 +81,7 @@
             android:layout_width="match_parent"
             android:layout_height="58dp"
             android:layout_marginTop="20dp"
-            android:backgroundTint="@color/green5"
+            android:backgroundTint="@color/button_color"
             android:text="Sign up"
             android:textColor="@color/white"
             android:textSize="20dp"
@@ -102,7 +102,7 @@
             android:layout_width="match_parent"
             android:layout_height="58dp"
             android:layout_marginTop="20dp"
-            android:backgroundTint="@color/green5"
+            android:backgroundTint="@color/button_color"
             android:text="Join as customer"
             android:textColor="@color/white"
             android:textSize="20dp"

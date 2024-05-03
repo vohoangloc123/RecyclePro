@@ -4,24 +4,22 @@
     android:id="@+id/customerSide"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#f6f6f6"
-
-    >
+    android:background="#f6f6f6">
 
     <!-- Header -->
     <LinearLayout
         android:id="@+id/headerLayout"
         android:layout_width="match_parent"
         android:layout_height="75dp"
-        android:background="@color/green5"
+        android:background="@color/button_color"
         android:orientation="horizontal"
-        app:layout_constraintTop_toTopOf="parent"
-        >
+        app:layout_constraintTop_toTopOf="parent">
+
         <ImageButton
             android:id="@+id/imageButton"
             android:layout_width="84dp"
             android:layout_height="match_parent"
-            android:backgroundTint="@color/green5"
+            android:backgroundTint="@color/button_color"
             android:src="@drawable/baseline_arrow_left_24" />
 
         <TextView
@@ -45,15 +43,13 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/headerLayout"
-
-        >
+        android:windowSoftInputMode="adjustResize">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="16dp"
-            >
+            android:padding="16dp">
 
             <!-- Name -->
             <LinearLayout
@@ -78,7 +74,6 @@
                     android:textColor="@color/black"
                     android:textSize="15sp"
                     android:textStyle="bold" />
-                />
             </LinearLayout>
 
             <!-- Phone -->
@@ -104,9 +99,7 @@
                     android:paddingStart="10dp"
                     android:paddingEnd="10dp"
                     android:paddingTop="10dp"
-                    android:paddingBottom="10dp"
-
-                    />
+                    android:paddingBottom="10dp" />
             </LinearLayout>
 
             <!-- Product Name -->
@@ -123,15 +116,14 @@
                     android:layout_height="40dp"
                     android:layout_weight="1"
                     android:background="@drawable/rounded_edittext"
-                    android:textColor="@color/borderColor"
+                    android:textColor="@color/black"
                     android:textSize="15sp"
                     android:textStyle="bold"
                     android:hint="Enter your product name"
                     android:paddingStart="10dp"
                     android:paddingEnd="10dp"
                     android:paddingTop="10dp"
-                    android:paddingBottom="10dp"
-                    />
+                    android:paddingBottom="10dp" />
             </LinearLayout>
 
             <!-- Case -->
@@ -141,21 +133,21 @@
                 android:layout_marginTop="16dp"
                 android:orientation="horizontal"
                 android:layout_weight="1">
+
                 <EditText
                     android:id="@+id/etCase"
                     android:layout_width="0dp"
                     android:layout_height="40dp"
                     android:layout_weight="1"
                     android:background="@drawable/rounded_edittext"
-                    android:textColor="@color/borderColor"
+                    android:textColor="@color/black"
                     android:textSize="15sp"
                     android:textStyle="bold"
                     android:hint="Enter your case"
                     android:paddingStart="10dp"
                     android:paddingEnd="10dp"
                     android:paddingTop="10dp"
-                    android:paddingBottom="10dp"
-                    />
+                    android:paddingBottom="10dp" />
             </LinearLayout>
 
             <!-- Date -->
@@ -174,9 +166,7 @@
                     android:text="Purchase date"
                     android:textSize="18sp"
                     android:textStyle="bold"
-                    android:textColor="#555555"
-
-                    />
+                    android:textColor="@color/black" />
 
                 <EditText
                     android:id="@+id/etPurchasedDate"
@@ -184,7 +174,7 @@
                     android:layout_height="40dp"
                     android:layout_weight="1"
                     android:background="@drawable/rounded_edittext"
-                    android:textColor="@color/borderColor"
+                    android:textColor="@color/black"
                     android:textSize="15sp"
                     android:textStyle="bold" />
             </LinearLayout>
@@ -210,8 +200,7 @@
                     android:paddingStart="10dp"
                     android:paddingEnd="10dp"
                     android:paddingTop="10dp"
-                    android:paddingBottom="10dp"
-                    />
+                    android:paddingBottom="10dp" />
             </LinearLayout>
 
             <!-- Describe -->
@@ -225,7 +214,7 @@
                 <EditText
                     android:id="@+id/etDescribe"
                     android:layout_width="0dp"
-                    android:layout_height="100dp"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:background="@drawable/rounded_edittext"
                     android:textColor="@color/black"
@@ -236,6 +225,8 @@
                     android:paddingEnd="10dp"
                     android:paddingTop="10dp"
                     android:paddingBottom="10dp"
+                    android:inputType="textMultiLine"
+                    android:minLines="4"
                     />
             </LinearLayout>
 
@@ -244,7 +235,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="35dp"
                 android:layout_marginTop="16dp"
-                android:backgroundTint="@color/green5"
+                android:backgroundTint="@color/button_color"
                 android:text="Send"
                 android:textAlignment="center"
                 android:textSize="20sp"
@@ -253,8 +244,7 @@
                 android:paddingStart="16dp"
                 android:paddingEnd="16dp"
                 android:layout_weight="1"
-                app:cornerRadius="5dp"
-                />
+                app:cornerRadius="5dp" />
         </LinearLayout>
     </ScrollView>
 

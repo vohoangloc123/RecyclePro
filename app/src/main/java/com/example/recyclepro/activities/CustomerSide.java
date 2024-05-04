@@ -1,9 +1,14 @@
 package com.example.recyclepro.activities;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.media.Image;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -25,9 +30,9 @@ public class CustomerSide extends AppCompatActivity {
     private EditText etCase;
     private EditText etPurchasedDate;
     private EditText etBattery;
-    private EditText etDescribe;
+    private EditText etScreen;
     private Button btnSend;
-    private Button btnBack;
+    private ImageButton btnExit;
     private DynamoDBManager dynamoDBManager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,12 +50,11 @@ public class CustomerSide extends AppCompatActivity {
         etCase=findViewById(R.id.etCase);
         etPurchasedDate=findViewById(R.id.etPurchasedDate);
         etBattery=findViewById(R.id.etBattery);
-        etDescribe=findViewById(R.id.etDescribe);
+        etScreen =findViewById(R.id.etScreen);
         btnSend=findViewById(R.id.btnSave);
+        btnExit=findViewById(R.id.btnExit);
         dynamoDBManager=new DynamoDBManager(this);
         dynamoDBManager.checkDynamoDBConnection();
-
-        Regex regex=new Regex();
         btnSend.setOnClickListener(v -> {
             Random rand = new Random();
             int number = rand.nextInt(1000000);
@@ -61,12 +65,28 @@ public class CustomerSide extends AppCompatActivity {
             String caseDescribe = etCase.getText().toString().trim();
             String purchasedDate = etPurchasedDate.getText().toString().trim();
             String battery = etBattery.getText().toString().trim();
-            String describe = etDescribe.getText().toString().trim();
+            String screen = etScreen.getText().toString().trim();
 
             Log.d("check464","id"+id+"customerName"+customerName+"phone"+phone+"case"+caseDescribe+"purchasedDate"+
-                    purchasedDate+"battery"+battery+"describe"+describe);
-            dynamoDBManager.SubmitProductInformationforRecycling(id, customerName, phone, productName,battery,caseDescribe,purchasedDate, describe, "1");
+                    purchasedDate+"battery"+battery+"screen"+screen);
+            dynamoDBManager.SubmitProductInformationforRecycling(id, customerName, phone, productName,caseDescribe,purchasedDate, battery,screen, "1");
             Toast.makeText(this, "Submit successful", Toast.LENGTH_LONG).show(); // Added show() method
+        });
+        btnExit.setOnClickListener(v->{
+            android.app.AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle("Confirm Logout");
+            builder.setMessage("Are you sure you want to log out?");
+            builder.setPositiveButton("Yes", (dialog, which) -> {
+                // Nếu người dùng đồng ý, thực hiện chuyển đổi sang activity đăng nhập
+                Intent intent = new Intent(this, SignIn.class);
+                startActivity(intent);
+            });
+            builder.setNegativeButton("Cancel", (dialog, which) -> {
+                // Nếu người dùng hủy bỏ, đóng dialog và không thực hiện hành động gì
+                dialog.dismiss();
+            });
+            builder.show();
+
         });
     }
 }

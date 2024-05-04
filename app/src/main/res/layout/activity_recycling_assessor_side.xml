@@ -19,7 +19,7 @@
             android:background="@color/button_color"
             android:orientation="horizontal">
             <ImageButton
-                android:id="@+id/btnBack"
+                android:id="@+id/btnExit"
                 android:layout_width="84dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"

@@ -76,7 +76,7 @@ public class DynamoDBManager {
         }
     }
     private AmazonDynamoDBClient ddbClient;
-    public void SubmitProductInformationforRecycling(String productID, String customerName,String phone,String productName, String caseDescribe, String purchasedDate, String battery, String describe, String state) {
+    public void SubmitProductInformationforRecycling(String productID, String customerName,String phone,String productName, String caseDescribe, String purchasedDate, String battery, String screen, String state) {
         try {
             if (ddbClient == null) {
                 initializeDynamoDB();
@@ -95,7 +95,7 @@ public class DynamoDBManager {
                         item.put("caseDescribe", new AttributeValue().withS(caseDescribe));
                         item.put("purchasedDate", new AttributeValue().withS(purchasedDate));
                         item.put("battery", new AttributeValue().withS(battery));
-                        item.put("describe", new AttributeValue().withS(describe));
+                        item.put("screen", new AttributeValue().withS(screen));
                         item.put("state", new AttributeValue().withS(state));
                         // Tạo yêu cầu chèn mục vào bảng
                         PutItemRequest putItemRequest = new PutItemRequest()
@@ -141,7 +141,7 @@ public class DynamoDBManager {
                             String productName = item.get("productName").getS();
                             String battery=item.get("battery").getS();
                             String caseDescribe=item.get("caseDescribe").getS();
-                            String describe=item.get("describe").getS();
+                            String screen=item.get("screen").getS();
                             String phone=item.get("phone").getS();
                             String purchasedDate=item.get("purchasedDate").getS();
                             // Cập nhật giao diện
@@ -149,8 +149,8 @@ public class DynamoDBManager {
                             handler.post(new Runnable() {
                                 @Override
                                 public void run() {
-                                    Log.d("sequence506", "stage 1 in dynamoDB"+id+customerName+phone+productName+battery+caseDescribe+purchasedDate+describe);
-                                    listener.onFound(id, customerName,phone, productName,  battery, caseDescribe, purchasedDate,  describe);
+                                    Log.d("sequence506", "stage 1 in dynamoDB"+id+customerName+phone+productName+battery+caseDescribe+purchasedDate+screen);
+                                    listener.onFound(id, customerName,phone, productName,  battery, caseDescribe, purchasedDate,  screen);
                                 }
                             });
 
@@ -166,7 +166,7 @@ public class DynamoDBManager {
     }
 
     public interface LoadRecyclingProductListListener {
-        void onFound(String id,String customerName,String phone, String productName, String battery, String caseDescribe,String purchasedDate,String describe);
+        void onFound(String id,String customerName,String phone, String productName, String battery, String caseDescribe,String purchasedDate,String screen);
     }
     public void createAccount(String email, String password, String userName,String role) {
         try {

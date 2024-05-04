@@ -4,18 +4,18 @@ public class Product {
     private String productID;
     private String battery;
     private String caseDescribe;
-    private String describe;
+    private String screen;
     private String phone;
     private String productName;
     private String purchasedDate;
     private String state;
     private String customerName;
 
-    public Product(String productID, String customerName, String phone, String productName, String battery, String caseDescribe, String purchasedDate, String describe) {
+    public Product(String productID, String customerName, String phone, String productName, String battery, String caseDescribe, String purchasedDate, String screen) {
         this.productID = productID;
         this.battery = battery;
         this.caseDescribe = caseDescribe;
-        this.describe = describe;
+        this.screen = screen;
         this.phone = phone;
         this.productName = productName;
         this.purchasedDate = purchasedDate;
@@ -54,12 +54,12 @@ public class Product {
         this.caseDescribe = caseDescribe;
     }
 
-    public String getDescribe() {
-        return describe;
+    public String getScreen() {
+        return screen;
     }
 
-    public void setDescribe(String describe) {
-        this.describe = describe;
+    public void setScreen(String screen) {
+        this.screen = screen;
     }
 
     public String getPhone() {
@@ -101,7 +101,7 @@ public class Product {
                 "productID='" + productID + '\'' +
                 ", battery='" + battery + '\'' +
                 ", caseDescribe='" + caseDescribe + '\'' +
-                ", describe='" + describe + '\'' +
+                ", describe='" + screen + '\'' +
                 ", phone='" + phone + '\'' +
                 ", productName='" + productName + '\'' +
                 ", purchasedDate='" + purchasedDate + '\'' +

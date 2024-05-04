@@ -16,7 +16,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageButton
-            android:id="@+id/imageButton"
+            android:id="@+id/btnExit"
             android:layout_width="84dp"
             android:layout_height="match_parent"
             android:backgroundTint="@color/button_color"
@@ -206,45 +206,51 @@
             <!-- Describe -->
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="8dp"
                 android:layout_marginTop="16dp"
-                android:orientation="horizontal"
-                android:layout_weight="1">
+                android:layout_weight="1"
+                android:orientation="horizontal">
 
                 <EditText
-                    android:id="@+id/etDescribe"
+                    android:id="@+id/etScreen"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="37dp"
                     android:layout_weight="1"
                     android:background="@drawable/rounded_edittext"
-                    android:textColor="@color/black"
-                    android:textSize="15sp"
-                    android:textStyle="bold"
-                    android:hint="Descript your product here..."
-                    android:paddingStart="10dp"
-                    android:paddingEnd="10dp"
-                    android:paddingTop="10dp"
-                    android:paddingBottom="10dp"
+                    android:hint="Enter your describe screen"
                     android:inputType="textMultiLine"
                     android:minLines="4"
-                    />
+                    android:paddingStart="10dp"
+                    android:paddingTop="10dp"
+                    android:paddingEnd="10dp"
+                    android:paddingBottom="10dp"
+                    android:textColor="@color/black"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
             </LinearLayout>
 
-            <Button
-                android:id="@+id/btnSave"
-                android:layout_width="match_parent"
-                android:layout_height="35dp"
-                android:layout_marginTop="16dp"
-                android:backgroundTint="@color/button_color"
-                android:text="Send"
-                android:textAlignment="center"
-                android:textSize="20sp"
-                android:elevation="8dp"
-                android:drawablePadding="8dp"
-                android:paddingStart="16dp"
-                android:paddingEnd="16dp"
-                android:layout_weight="1"
-                app:cornerRadius="5dp" />
+           <LinearLayout
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:orientation="horizontal">
+               <Button
+                   android:id="@+id/btnSave"
+                   android:layout_width="300dp"
+                   android:layout_height="35dp"
+                   android:layout_marginTop="16dp"
+                   android:backgroundTint="@color/button_color"
+                   android:text="Send"
+                   android:textAlignment="center"
+                   android:textSize="20sp"
+                   android:elevation="8dp"
+                   android:drawablePadding="8dp"
+                   android:paddingStart="16dp"
+                   android:paddingEnd="16dp"
+                   android:layout_weight="1"
+                   app:cornerRadius="5dp" />
+
+           </LinearLayout>
+
         </LinearLayout>
     </ScrollView>
 

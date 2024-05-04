@@ -54,7 +54,7 @@ public class SignUp extends AppCompatActivity {
             String email = etEmail.getText().toString().trim();
             String password = etPassword.getText().toString().trim();
             String rePassword = etRepassword.getText().toString().trim();
-            String userName = etUserName.getText().toString().trim();
+            String userName = etUserName.getText().toString();
 
             if (email.isEmpty() || password.isEmpty() || rePassword.isEmpty() || userName.isEmpty()) {
                 Toast.makeText(getApplicationContext(), "Vui lòng điền đầy đủ thông tin", Toast.LENGTH_SHORT).show();

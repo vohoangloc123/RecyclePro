@@ -1,5 +1,7 @@
 package com.example.recyclepro.activities;
 
+import android.app.AlertDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
@@ -27,7 +29,7 @@ public class RecyclingAssessorSide extends AppCompatActivity {
     private DynamoDBManager dynamoDBManager;
     private ProductAdapter adapter;
     private Button btnLoad;
-    private ImageButton btnBack;
+    private ImageButton btnExit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,32 +52,46 @@ public class RecyclingAssessorSide extends AppCompatActivity {
         rcvCustomer.setAdapter(adapter);
         listProducts.clear();
         dynamoDBManager.loadProduct("1", new DynamoDBManager.LoadRecyclingProductListListener() {
+
+
             @Override
-            public void onFound(String id, String customerName, String phone, String productName, String battery, String caseDescribe, String purchasedDate, String describe) {
-                Log.d("sequence506", "stage 2 in load"+id+customerName+phone+productName+battery+caseDescribe+purchasedDate+describe);
-                Product product=new Product(id,customerName,phone, productName, battery, caseDescribe,purchasedDate, describe);
+            public void onFound(String id, String customerName, String phone, String productName, String battery, String caseDescribe, String purchasedDate, String screen) {
+                Log.d("sequence506", "stage 2 in load"+id+customerName+phone+productName+battery+caseDescribe+purchasedDate+ screen);
+                Product product=new Product(id,customerName,phone, productName, battery, caseDescribe,purchasedDate, screen);
                 listProducts.add(product);
                 adapter.notifyDataSetChanged();
             }
-
-
         });
         btnLoad=findViewById(R.id.btnReview);
         btnLoad.setOnClickListener(v->{
             listProducts.clear();
             dynamoDBManager.loadProduct("1", new DynamoDBManager.LoadRecyclingProductListListener() {
 
+
                 @Override
-                public void onFound(String id, String customerName, String phone, String productName, String battery, String caseDescribe, String purchasedDate, String describe) {
-                    Product product=new Product(id,customerName,phone, productName, battery, caseDescribe,purchasedDate, describe);
+                public void onFound(String id, String customerName, String phone, String productName, String battery, String caseDescribe, String purchasedDate, String screen) {
+                    Log.d("sequence506", "stage 2 in load"+id+customerName+phone+productName+battery+caseDescribe+purchasedDate+ screen);
+                    Product product=new Product(id,customerName,phone, productName, battery, caseDescribe,purchasedDate, screen);
                     listProducts.add(product);
                     adapter.notifyDataSetChanged();
                 }
             });
         });
-        btnBack=findViewById(R.id.btnBack);
-        btnBack.setOnClickListener(v->{
-
+        btnExit =findViewById(R.id.btnExit);
+        btnExit.setOnClickListener(v->{
+            android.app.AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle("Confirm Logout");
+            builder.setMessage("Are you sure you want to log out?");
+            builder.setPositiveButton("Yes", (dialog, which) -> {
+                // Nếu người dùng đồng ý, thực hiện chuyển đổi sang activity đăng nhập
+                Intent intent = new Intent(this, SignIn.class);
+                startActivity(intent);
+            });
+            builder.setNegativeButton("Cancel", (dialog, which) -> {
+                // Nếu người dùng hủy bỏ, đóng dialog và không thực hiện hành động gì
+                dialog.dismiss();
+            });
+            builder.show();
         });
         adapter.setOnItemClickListener(new ProductAdapter.OnItemClickListener() {
 
@@ -104,6 +120,5 @@ public class RecyclingAssessorSide extends AppCompatActivity {
         recyclingAssessmentFragment.setArguments(bundle);
         fragmentTransaction.addToBackStack(recyclingAssessmentFragment.TAG);
         fragmentTransaction.commit();
-
     }
 }

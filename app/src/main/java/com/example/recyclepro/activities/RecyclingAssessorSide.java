@@ -1,16 +1,16 @@
 package com.example.recyclepro.activities;
 
-import android.media.Image;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -28,6 +28,7 @@ public class RecyclingAssessorSide extends AppCompatActivity {
     private ProductAdapter adapter;
     private Button btnLoad;
     private ImageButton btnBack;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,19 +51,23 @@ public class RecyclingAssessorSide extends AppCompatActivity {
         listProducts.clear();
         dynamoDBManager.loadProduct("1", new DynamoDBManager.LoadRecyclingProductListListener() {
             @Override
-            public void onFound1(String id, String customerName, String productName) {
-                Product product=new Product(id,customerName, productName);
+            public void onFound(String id, String customerName, String phone, String productName, String battery, String caseDescribe, String purchasedDate, String describe) {
+                Log.d("sequence506", "stage 2 in load"+id+customerName+phone+productName+battery+caseDescribe+purchasedDate+describe);
+                Product product=new Product(id,customerName,phone, productName, battery, caseDescribe,purchasedDate, describe);
                 listProducts.add(product);
                 adapter.notifyDataSetChanged();
             }
+
+
         });
         btnLoad=findViewById(R.id.btnReview);
         btnLoad.setOnClickListener(v->{
             listProducts.clear();
             dynamoDBManager.loadProduct("1", new DynamoDBManager.LoadRecyclingProductListListener() {
+
                 @Override
-                public void onFound1(String id, String customerName, String productName) {
-                    Product product=new Product(id,customerName, productName);
+                public void onFound(String id, String customerName, String phone, String productName, String battery, String caseDescribe, String purchasedDate, String describe) {
+                    Product product=new Product(id,customerName,phone, productName, battery, caseDescribe,purchasedDate, describe);
                     listProducts.add(product);
                     adapter.notifyDataSetChanged();
                 }
@@ -72,5 +77,33 @@ public class RecyclingAssessorSide extends AppCompatActivity {
         btnBack.setOnClickListener(v->{
 
         });
+        adapter.setOnItemClickListener(new ProductAdapter.OnItemClickListener() {
+
+
+            @Override
+            public void onItemClick(String productID, String customerName, String phone, String productName, String battery, String caseDescribe, String purchasedDate, String describe) {
+                Log.d("sequence506", "stage 3 in click event"+productID+customerName+phone+productName+battery+caseDescribe+purchasedDate+describe);
+                Bundle bundle = new Bundle();
+                bundle.putString("productID", productID);
+                bundle.putString("customerName", customerName);
+                bundle.putString("phone", phone);
+                bundle.putString("productName",productName);
+                bundle.putString("productBattery", battery);
+                bundle.putString("productCaseDescribe", caseDescribe);
+                bundle.putString("productPurchasedDate", purchasedDate);
+                bundle.putString("productDescribe", describe);
+                goTorecyclingAssessmentFragment(bundle);
+            }
+        });
+    }
+    public void goTorecyclingAssessmentFragment(Bundle bundle) {
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        RecyclingAssessmentFragment recyclingAssessmentFragment = new RecyclingAssessmentFragment();
+        // Thêm ChatHistoryFragment
+        fragmentTransaction.add(R.id.recycleAssessorSide,recyclingAssessmentFragment, recyclingAssessmentFragment.TAG);
+        recyclingAssessmentFragment.setArguments(bundle);
+        fragmentTransaction.addToBackStack(recyclingAssessmentFragment.TAG);
+        fragmentTransaction.commit();
+
     }
 }

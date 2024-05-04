@@ -61,13 +61,21 @@ public class SignUp extends AppCompatActivity {
             } else if (!password.equals(rePassword)) {
                 Toast.makeText(getApplicationContext(), "Mật khẩu không khớp", Toast.LENGTH_SHORT).show();
             } else {
-                if (dynamoDBManager.checkExistedAccount(email)) {
-                    Toast.makeText(getApplicationContext(), "Email đã tồn tại", Toast.LENGTH_SHORT).show();
+                if (!Regex.checkEmail(email)) {
+                    Toast.makeText(getApplicationContext(), "Email không hợp lệ", Toast.LENGTH_SHORT).show();
+                } else if (!Regex.checkPass(password)) {
+                    Toast.makeText(getApplicationContext(), "Mật khẩu phải có ít nhất 6 ký tự", Toast.LENGTH_SHORT).show();
+                } else if (!Regex.checkUserName(userName)) {
+                    Toast.makeText(getApplicationContext(), "Tên người dùng bao gồm chữ", Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(getApplicationContext(), "Tạo thành công", Toast.LENGTH_SHORT).show();
-                    dynamoDBManager.createAccount(email, password, userName, "customer");
-                    Intent intent = new Intent(this, SignIn.class);
-                    startActivity(intent);
+                    if (dynamoDBManager.checkExistedAccount(email)) {
+                        Toast.makeText(getApplicationContext(), "Email đã tồn tại", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(getApplicationContext(), "Tạo thành công", Toast.LENGTH_SHORT).show();
+                        dynamoDBManager.createAccount(email, password, userName, "customer");
+                        Intent intent = new Intent(this, SignIn.class);
+                        startActivity(intent);
+                    }
                 }
             }
         });

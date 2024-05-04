@@ -50,7 +50,7 @@
                 android:id="@+id/btnReview"
                 android:layout_width="150dp"
                 android:layout_height="55dp"
-                android:text="Review"
+                android:text="Reload"
                 android:textAlignment="center"
                 android:backgroundTint="@color/green4"/>
         </RelativeLayout>

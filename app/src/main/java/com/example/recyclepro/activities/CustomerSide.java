@@ -65,7 +65,7 @@ public class CustomerSide extends AppCompatActivity {
 
             Log.d("check464","id"+id+"customerName"+customerName+"phone"+phone+"case"+caseDescribe+"purchasedDate"+
                     purchasedDate+"battery"+battery+"describe"+describe);
-            dynamoDBManager.SubmitProductInformationforRecycling(id, customerName, phone, productName,caseDescribe, purchasedDate, battery, describe, "1");
+            dynamoDBManager.SubmitProductInformationforRecycling(id, customerName, phone, productName,battery,caseDescribe,purchasedDate, describe, "1");
             Toast.makeText(this, "Submit successful", Toast.LENGTH_LONG).show(); // Added show() method
         });
     }

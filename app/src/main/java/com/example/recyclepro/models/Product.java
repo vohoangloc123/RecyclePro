@@ -11,13 +11,7 @@ public class Product {
     private String state;
     private String customerName;
 
-    public Product(String productID,String customerName, String productName) {
-        this.productID = productID;
-        this.customerName = customerName;
-        this.productName = productName;
-    }
-
-    public Product(String productID, String battery, String caseDescribe, String describe, String phone, String productName, String purchasedDate, String state, String customerName) {
+    public Product(String productID, String customerName, String phone, String productName, String battery, String caseDescribe, String purchasedDate, String describe) {
         this.productID = productID;
         this.battery = battery;
         this.caseDescribe = caseDescribe;
@@ -25,7 +19,6 @@ public class Product {
         this.phone = phone;
         this.productName = productName;
         this.purchasedDate = purchasedDate;
-        this.state = state;
         this.customerName = customerName;
     }
 
@@ -101,16 +94,6 @@ public class Product {
         this.state = state;
     }
 
-    public Product(String productID, String battery, String caseDescribe, String describe, String phone, String productName, String purchasedDate, String state) {
-        this.productID = productID;
-        this.battery = battery;
-        this.caseDescribe = caseDescribe;
-        this.describe = describe;
-        this.phone = phone;
-        this.productName = productName;
-        this.purchasedDate = purchasedDate;
-        this.state = state;
-    }
 
     @Override
     public String toString() {
@@ -123,6 +106,7 @@ public class Product {
                 ", productName='" + productName + '\'' +
                 ", purchasedDate='" + purchasedDate + '\'' +
                 ", state='" + state + '\'' +
+                ", customerName='" + customerName + '\'' +
                 '}';
     }
 }

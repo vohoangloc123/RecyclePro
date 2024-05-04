@@ -137,16 +137,20 @@ public class DynamoDBManager {
                         // Xử lý kết quả
                         for (Map<String, AttributeValue> item : scanResult.getItems()) {
                             String id = item.get("_id").getS();
-                             String customerName = item.get("customerName").getS();
+                            String customerName = item.get("customerName").getS();
                             String productName = item.get("productName").getS();
-
+                            String battery=item.get("battery").getS();
+                            String caseDescribe=item.get("caseDescribe").getS();
+                            String describe=item.get("describe").getS();
+                            String phone=item.get("phone").getS();
+                            String purchasedDate=item.get("purchasedDate").getS();
                             // Cập nhật giao diện
                             Handler handler = new Handler(Looper.getMainLooper());
                             handler.post(new Runnable() {
                                 @Override
                                 public void run() {
-                                    listener.onFound1(id, customerName, productName);
-                                    Log.d("Founded212", id + customerName + productName);
+                                    Log.d("sequence506", "stage 1 in dynamoDB"+id+customerName+phone+productName+battery+caseDescribe+purchasedDate+describe);
+                                    listener.onFound(id, customerName,phone, productName,  battery, caseDescribe, purchasedDate,  describe);
                                 }
                             });
 
@@ -162,7 +166,7 @@ public class DynamoDBManager {
     }
 
     public interface LoadRecyclingProductListListener {
-        void onFound1(String id,String customerName, String productName);
+        void onFound(String id,String customerName,String phone, String productName, String battery, String caseDescribe,String purchasedDate,String describe);
     }
     public void createAccount(String email, String password, String userName,String role) {
         try {

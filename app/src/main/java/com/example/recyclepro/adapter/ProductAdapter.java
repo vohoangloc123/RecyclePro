@@ -1,6 +1,7 @@
 package com.example.recyclepro.adapter;
 
 import android.graphics.Bitmap;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,8 +23,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductL
 
 
     public interface OnItemClickListener {
-
-        void onItemClick(String productID, String productName, String customerName);
+        void onItemClick(String productID, String customerName, String phone, String productName, String battery, String caseDescribe, String purchasedDate, String describe);
     }
     public void setOnItemClickListener(ProductAdapter.OnItemClickListener listener) {
         mListener = listener;
@@ -54,15 +54,14 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductL
         if(product==null){
             return;
         }
-
+        Log.d("sequence506", product.toString());
         holder.tvCustomerName.setText(product.getCustomerName());
         holder.tvProductName.setText(product.getProductName());
-
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (mListener != null) {
-                    mListener.onItemClick(product.getProductID(), product.getProductName(), product.getCustomerName());
+                    mListener.onItemClick(product.getProductID(),product.getCustomerName(), product.getPhone(), product.getProductName(), product.getBattery(), product.getCaseDescribe(), product.getPurchasedDate(), product.getDescribe());
                 }
             }
         });

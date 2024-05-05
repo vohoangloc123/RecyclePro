@@ -2,14 +2,16 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    android:background="@color/white"
-    android:layout_marginBottom="10dp">
-
-
+    android:layout_marginBottom="10dp"
+    android:layout_marginHorizontal="5dp"
+    android:layout_marginVertical="5dp"
+    android:background="@drawable/rounded_textview"
+    >
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="69dp"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        >
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -20,19 +22,23 @@
                 android:id="@+id/tvCustomerName"
                 android:layout_width="185dp"
                 android:layout_height="wrap_content"
-                android:paddingLeft="15dp"
+                android:paddingLeft="20dp"
                 android:text="Customer Name"
                 android:textColor="@color/black"
                 android:textSize="18sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+
+                />
 
             <TextView
                 android:id="@+id/tvTimeGroup"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:text="10:45"
                 android:layout_weight="1"
-                android:paddingLeft="70dp"
-                android:text="10:45" />
+                android:gravity="end"
+                android:paddingRight="20dp"
+                />
 
         </LinearLayout>
 
@@ -42,7 +48,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:layout_weight="1"
-            android:paddingLeft="15dp"
+            android:paddingLeft="20dp"
             android:text="last chat"
 
             />

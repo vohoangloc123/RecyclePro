@@ -13,7 +13,8 @@
         android:layout_height="75dp"
         android:background="@color/button_color"
         android:orientation="horizontal"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        android:gravity="center_horizontal">
 
         <ImageButton
             android:id="@+id/btnExit"
@@ -27,11 +28,14 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:gravity="center_vertical"
+            android:gravity="center"
             android:text="Customer side"
             android:textColor="@color/white"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            android:paddingRight="84dp"
+            />
     </LinearLayout>
+
 
     <!-- Form -->
     <ScrollView
@@ -52,115 +56,82 @@
             android:padding="16dp">
 
             <!-- Name -->
-            <LinearLayout
+            <EditText
+                android:id="@+id/etCustomerName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_weight="1">
-
-                <EditText
-                    android:id="@+id/etCustomerName"
-                    android:layout_width="0dp"
-                    android:layout_height="40dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/rounded_edittext"
-                    android:ems="10"
-                    android:hint="Enter your name"
-                    android:inputType="text"
-                    android:paddingStart="10dp"
-                    android:paddingTop="10dp"
-                    android:paddingEnd="10dp"
-                    android:paddingBottom="10dp"
-                    android:textColor="@color/black"
-                    android:textSize="15sp"
-                    android:textStyle="bold" />
-            </LinearLayout>
+                android:background="@drawable/rounded_edittext"
+                android:ems="10"
+                android:hint="Enter your name"
+                android:inputType="text"
+                android:paddingStart="10dp"
+                android:paddingTop="10dp"
+                android:paddingEnd="10dp"
+                android:paddingBottom="10dp"
+                android:textColor="@color/black"
+                android:textSize="15sp"
+                android:textStyle="bold" />
 
             <!-- Phone -->
-            <LinearLayout
+            <EditText
+                android:id="@+id/etPhone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:orientation="horizontal"
-                android:layout_weight="1">
-
-                <EditText
-                    android:id="@+id/etPhone"
-                    android:layout_width="0dp"
-                    android:layout_height="40dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/rounded_edittext"
-                    android:ems="10"
-                    android:inputType="text"
-                    android:textColor="@color/black"
-                    android:textSize="15sp"
-                    android:textStyle="bold"
-                    android:hint="Enter your phone number"
-                    android:paddingStart="10dp"
-                    android:paddingEnd="10dp"
-                    android:paddingTop="10dp"
-                    android:paddingBottom="10dp" />
-            </LinearLayout>
+                android:background="@drawable/rounded_edittext"
+                android:ems="10"
+                android:inputType="text"
+                android:textColor="@color/black"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:hint="Enter your phone number"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp" />
 
             <!-- Product Name -->
-            <LinearLayout
+            <EditText
+                android:id="@+id/etProductName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:orientation="horizontal"
-                android:layout_weight="1">
-
-                <EditText
-                    android:id="@+id/etProductName"
-                    android:layout_width="0dp"
-                    android:layout_height="40dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/rounded_edittext"
-                    android:textColor="@color/black"
-                    android:textSize="15sp"
-                    android:textStyle="bold"
-                    android:hint="Enter your product name"
-                    android:paddingStart="10dp"
-                    android:paddingEnd="10dp"
-                    android:paddingTop="10dp"
-                    android:paddingBottom="10dp" />
-            </LinearLayout>
+                android:background="@drawable/rounded_edittext"
+                android:textColor="@color/black"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:hint="Enter your product name"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp" />
 
             <!-- Case -->
-            <LinearLayout
+            <EditText
+                android:id="@+id/etCase"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:orientation="horizontal"
-                android:layout_weight="1">
-
-                <EditText
-                    android:id="@+id/etCase"
-                    android:layout_width="0dp"
-                    android:layout_height="40dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/rounded_edittext"
-                    android:textColor="@color/black"
-                    android:textSize="15sp"
-                    android:textStyle="bold"
-                    android:hint="Enter your case"
-                    android:paddingStart="10dp"
-                    android:paddingEnd="10dp"
-                    android:paddingTop="10dp"
-                    android:paddingBottom="10dp" />
-            </LinearLayout>
+                android:background="@drawable/rounded_edittext"
+                android:textColor="@color/black"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:hint="Enter your case"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp" />
 
             <!-- Date -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:orientation="horizontal"
-                android:layout_weight="1">
+                android:orientation="horizontal">
 
                 <TextView
                     android:id="@+id/textView5"
-                    android:layout_width="142dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center_vertical"
                     android:text="Purchase date"
@@ -171,85 +142,69 @@
                 <EditText
                     android:id="@+id/etPurchasedDate"
                     android:layout_width="0dp"
-                    android:layout_height="40dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/rounded_edittext"
-                    android:textColor="@color/black"
-                    android:textSize="15sp"
-                    android:textStyle="bold" />
-            </LinearLayout>
-
-            <!-- Battery -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:orientation="horizontal"
-                android:layout_weight="1">
-
-                <EditText
-                    android:id="@+id/etBattery"
-                    android:layout_width="0dp"
-                    android:layout_height="40dp"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:background="@drawable/rounded_edittext"
                     android:textColor="@color/black"
                     android:textSize="15sp"
                     android:textStyle="bold"
-                    android:hint="Enter your battery"
                     android:paddingStart="10dp"
                     android:paddingEnd="10dp"
                     android:paddingTop="10dp"
-                    android:paddingBottom="10dp" />
+                    android:paddingBottom="10dp"
+                    android:layout_marginLeft="10dp"
+                    />
             </LinearLayout>
+
+            <!-- Battery -->
+            <EditText
+                android:id="@+id/etBattery"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/rounded_edittext"
+                android:textColor="@color/black"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:hint="Enter your battery"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp" />
 
             <!-- Describe -->
-            <LinearLayout
+            <EditText
+                android:id="@+id/etScreen"
                 android:layout_width="match_parent"
-                android:layout_height="8dp"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
+                android:background="@drawable/rounded_edittext"
+                android:hint="Enter your describe screen"
+                android:inputType="textMultiLine"
+                android:minLines="10"
+                android:paddingStart="10dp"
+                android:paddingTop="10dp"
+                android:paddingEnd="10dp"
+                android:paddingBottom="10dp"
+                android:textColor="@color/black"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/btnSave"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:layout_marginTop="16dp"
+                android:backgroundTint="@color/button_color"
+                android:text="Send"
+                android:textAlignment="center"
+                android:textSize="20sp"
+                android:elevation="8dp"
+                android:drawablePadding="8dp"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
                 android:layout_weight="1"
-                android:orientation="horizontal">
-
-                <EditText
-                    android:id="@+id/etScreen"
-                    android:layout_width="0dp"
-                    android:layout_height="37dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/rounded_edittext"
-                    android:hint="Enter your describe screen"
-                    android:inputType="textMultiLine"
-                    android:minLines="4"
-                    android:paddingStart="10dp"
-                    android:paddingTop="10dp"
-                    android:paddingEnd="10dp"
-                    android:paddingBottom="10dp"
-                    android:textColor="@color/black"
-                    android:textSize="15sp"
-                    android:textStyle="bold" />
-            </LinearLayout>
-
-           <LinearLayout
-               android:layout_width="match_parent"
-               android:layout_height="wrap_content"
-               android:orientation="horizontal">
-               <Button
-                   android:id="@+id/btnSave"
-                   android:layout_width="300dp"
-                   android:layout_height="35dp"
-                   android:layout_marginTop="16dp"
-                   android:backgroundTint="@color/button_color"
-                   android:text="Send"
-                   android:textAlignment="center"
-                   android:textSize="20sp"
-                   android:elevation="8dp"
-                   android:drawablePadding="8dp"
-                   android:paddingStart="16dp"
-                   android:paddingEnd="16dp"
-                   android:layout_weight="1"
-                   app:cornerRadius="5dp" />
-
-           </LinearLayout>
+                app:cornerRadius="5dp" />
 
         </LinearLayout>
     </ScrollView>

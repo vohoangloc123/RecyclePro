@@ -27,10 +27,13 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:gravity="center_vertical"
-            android:text="Recycling assessment"
+            android:gravity="center"
             android:textColor="@color/white"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            android:paddingRight="84dp"
+            android:text="Recycling assessment"
+
+            />
     </LinearLayout>
 
     <!-- Form -->
@@ -51,7 +54,7 @@
             android:orientation="vertical"
             android:padding="16dp">
 
-            <!-- Customer Name -->
+            <!-- Information -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -78,21 +81,23 @@
                     android:textSize="15sp"
                     android:textStyle="bold" />
             </LinearLayout>
+
+            <!-- Price -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:orientation="horizontal"
-                android:layout_weight="1">
+                android:layout_weight="1"
+                android:orientation="horizontal">
 
                 <TextView
                     android:layout_width="142dp"
                     android:layout_height="wrap_content"
                     android:gravity="center_vertical"
                     android:text="Price: "
+                    android:textColor="@color/black"
                     android:textSize="18sp"
-                    android:textStyle="bold"
-                    android:textColor="@color/black" />
+                    android:textStyle="bold" />
 
                 <EditText
                     android:id="@+id/etPrice"
@@ -104,7 +109,8 @@
                     android:textSize="15sp"
                     android:textStyle="bold" />
             </LinearLayout>
-            <!-- Phone -->
+
+            <!-- Battery rating -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -116,19 +122,11 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
                     <TextView
-                        android:layout_width="100dp"
-                        android:layout_height="wrap_content"
-                        android:gravity="center_vertical"
-                        android:text="Battery"
-                        android:textSize="18sp"
-                        android:textStyle="bold"
-                        android:textColor="@color/black" />
-                    <TextView
                         android:id="@+id/rating1"
                         android:layout_width="60dp"
                         android:layout_height="wrap_content"
                         android:gravity="center_vertical"
-                        android:text="rating:"
+                        android:text="Battery rating:"
                         android:textSize="18sp"
                         android:textStyle="bold"
                         android:textColor="@color/black" />
@@ -153,7 +151,7 @@
                     android:max="4"/>
             </LinearLayout>
 
-            <!-- Product Name -->
+            <!-- Case rating -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -166,19 +164,11 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
                     <TextView
-                        android:layout_width="100dp"
-                        android:layout_height="wrap_content"
-                        android:gravity="center_vertical"
-                        android:text="Case"
-                        android:textSize="18sp"
-                        android:textStyle="bold"
-                        android:textColor="@color/black" />
-                    <TextView
                         android:id="@+id/rating2"
                         android:layout_width="60dp"
                         android:layout_height="wrap_content"
                         android:gravity="center_vertical"
-                        android:text="rating:"
+                        android:text="Case rating:"
                         android:textSize="18sp"
                         android:textStyle="bold"
                         android:textColor="@color/black" />
@@ -199,7 +189,7 @@
                     android:max="4"/>
             </LinearLayout>
 
-            <!-- Case -->
+            <!-- Date rating -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -211,19 +201,11 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
                     <TextView
-                        android:layout_width="100dp"
-                        android:layout_height="wrap_content"
-                        android:gravity="center_vertical"
-                        android:text="Date"
-                        android:textSize="18sp"
-                        android:textStyle="bold"
-                        android:textColor="@color/black" />
-                    <TextView
                         android:id="@+id/rating3"
                         android:layout_width="60dp"
                         android:layout_height="wrap_content"
                         android:gravity="center_vertical"
-                        android:text="rating:"
+                        android:text="Date rating:"
                         android:textSize="18sp"
                         android:textStyle="bold"
                         android:textColor="@color/black" />
@@ -246,10 +228,7 @@
                     android:max="4"/>
             </LinearLayout>
 
-            <!-- Date -->
-
-
-            <!-- Battery -->
+            <!-- Screen rating -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -261,19 +240,11 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
                     <TextView
-                        android:layout_width="100dp"
-                        android:layout_height="wrap_content"
-                        android:gravity="center_vertical"
-                        android:text="Screen"
-                        android:textSize="18sp"
-                        android:textStyle="bold"
-                        android:textColor="@color/black" />
-                    <TextView
                         android:id="@+id/rating4"
                         android:layout_width="60dp"
                         android:layout_height="wrap_content"
                         android:gravity="center_vertical"
-                        android:text="rating:"
+                        android:text="Screen rating:"
                         android:textSize="18sp"
                         android:textStyle="bold"
                         android:textColor="@color/black" />
@@ -296,15 +267,13 @@
                     android:max="4"/>
             </LinearLayout>
 
-            <!-- Describe -->
-
+            <!-- Fianl price -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:orientation="horizontal"
                 android:layout_weight="1">
-
                 <TextView
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
@@ -329,31 +298,36 @@
                     android:paddingBottom="10dp"
                     android:max="4"/>
             </LinearLayout>
+
+            <!-- Button -->
+
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
+
                 <Button
                     android:id="@+id/btnSave"
-                    android:layout_width="376dp"
-                    android:layout_height="35dp"
+                    android:layout_width="0dp"
+                    android:layout_height="60dp"
+                    android:layout_weight="4"
                     android:layout_marginTop="16dp"
-                    android:layout_weight="1"
                     android:backgroundTint="@color/button_color"
                     android:drawablePadding="8dp"
                     android:elevation="8dp"
                     android:paddingStart="16dp"
                     android:paddingEnd="16dp"
-                    android:text="Send"
+                    android:text="Caculator"
                     android:textAlignment="center"
                     android:textSize="20sp"
                     app:cornerRadius="5dp" />
+
                 <ImageButton
                     android:id="@+id/btnSendEmail"
-                    android:layout_width="376dp"
-                    android:layout_height="35dp"
-                    android:layout_marginTop="16dp"
+                    android:layout_width="0dp"
+                    android:layout_height="60dp"
                     android:layout_weight="1"
+                    android:layout_marginTop="16dp"
                     android:backgroundTint="@color/button_color"
                     android:drawablePadding="8dp"
                     android:elevation="8dp"
@@ -361,8 +335,10 @@
                     android:paddingEnd="16dp"
                     android:textAlignment="center"
                     android:textSize="20sp"
+                    android:src="@drawable/baseline_email_24"
                     app:cornerRadius="5dp" />
             </LinearLayout>
+
         </LinearLayout>
     </ScrollView>
 

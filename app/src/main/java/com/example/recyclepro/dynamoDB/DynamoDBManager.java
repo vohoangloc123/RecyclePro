@@ -101,7 +101,6 @@ public class DynamoDBManager {
                         PutItemRequest putItemRequest = new PutItemRequest()
                                 .withTableName("RecyclingProducts")
                                 .withItem(item);
-
                         // Thực hiện yêu cầu chèn mục và nhận kết quả
                         PutItemResult result = ddbClient.putItem(putItemRequest);
 
@@ -300,7 +299,77 @@ public class DynamoDBManager {
             return false;
         }
     }
+    public void SubmitProductPrice(String reviewID, String productID, String customerName, String phone, String productName,
+                                   String caseDescribe, String uptime, String battery,
+                                   String screen, String state,
+                                   String batteryRating, String batteryCondition,
+                                   String caseRating, String caseCondition,
+                                   String uptimeRating, String uptimeCondition,
+                                   String screenRating, String screenCondition,
+                                   String finalPrice) {
+        try {
+            if (ddbClient == null) {
+                initializeDynamoDB();
+            }
 
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        // Tạo một mục mới
+                        Map<String, AttributeValue> item = new HashMap<>();
+                        item.put("_id", new AttributeValue().withS(reviewID));
+                        //product
+                        Map<String, AttributeValue> product = new HashMap<>();
+                        product.put("_id", new AttributeValue().withS(productID));
+                        product.put("battery", new AttributeValue().withS(battery));
+                        product.put("caseDescribe", new AttributeValue().withS(caseDescribe));
+                        product.put("customerName", new AttributeValue().withS(customerName));
+                        product.put("phone", new AttributeValue().withS(phone));
+                        product.put("productName", new AttributeValue().withS(productName));
+                        product.put("uptime", new AttributeValue().withS(uptime));
+                        product.put("screen", new AttributeValue().withS(screen));
+                        product.put("state", new AttributeValue().withS(state));
+                        item.put("product", new AttributeValue().withM(product));
+                        //battery
+                        Map<String, AttributeValue> battery= new HashMap<>();
+                        battery.put("batteryRating", new AttributeValue().withS(batteryRating));
+                        battery.put("batteryCondition", new AttributeValue().withS(batteryCondition));
+                        item.put("battery", new AttributeValue().withM(battery));
+                        //case
+                        Map<String, AttributeValue> deviceCase= new HashMap<>();
+                        deviceCase.put("caseRating", new AttributeValue().withS(caseRating));
+                        deviceCase.put("caseCondition", new AttributeValue().withS(caseCondition));
+                        item.put("case", new AttributeValue().withM(deviceCase));
+                        //uptime
+                        Map<String, AttributeValue> uptime= new HashMap<>();
+                        uptime.put("uptimeRating", new AttributeValue().withS(uptimeRating));
+                        uptime.put("uptimeCondition", new AttributeValue().withS(uptimeCondition));
+                        item.put("uptime", new AttributeValue().withM(uptime));
+                        //screen
+                        Map<String, AttributeValue> screen= new HashMap<>();
+                        screen.put("screenRating", new AttributeValue().withS(screenRating));
+                        screen.put("screenCondition", new AttributeValue().withS(screenCondition));
+                        item.put("screen", new AttributeValue().withM(screen));
+                        //price
+                        item.put("price", new AttributeValue().withS(finalPrice));
+                        // Tạo yêu cầu chèn mục vào bảng
+                        PutItemRequest putItemRequest = new PutItemRequest()
+                                .withTableName("ProductPrices")
+                                .withItem(item);
+                        // Thực hiện yêu cầu chèn mục và nhận kết quả
+                        PutItemResult result = ddbClient.putItem(putItemRequest);
+
+                    } catch (Exception e) {
+                        Log.e("Error", "Exception occurred: ", e);
+                    }
+                }
+            }).start(); // Khởi chạy thread
+        } catch (Exception e) {
+            // Log exception for debugging
+            Log.e("DynamoDBManager", "Error checking DynamoDB connection: " + e.getMessage());
+        }
+    }
 
 
 }

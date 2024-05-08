@@ -63,10 +63,10 @@
                 android:layout_weight="1">
 
                 <TextView
-                    android:layout_width="107dp"
+                    android:layout_width="50dp"
                     android:layout_height="wrap_content"
                     android:gravity="center_vertical"
-                    android:text="Information"
+                    android:text="Info"
                     android:textColor="@color/black"
                     android:textSize="18sp"
                     android:textStyle="bold"
@@ -74,16 +74,15 @@
 
                 <TextView
                     android:id="@+id/tvInformation"
-                    android:layout_width="0dp"
+                    android:layout_width="158dp"
                     android:layout_height="100dp"
                     android:layout_weight="1"
                     android:background="@drawable/rounded_edittext"
-                    android:textColor="@color/black"
-                    android:textSize="15sp"
-                    android:textStyle="bold"
                     android:hint="Enter your information"
                     android:padding="10dp"
-                    />
+                    android:textColor="@color/black"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
             </LinearLayout>
 
             <!-- Price -->
@@ -130,7 +129,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Battery"
-                    android:textSize="18sp"
+                    android:textSize="15sp"
                     android:textStyle="bold"
                     android:textColor="@color/black"
                     android:paddingLeft="150dp"
@@ -154,17 +153,17 @@
                             android:layout_height="wrap_content"
                             android:gravity="center_vertical"
                             android:text="Rating:"
-                            android:textSize="18sp"
+                            android:textSize="15sp"
                             android:textStyle="normal"
                             android:textColor="@color/black" />
 
                         <TextView
-                            android:id="@+id/status1"
-                            android:layout_width="100dp"
+                            android:id="@+id/condition1"
+                            android:layout_width="150dp"
                             android:layout_height="wrap_content"
                             android:gravity="center_vertical"
                             android:text="Condition: "
-                            android:textSize="18sp"
+                            android:textSize="15sp"
                             android:textStyle="normal"
                             android:textColor="@color/black" />
 
@@ -202,7 +201,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Case"
-                    android:textSize="18sp"
+                    android:textSize="15sp"
                     android:textStyle="bold"
                     android:textColor="@color/black"
                     android:paddingLeft="150dp"
@@ -229,17 +228,18 @@
                             android:layout_height="wrap_content"
                             android:gravity="center_vertical"
                             android:text="Rating:"
-                            android:textSize="18sp"
+                            android:textSize="15sp"
                             android:textStyle="normal"
                             android:textColor="@color/black" />
 
                         <!-- Status -->
                         <TextView
+                            android:id="@+id/condition2"
                             android:layout_width="150dp"
                             android:layout_height="wrap_content"
                             android:gravity="center_vertical"
                             android:text="Condition:"
-                            android:textSize="18sp"
+                            android:textSize="15sp"
                             android:textStyle="normal"
                             android:textColor="@color/black" />
 
@@ -275,7 +275,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Usage time"
-                    android:textSize="18sp"
+                    android:textSize="15sp"
                     android:textStyle="bold"
                     android:textColor="@color/black"
                     android:paddingLeft="150dp"
@@ -303,17 +303,18 @@
                             android:layout_height="wrap_content"
                             android:gravity="center_vertical"
                             android:text="Rating:"
-                            android:textSize="18sp"
+                            android:textSize="15sp"
                             android:textStyle="normal"
                             android:textColor="@color/black" />
 
                         <!-- Status -->
                         <TextView
+                            android:id="@+id/condition3"
                             android:layout_width="150dp"
                             android:layout_height="wrap_content"
                             android:gravity="center_vertical"
                             android:text="Condition:"
-                            android:textSize="18sp"
+                            android:textSize="15sp"
                             android:textStyle="normal"
                             android:textColor="@color/black" />
 
@@ -350,7 +351,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Screen"
-                    android:textSize="18sp"
+                    android:textSize="15sp"
                     android:textStyle="bold"
                     android:textColor="@color/black"
                     android:paddingLeft="150dp"
@@ -376,17 +377,18 @@
                             android:layout_height="wrap_content"
                             android:gravity="center_vertical"
                             android:text="Rating:"
-                            android:textSize="18sp"
+                            android:textSize="15sp"
                             android:textStyle="normal"
                             android:textColor="@color/black" />
 
                         <!-- Status -->
                         <TextView
+                            android:id="@+id/condition4"
                             android:layout_width="150dp"
                             android:layout_height="wrap_content"
                             android:gravity="center_vertical"
                             android:text="Condition:"
-                            android:textSize="18sp"
+                            android:textSize="15sp"
                             android:textStyle="normal"
                             android:textColor="@color/black" />
 
@@ -394,7 +396,7 @@
 
                     <!-- SeekBar -->
                     <SeekBar
-                        android:id="@+id/sbDescribe"
+                        android:id="@+id/sbScreen"
                         android:layout_width="0dp"
                         android:layout_height="40dp"
                         android:layout_weight="1"

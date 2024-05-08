@@ -92,8 +92,6 @@ public class RecyclingAssessorSide extends AppCompatActivity {
             builder.show();
         });
         adapter.setOnItemClickListener(new ProductAdapter.OnItemClickListener() {
-
-
             @Override
             public void onItemClick(String productID, String customerName, String phone, String productName, String battery, String caseDescribe, String purchasedDate, String describe) {
                 Log.d("sequence506", "stage 3 in click event"+productID+customerName+phone+productName+battery+caseDescribe+purchasedDate+describe);

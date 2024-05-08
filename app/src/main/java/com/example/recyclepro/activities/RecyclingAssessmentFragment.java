@@ -24,6 +24,8 @@ import com.example.recyclepro.models.ConfigRate;
 import com.example.recyclepro.models.Rating;
 import com.example.recyclepro.services.Condition;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Random;
 
 public class RecyclingAssessmentFragment extends Fragment {
@@ -280,6 +282,7 @@ public class RecyclingAssessmentFragment extends Fragment {
                 Toast.makeText(getContext(), "Bạn chưa có giá chót", Toast.LENGTH_SHORT).show();
             }else
             {
+                String currentTime=getCurrentDateTime();
                 Random rand = new Random();
                 int number = rand.nextInt(1000000);
                 String id = String.format("%06d", number);
@@ -290,7 +293,8 @@ public class RecyclingAssessmentFragment extends Fragment {
                         String.valueOf(caseRating), caseCondition,
                         String.valueOf(uptimeRating), uptimeCondition,
                         String.valueOf(screenRating), screenCondition,
-                        String.valueOf(finalPrice));
+                        String.valueOf(finalPrice),
+                        currentTime);
                 Toast.makeText(getContext(), "Đã gửi email", Toast.LENGTH_SHORT).show();
             }
 
@@ -299,6 +303,15 @@ public class RecyclingAssessmentFragment extends Fragment {
             getActivity().getSupportFragmentManager().popBackStack();
         });
         return view;
+    }
+    public static String getCurrentDateTime() {
+        // Định dạng cho ngày tháng năm và giờ
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+        // Lấy thời gian hiện tại
+        Date currentTime = new Date();
+        // Định dạng thời gian hiện tại thành chuỗi
+        String formattedDateTime = dateFormat.format(currentTime);
+        return formattedDateTime;
     }
 
 }

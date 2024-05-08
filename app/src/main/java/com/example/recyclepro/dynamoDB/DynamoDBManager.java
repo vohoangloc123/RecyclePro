@@ -306,7 +306,7 @@ public class DynamoDBManager {
                                    String caseRating, String caseCondition,
                                    String uptimeRating, String uptimeCondition,
                                    String screenRating, String screenCondition,
-                                   String finalPrice) {
+                                   String finalPrice, String time) {
         try {
             if (ddbClient == null) {
                 initializeDynamoDB();
@@ -353,6 +353,8 @@ public class DynamoDBManager {
                         item.put("screen", new AttributeValue().withM(screen));
                         //price
                         item.put("price", new AttributeValue().withS(finalPrice));
+                        //time
+                        item.put("time", new AttributeValue().withS(time));
                         // Tạo yêu cầu chèn mục vào bảng
                         PutItemRequest putItemRequest = new PutItemRequest()
                                 .withTableName("ProductPrices")

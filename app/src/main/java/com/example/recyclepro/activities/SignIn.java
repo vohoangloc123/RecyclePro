@@ -38,7 +38,7 @@ public class SignIn extends AppCompatActivity {
         dynamoDBManager=new DynamoDBManager(this);
         btnSignInAsCustomer=findViewById(R.id.btnSignInForCustomer);
         btnSignInAsCustomer.setOnClickListener(v->{
-            Intent intent=new Intent(this, RecyclingAssessorSide.class);
+            Intent intent=new Intent(this, AssessmentCompletedSide.class);
             startActivity(intent);
         });
         btnSignUp=findViewById(R.id.btnSignUp);

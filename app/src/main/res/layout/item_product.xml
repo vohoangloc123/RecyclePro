@@ -29,30 +29,19 @@
                 android:textStyle="bold"
 
                 />
-
             <TextView
-                android:id="@+id/tvTimeGroup"
+                android:id="@+id/tvProductName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="10:45"
+                android:layout_marginTop="5dp"
                 android:layout_weight="1"
-                android:gravity="end"
-                android:paddingRight="20dp"
+                android:paddingLeft="25dp"
+                android:text="Product name"
+
                 />
 
+
         </LinearLayout>
-
-        <TextView
-            android:id="@+id/tvProductName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:layout_weight="1"
-            android:paddingLeft="20dp"
-            android:text="last chat"
-
-            />
-
     </LinearLayout>
 
 

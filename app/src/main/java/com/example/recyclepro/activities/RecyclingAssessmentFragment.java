@@ -286,6 +286,10 @@ public class RecyclingAssessmentFragment extends Fragment {
                 Random rand = new Random();
                 int number = rand.nextInt(1000000);
                 String id = String.format("%06d", number);
+                double avgRating=(Double.parseDouble(String.valueOf(batteryRating))+
+                        Double.parseDouble(String.valueOf(caseRating))+
+                        Double.parseDouble(String.valueOf(uptimeRating))+
+                        Double.parseDouble(String.valueOf(screenRating)))/4;
                 dynamoDBManager.SubmitProductPrice(id, productID, customerName, phone,
                         productName, productCaseDescribe, productPurchasedDate,
                         productBattery, productDescribe, "reviewed",
@@ -294,10 +298,9 @@ public class RecyclingAssessmentFragment extends Fragment {
                         String.valueOf(uptimeRating), uptimeCondition,
                         String.valueOf(screenRating), screenCondition,
                         String.valueOf(finalPrice),
-                        currentTime);
+                        currentTime, String.valueOf(avgRating));
                 Toast.makeText(getContext(), "Đã gửi email", Toast.LENGTH_SHORT).show();
             }
-
         });
         btnBack.setOnClickListener(v->{
             getActivity().getSupportFragmentManager().popBackStack();

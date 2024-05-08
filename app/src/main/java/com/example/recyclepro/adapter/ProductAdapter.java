@@ -53,8 +53,8 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductL
             return;
         }
         Log.d("sequence506", product.toString());
-        holder.tvCustomerName.setText(product.getCustomerName());
-        holder.tvProductName.setText(product.getProductName());
+        holder.tvCustomerName.setText("Customer name: "+product.getCustomerName());
+        holder.tvProductName.setText("Product name: "+product.getProductName());
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

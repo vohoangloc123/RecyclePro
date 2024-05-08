@@ -19,6 +19,7 @@ import com.amazonaws.services.dynamodbv2.model.ScanRequest;
 import com.amazonaws.services.dynamodbv2.model.ScanResult;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicBoolean;
 
@@ -306,7 +307,7 @@ public class DynamoDBManager {
                                    String caseRating, String caseCondition,
                                    String uptimeRating, String uptimeCondition,
                                    String screenRating, String screenCondition,
-                                   String finalPrice, String time) {
+                                   String finalPrice, String time, String avgRating) {
         try {
             if (ddbClient == null) {
                 initializeDynamoDB();
@@ -333,28 +334,30 @@ public class DynamoDBManager {
                         item.put("product", new AttributeValue().withM(product));
                         //battery
                         Map<String, AttributeValue> battery= new HashMap<>();
-                        battery.put("batteryRating", new AttributeValue().withS(batteryRating));
+                        battery.put("batteryRating", new AttributeValue().withN(batteryRating));
                         battery.put("batteryCondition", new AttributeValue().withS(batteryCondition));
                         item.put("battery", new AttributeValue().withM(battery));
                         //case
                         Map<String, AttributeValue> deviceCase= new HashMap<>();
-                        deviceCase.put("caseRating", new AttributeValue().withS(caseRating));
+                        deviceCase.put("caseRating", new AttributeValue().withN(caseRating));
                         deviceCase.put("caseCondition", new AttributeValue().withS(caseCondition));
                         item.put("case", new AttributeValue().withM(deviceCase));
                         //uptime
                         Map<String, AttributeValue> uptime= new HashMap<>();
-                        uptime.put("uptimeRating", new AttributeValue().withS(uptimeRating));
+                        uptime.put("uptimeRating", new AttributeValue().withN(uptimeRating));
                         uptime.put("uptimeCondition", new AttributeValue().withS(uptimeCondition));
                         item.put("uptime", new AttributeValue().withM(uptime));
                         //screen
                         Map<String, AttributeValue> screen= new HashMap<>();
-                        screen.put("screenRating", new AttributeValue().withS(screenRating));
+                        screen.put("screenRating", new AttributeValue().withN(screenRating));
                         screen.put("screenCondition", new AttributeValue().withS(screenCondition));
                         item.put("screen", new AttributeValue().withM(screen));
                         //price
-                        item.put("price", new AttributeValue().withS(finalPrice));
+                        item.put("finalPrice", new AttributeValue().withN(finalPrice));
                         //time
                         item.put("time", new AttributeValue().withS(time));
+                        //avgRating
+                        item.put("avgRating", new AttributeValue().withN(avgRating));
                         // Tạo yêu cầu chèn mục vào bảng
                         PutItemRequest putItemRequest = new PutItemRequest()
                                 .withTableName("ProductPrices")
@@ -373,5 +376,58 @@ public class DynamoDBManager {
         }
     }
 
+    public void loadAssessmentCompleted(LoadAssessmentCompletedListListener listener) {
+        try {
+            if (ddbClient == null) {
+                initializeDynamoDB();
+            }
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        // Tạo một yêu cầu truy vấn
+                        HashMap<String, Condition> scanFilter = new HashMap<String, Condition>();
+                        // Thêm các điều kiện scan vào để truy vấn dữ liệu
+                        Condition condition = new Condition().withComparisonOperator(ComparisonOperator.NOT_NULL);
+                        scanFilter.put("_id", condition); // Đảm bảo "_id" tồn tại
+                        ScanRequest scanRequest = new ScanRequest("ProductPrices").withScanFilter(scanFilter);
+                        ScanResult scanResult = ddbClient.scan(scanRequest);
+
+                        // Xử lý kết quả
+                        List<Map<String, AttributeValue>> items = scanResult.getItems();
+                        for (Map<String, AttributeValue> item : items) {
+                            // Lấy giá trị các trường trong item
+                            String id = item.get("_id").getS();
+                            String time = item.get("time").getS();
+                            Double finalPrice = Double.valueOf(item.get("finalPrice").getN());
+                            Double avgRating = Double.valueOf(item.get("avgRating").getN());
+                            Map<String, AttributeValue> productMap = item.get("product").getM();
+                            // Lấy giá trị các trường trong productMap
+                            String productId = productMap.get("_id").getS();
+                            String customerName = productMap.get("customerName").getS();
+                            String phone = productMap.get("phone").getS();
+                            String productName = productMap.get("productName").getS();
+                            // Xử lý các trường khác tương tự
+
+                            // Do something with the retrieved data
+                            if(listener != null) {
+                                listener.onLoadCompleted(id,customerName, productName, finalPrice, time, avgRating);
+                            }
+                        }
+
+                        // Gọi listener để thông báo đã load xong
+
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            }).start(); // Khởi chạy thread
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    public interface LoadAssessmentCompletedListListener {
+        void onLoadCompleted(String id, String customerName,String productName, double finalPrice, String time, double avgRating);
+    }
 
 }

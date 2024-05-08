@@ -92,9 +92,6 @@ public class RecyclingAssessmentFragment extends Fragment {
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 // Xử lý sự kiện khi giá trị của slider thay đổi
                 int rating = progress + 1;
-
-
-
                 //Tự lấy dữ liệu từ sqlite đưa vào
                 ConfigRate configRateBattery = new ConfigRate(
                         -0.1, //Nếu không có pin thì tăng 10% của 20% (battery: 0.2)
@@ -104,12 +101,6 @@ public class RecyclingAssessmentFragment extends Fragment {
                         -1 // Nếu pin còn hoạt động tốt như mới, tăng 100% của 20% (battery: 0.2)
                 );
                 tiLeGiaPin = convertRatingToPercentage(rating, configRateBattery, 0.2 /* Dua theo ti set mac dinh hoac tuy chon mien sao tong cua cac moc la 1 */);
-
-
-
-
-
-
                 // Cập nhật giá trị hiển thị
                 tvRating1.setText("Rating: " + rating);
             }
@@ -129,8 +120,6 @@ public class RecyclingAssessmentFragment extends Fragment {
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 // Xử lý sự kiện khi giá trị của slider thay đổi
                 int rating = progress + 1;
-
-
                 //Tự lấy dữ liệu từ sqlite đưa vào
                 ConfigRate configRateCase = new ConfigRate(
                         1, // Nếu bị nát - thủng - không còn, giảm 100% của 10% (case: 0.1)
@@ -140,10 +129,6 @@ public class RecyclingAssessmentFragment extends Fragment {
                         -1 //Như mới, tăng 100% của 10% (case: 0.1)
                 );
                 tiLeGiaVo = convertRatingToPercentage(rating, configRateCase, 0.1 /* Dua theo ti set mac dinh hoac tuy chon mien sao tong cua cac moc la 1 */);
-
-
-
-
                 // Cập nhật giá trị hiển thị
                 tvRating2.setText("Rating: " + rating);
             }
@@ -174,8 +159,6 @@ public class RecyclingAssessmentFragment extends Fragment {
                         -1 //Như mới, tăng 100% của 30% (monitor: 0.3)
                 );
                 tiLeGiaManHinh = convertRatingToPercentage(rating, configRateMonitor, 0.3 /* Dua theo ti set mac dinh hoac tuy chon mien sao tong cua cac moc la 1 */);
-
-
                 // Cập nhật giá trị hiển thị
                 tvRating3.setText("Rating: " + rating);
             }

@@ -30,17 +30,17 @@ public class PriceCalculationService {
     }
 
     public static double costingPrice(double giaNiemYet, double tiLeChiTra, Rating tiLeGiaPin, Rating tiLeGiaVo, Rating tiLeGiaMan, Rating tiLeGiaHoatDong) {
-        System.out.println("\t\t\tgiá cơ bản: " + (giaNiemYet * tiLeChiTra));
+        System.out.println("\t\t\tgia co ban: " + (giaNiemYet * tiLeChiTra));
 
-        if (tiLeGiaHoatDong.getRating() == 1 && tiLeGiaPin.getRating() == 1 && tiLeGiaVo.getRating() == 1 && tiLeGiaMan.getRating() == 1) {
-            //So sánh nếu trường hợp tất cả các rating đều là 1 thì có công thức tính riêng => (giá niêm yết * tỉ lệ chi trả (0.15) ) / 2
+        if (tiLeGiaHoatDong.rating == 1 && tiLeGiaPin.rating == 1 && tiLeGiaVo.rating == 1 && tiLeGiaMan.rating == 1) {
+            //So sánh nếu trường hợp các rating đều là 1 hết thì sẽ có công thúc tính riêng => (giá niêm yết * tỉ lệ chi trả (0.15) ) / chia nửa giá
             return (giaNiemYet * tiLeChiTra) / 2;
-        } else if (tiLeGiaHoatDong.getRating() == 5 && tiLeGiaPin.getRating() == 5 && tiLeGiaVo.getRating() == 5 && tiLeGiaMan.getRating() == 5) {
-            //So sánh nếu trường hợp tất cả các rating đều là 5 thì có công thức tính riêng => giống công thức bình thường nhưng tăng thêm 30% của giá niêm yết
-            return (giaNiemYet * tiLeChiTra) + (giaNiemYet * tiLeChiTra) * 0.3;
+        } else if (tiLeGiaHoatDong.rating == 5 && tiLeGiaPin.rating == 5 && tiLeGiaVo.rating == 5 && tiLeGiaMan.rating == 5) {
+            //So sánh nếu trường hợp các rating đều là 5 hết thì sẽ có công thúc tính riêng => như công thức bình thường nhưng tăng thêm 30% của giá niêm yết | thay đổi nếu muốn
+            return (giaNiemYet * tiLeChiTra) + (giaNiemYet * tiLeChiTra) * (1 - (tiLeGiaPin.ratePrice + tiLeGiaVo.ratePrice + tiLeGiaMan.ratePrice + tiLeGiaHoatDong.ratePrice)) + (giaNiemYet * 0.3); // bonus them
         } else {
-            //Công thức tính giá bình thường
-            return (giaNiemYet * tiLeChiTra);
+            //Cong thuc tinh gia binh thuong
+            return (giaNiemYet * tiLeChiTra) + (giaNiemYet * tiLeChiTra) * (1 - (tiLeGiaPin.ratePrice + tiLeGiaVo.ratePrice + tiLeGiaMan.ratePrice + tiLeGiaHoatDong.ratePrice));
         }
     }
 }

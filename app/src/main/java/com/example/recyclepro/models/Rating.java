@@ -1,8 +1,8 @@
 package com.example.recyclepro.models;
 
 public class Rating {
-    int rating;
-    double ratePrice;
+    public int rating;
+    public double ratePrice;
 
     public Rating(int rating, double ratePrice) {
         this.rating = rating;

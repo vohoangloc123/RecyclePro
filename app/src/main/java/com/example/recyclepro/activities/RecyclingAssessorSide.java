@@ -66,8 +66,6 @@ public class RecyclingAssessorSide extends AppCompatActivity {
         btnLoad.setOnClickListener(v->{
             listProducts.clear();
             dynamoDBManager.loadProduct("1", new DynamoDBManager.LoadRecyclingProductListListener() {
-
-
                 @Override
                 public void onFound(String id, String customerName, String phone, String productName, String battery, String caseDescribe, String purchasedDate, String screen) {
                     Log.d("sequence506", "stage 2 in load"+id+customerName+phone+productName+battery+caseDescribe+purchasedDate+ screen);

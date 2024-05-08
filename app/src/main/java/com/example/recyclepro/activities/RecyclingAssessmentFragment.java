@@ -1,10 +1,9 @@
 package com.example.recyclepro.activities;
 
-import android.media.Image;
+import static com.example.recyclepro.services.PriceCalculationService.convertRatingToPercentage;
+import static com.example.recyclepro.services.PriceCalculationService.costingPrice;
+
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,7 +15,11 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.fragment.app.Fragment;
+
 import com.example.recyclepro.R;
+import com.example.recyclepro.models.ConfigRate;
+import com.example.recyclepro.models.Rating;
 
 public class RecyclingAssessmentFragment extends Fragment {
     public static final String TAG= RecyclingAssessmentFragment.class.getName();
@@ -37,10 +40,10 @@ public class RecyclingAssessmentFragment extends Fragment {
     private Button btnSave;
     private ImageButton btnBack;
     private EditText etPrice;
-    private Double tiLeGiaPin;
-    private Double tiLeGiaVo;
-    private Double tiLeGiaHoatDong;
-    private Double tiLeGiaManHinh;
+    private Rating tiLeGiaPin;
+    private Rating tiLeGiaVo;
+    private Rating tiLeGiaHoatDong;
+    private Rating tiLeGiaManHinh;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -89,24 +92,24 @@ public class RecyclingAssessmentFragment extends Fragment {
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 // Xử lý sự kiện khi giá trị của slider thay đổi
                 int rating = progress + 1;
-                tiLeGiaPin = 0.0;
-                switch (rating) {
-                    case 1:
-                        tiLeGiaPin = 0.1;
-                        break;
-                    case 2:
-                        tiLeGiaPin = 0.15;
-                        break;
-                    case 3:
-                        tiLeGiaPin = 0.05;
-                        break;
-                    case 4:
-                        tiLeGiaPin = 0.0;
-                        break;
-                    case 5:
-                        tiLeGiaPin = 0.0;
-                        break;
-                }
+
+
+
+                //Tự lấy dữ liệu từ sqlite đưa vào
+                ConfigRate configRateBattery = new ConfigRate(
+                        -0.1, //Nếu không có pin thì tăng 10% của 20% (battery: 0.2)
+                        0.6, //Nếu pin cháy nổ, phồng giảm 60% của 20% (battery: 0.2)
+                        0.3, //Nếu pin chai, phồng giảm 60% của 20% (battery: 0.2)
+                        -0.4, // Nếu pin còn trên hoạt động tốt trên mức 80, tăng 60% của 20% (battery: 0.2)
+                        -1 // Nếu pin còn hoạt động tốt như mới, tăng 100% của 20% (battery: 0.2)
+                );
+                tiLeGiaPin = convertRatingToPercentage(rating, configRateBattery, 0.2 /* Dua theo ti set mac dinh hoac tuy chon mien sao tong cua cac moc la 1 */);
+
+
+
+
+
+
                 // Cập nhật giá trị hiển thị
                 tvRating1.setText("Rating: " + rating);
             }
@@ -126,24 +129,21 @@ public class RecyclingAssessmentFragment extends Fragment {
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 // Xử lý sự kiện khi giá trị của slider thay đổi
                 int rating = progress + 1;
-                tiLeGiaVo = 0.0;
-                switch (rating) {
-                    case 1:
-                        tiLeGiaVo = 0.2;
-                        break;
-                    case 2:
-                        tiLeGiaVo = 0.1;
-                        break;
-                    case 3:
-                        tiLeGiaVo = 0.05;
-                        break;
-                    case 4:
-                        tiLeGiaVo = 0.1;
-                        break;
-                    case 5:
-                        tiLeGiaVo = 0.0;
-                        break;
-                }
+
+
+                //Tự lấy dữ liệu từ sqlite đưa vào
+                ConfigRate configRateCase = new ConfigRate(
+                        1, // Nếu bị nát - thủng - không còn, giảm 100% của 10% (case: 0.1)
+                        0.5, // Nếu vỏ bị xước nhiều, qua sửa chửa, giảm 50% của 10% (case: 0.1)
+                        0.3, // Nếu vỏ xước ít, đã qua sửa chửa, giảm 20% của 10% (case: 0.1)
+                        -0.6, // Nếu vỏ có xước ít không qua sửa chửa, tăng 20% của 10% (case: 0.1)
+                        -1 //Như mới, tăng 100% của 10% (case: 0.1)
+                );
+                tiLeGiaVo = convertRatingToPercentage(rating, configRateCase, 0.1 /* Dua theo ti set mac dinh hoac tuy chon mien sao tong cua cac moc la 1 */);
+
+
+
+
                 // Cập nhật giá trị hiển thị
                 tvRating2.setText("Rating: " + rating);
             }
@@ -163,24 +163,19 @@ public class RecyclingAssessmentFragment extends Fragment {
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 // Xử lý sự kiện khi giá trị của slider thay đổi
                 int rating = progress + 1;
-                tiLeGiaHoatDong = 0.0;
-                switch (rating) {
-                    case 1:
-                        tiLeGiaHoatDong = 0.2;
-                        break;
-                    case 2:
-                        tiLeGiaHoatDong = 0.1;
-                        break;
-                    case 3:
-                        tiLeGiaHoatDong = 0.2;
-                        break;
-                    case 4:
-                        tiLeGiaHoatDong = 0.0;
-                        break;
-                    case 5:
-                        tiLeGiaHoatDong = 0.0;
-                        break;
-                }
+
+
+                //Tự lấy dữ liệu từ sqlite đưa vào
+                ConfigRate configRateMonitor = new ConfigRate(
+                        1, //Nếu không có màn hình, vỡ, thủng, giảm 100% của 30%  (monitor: 0.3)
+                        0.4, //Nếu màn hình bị sọc, bị liệt, bóng mờ, xước nhiều, qua sửa chữa, giảm 40% của 30%  (monitor: 0.3)
+                        -0.2, //Nếu màn hình xước nhiều, chưa qua sửa chữa, tăng 20% của 30% (monitor: 0.3)
+                        -0.6, //Bị xước ít như mới, tăng 60% của 30% (monitor: 0.3)
+                        -1 //Như mới, tăng 100% của 30% (monitor: 0.3)
+                );
+                tiLeGiaManHinh = convertRatingToPercentage(rating, configRateMonitor, 0.3 /* Dua theo ti set mac dinh hoac tuy chon mien sao tong cua cac moc la 1 */);
+
+
                 // Cập nhật giá trị hiển thị
                 tvRating3.setText("Rating: " + rating);
             }
@@ -200,25 +195,20 @@ public class RecyclingAssessmentFragment extends Fragment {
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 // Xử lý sự kiện khi giá trị của slider thay đổi
                 int rating = progress + 1;
+
+
+                //Tự lấy dữ liệu từ sqlite đưa vào
+                ConfigRate configRateStatus = new ConfigRate(
+                        1, //Nếu không hoạt động, vào nước , cháy nổ, biến dạng không nhận dạng được, giảm 100% của 40% (status: 0.4)
+                        0.6, //Nếu bị lỗi, không lên nguồn, hoạt động gì hết, giảm 60% của 40%  (status: 0.4)
+                        0.5, //Nếu gặp lỗi treo máy, panic, thiếu linh kiện, giảm 50% của 40%  (status: 0.4)
+                        -0.6, //Hoạt động bình thường, một vài chức năng nhỏ không hoạt không đáng kể, tăng 50% của 40% (status: 0.4)
+                        -1 //Hoạt động bình thường như mới, tăng 100% của 40% (status: 0.4)
+                );
+                tiLeGiaHoatDong = convertRatingToPercentage(rating, configRateStatus, 0.4 /* Dua theo ti set mac dinh hoac tuy chon mien sao tong cua cac moc la 1 */);
+
+
                 // Cập nhật giá trị hiển thị
-                tiLeGiaManHinh = 0.0;
-                switch (rating) {
-                    case 1:
-                        tiLeGiaManHinh = 0.3;
-                        break;
-                    case 2:
-                        tiLeGiaManHinh = 0.1;
-                        break;
-                    case 3:
-                        tiLeGiaManHinh = 0.1;
-                        break;
-                    case 4:
-                        tiLeGiaManHinh = 0.2;
-                        break;
-                    case 5:
-                        tiLeGiaManHinh = 0.0;
-                        break;
-                }
                 tvRating4.setText("Rating: " + rating);
             }
 
@@ -240,10 +230,9 @@ public class RecyclingAssessmentFragment extends Fragment {
             } else if (giaNiemYet.isEmpty()) {
                 Toast.makeText(getContext(), "Bạn chưa nhập giá", Toast.LENGTH_SHORT).show();
             } else {
-                double giaCoBan = Double.parseDouble(giaNiemYet) * 0.15;
-                double tongTiLe = tiLeGiaPin + tiLeGiaVo + tiLeGiaHoatDong + tiLeGiaManHinh;
-                // Tính giá cuối cùng
-                double finalPrice = giaCoBan * (1 + tongTiLe); // Tổng tỷ lệ được cộng vào giá niêm yết
+                //Tính ra giá cuối cùng thông qua hàm
+                double finalPrice = costingPrice(Double.parseDouble(giaNiemYet), 0.15 /* Gia chi tra co ban */, tiLeGiaPin, tiLeGiaVo, tiLeGiaManHinh, tiLeGiaHoatDong);
+
                 // In ra giá cuối cùng để kiểm tra
                 Log.d(TAG, "Final Price: " + finalPrice);
                 tvFinalPrice.setText(String.valueOf(finalPrice));
@@ -256,3 +245,4 @@ public class RecyclingAssessmentFragment extends Fragment {
     }
 
 }
+

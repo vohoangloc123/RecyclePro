@@ -1,0 +1,122 @@
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AssessmentMenuSide">
+
+    <!-- Phần header có background -->
+    <View
+        android:id="@+id/headerBackground"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@drawable/headerbackground"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/guideline"
+        />
+
+    <!-- Icon exit_to_app ở góc trái trên -->
+    <ImageView
+        android:id="@+id/exitIcon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/baseline_exit_to_app_30"
+        app:layout_constraintTop_toTopOf="@id/headerBackground"
+        app:layout_constraintStart_toStartOf="@id/headerBackground"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        />
+
+    <!-- RecyceIcon ở trung tâm header -->
+    <ImageView
+        android:id="@+id/recyceIcon"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:src="@drawable/recycle"
+        app:layout_constraintTop_toTopOf="@id/headerBackground"
+        app:layout_constraintBottom_toBottomOf="@id/headerBackground"
+        app:layout_constraintStart_toEndOf="@id/exitIcon"
+        app:layout_constraintEnd_toEndOf="@id/headerBackground"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintVertical_bias="0.5"
+        android:layout_marginEnd="50dp"
+        android:layout_marginRight="50dp"
+        />
+
+    <!-- Text "Welcome to RecyclePro" -->
+    <TextView
+        android:id="@+id/welcomeText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Welcome to RecyclePro"
+        android:textColor="@color/white"
+        android:textSize="23sp"
+        app:layout_constraintTop_toBottomOf="@id/recyceIcon"
+        app:layout_constraintStart_toStartOf="@id/recyceIcon"
+        app:layout_constraintEnd_toEndOf="@id/recyceIcon"
+        android:layout_marginTop="8dp"
+        android:textStyle="bold"
+        />
+
+    <!-- Guideline để chia màn hình thành phần 1/3 và phần còn lại -->
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.33" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        android:gravity="center_vertical"
+        app:layout_constraintTop_toBottomOf="@id/guideline"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <!-- Nút 1 -->
+        <Button
+            android:id="@+id/button1"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:text="Waiting product list"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginVertical="20dp"
+            app:cornerRadius="5dp"
+            android:backgroundTint="@color/button_color"
+            android:textSize="20sp"
+            />
+
+        <!-- Nút 2 -->
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:text="Evaluation history"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginVertical="20dp"
+            app:cornerRadius="5dp"
+            android:backgroundTint="@color/button_color"
+            android:textSize="20sp"            />
+
+        <!-- Nút 3 -->
+        <Button
+            android:id="@+id/button3"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:text="Analys"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginVertical="20dp"
+            app:cornerRadius="5dp"
+            android:backgroundTint="@color/button_color"
+            android:textSize="20sp"            />
+
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

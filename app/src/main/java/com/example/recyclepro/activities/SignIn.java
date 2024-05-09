@@ -1,7 +1,6 @@
 package com.example.recyclepro.activities;
 
 import android.content.Intent;
-import android.health.connect.datatypes.units.Length;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
@@ -14,6 +13,8 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.example.recyclepro.R;
+import com.example.recyclepro.activities.Assessment.AssessmentMenuSide;
+import com.example.recyclepro.activities.Customer.CustomerMenuSide;
 import com.example.recyclepro.dynamoDB.DynamoDBManager;
 
 public class SignIn extends AppCompatActivity {
@@ -38,7 +39,7 @@ public class SignIn extends AppCompatActivity {
         dynamoDBManager=new DynamoDBManager(this);
         btnSignInAsCustomer=findViewById(R.id.btnSignInForCustomer);
         btnSignInAsCustomer.setOnClickListener(v->{
-            Intent intent=new Intent(this, AssessmentCompletedSide.class);
+            Intent intent=new Intent(this, AssessmentMenuSide.class);
             startActivity(intent);
         });
         btnSignUp=findViewById(R.id.btnSignUp);
@@ -55,11 +56,14 @@ public class SignIn extends AppCompatActivity {
                 public void onLoginSuccess(String role) {
                     if(role.equals("customer"))
                     {
-                        Intent intent=new Intent(SignIn.this, CustomerSide.class);
+                        Bundle bundle=new Bundle();
+                        bundle.putString("email", email); // Thay "customerEmail" thành "email"
+                        Intent intent=new Intent(SignIn.this, CustomerMenuSide.class);
+                        intent.putExtras(bundle); // Sử dụng putExtras() để chuyển Bundle qua Intent
                         startActivity(intent);
                     }else
                     {
-                        Intent intent=new Intent(SignIn.this, RecyclingAssessorSide.class);
+                        Intent intent=new Intent(SignIn.this, AssessmentMenuSide.class);
                         startActivity(intent);
                     }
                     Toast.makeText(SignIn.this, "Đăng nhập thành công", Toast.LENGTH_LONG).show();

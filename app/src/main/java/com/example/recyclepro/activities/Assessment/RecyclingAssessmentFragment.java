@@ -1,4 +1,4 @@
-package com.example.recyclepro.activities;
+package com.example.recyclepro.activities.Assessment;
 
 import static com.example.recyclepro.services.PriceCalculationService.convertRatingToPercentage;
 import static com.example.recyclepro.services.PriceCalculationService.costingPrice;
@@ -30,7 +30,7 @@ import java.util.Random;
 
 public class RecyclingAssessmentFragment extends Fragment {
     public static final String TAG= RecyclingAssessmentFragment.class.getName();
-    private TextView tvInformation;
+    private TextView tvInformation1, tvInformation2;
     private String productID;
     private String customerName;
     private String phone;
@@ -38,7 +38,7 @@ public class RecyclingAssessmentFragment extends Fragment {
     private String productBattery;
     private String productCaseDescribe;
     private String productPurchasedDate;
-    private String productDescribe;
+    private String productScreen, time, email;
     private SeekBar sbBattery;
     private SeekBar sbCase;
     private SeekBar sbPurchaseDate;
@@ -63,7 +63,8 @@ public class RecyclingAssessmentFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view= inflater.inflate(R.layout.fragment_recycling_assessment, container, false);
-        tvInformation=view.findViewById(R.id.tvInformation);
+        tvInformation1=view.findViewById(R.id.tvInformation1);
+        tvInformation2=view.findViewById(R.id.tvInformation2);
         Bundle bundleReceive=getArguments();
         productID = bundleReceive.getString("productID");
         Log.d("CheckBundle", "product ID: "+productID);
@@ -79,16 +80,26 @@ public class RecyclingAssessmentFragment extends Fragment {
         Log.d("CheckBundle", "product case describe: "+productCaseDescribe);
         productPurchasedDate= bundleReceive.getString("productPurchasedDate");
         Log.d("CheckBundle", "product purchased date: "+ productPurchasedDate);
-        productDescribe= bundleReceive.getString("productDescribe");
-        Log.d("CheckBundle", "product describe: "+ productDescribe);
-        tvInformation.setText("product ID: " + productID + "\n" +
+        productScreen = bundleReceive.getString("productScreen");
+        Log.d("CheckBundle", "product screen: "+ productScreen);
+        time = bundleReceive.getString("time");
+        Log.d("CheckBundle", "product screen: "+ productScreen);
+        email = bundleReceive.getString("email");
+        Log.d("CheckBundle", "product email: "+email);
+        tvInformation1.setText("product ID: " + productID + "\n" +
+                "customer name: " + customerName + "\n" +
+                "phone: " + phone + "\n" +
+                "Time: " + time + "\n"+
+                "email: " + email + "\n"
+        );
+        tvInformation2.setText("product ID: " + productID + "\n" +
                 "customer name: " + customerName + "\n" +
                 "phone: " + phone + "\n" +
                 "product name: " + productName + "\n" +
                 "product battery: " + productBattery + "\n" +
                 "product case describe: " + productCaseDescribe + "\n" +
                 "product purchased date: " + productPurchasedDate + "\n" +
-                "product describe: " + productDescribe);
+                "product screen: " + productScreen);
         sbBattery=view.findViewById(R.id.sbBattery);
         sbCase=view.findViewById(R.id.sbCase);
         sbPurchaseDate=view.findViewById(R.id.sbPurchasedDate);
@@ -290,16 +301,18 @@ public class RecyclingAssessmentFragment extends Fragment {
                         Double.parseDouble(String.valueOf(caseRating))+
                         Double.parseDouble(String.valueOf(uptimeRating))+
                         Double.parseDouble(String.valueOf(screenRating)))/4;
-                dynamoDBManager.SubmitProductPrice(id, productID, customerName, phone,
+                dynamoDBManager.SubmitProductPrice(productID, productID, customerName, phone,
                         productName, productCaseDescribe, productPurchasedDate,
-                        productBattery, productDescribe, "reviewed",
+                        productBattery, productScreen, "reviewed",
                         String.valueOf(batteryRating), batteryCondition,
                         String.valueOf(caseRating), caseCondition,
                         String.valueOf(uptimeRating), uptimeCondition,
                         String.valueOf(screenRating), screenCondition,
                         String.valueOf(finalPrice),
-                        currentTime, String.valueOf(avgRating));
-                Toast.makeText(getContext(), "Đã gửi email", Toast.LENGTH_SHORT).show();
+                        currentTime, String.valueOf(avgRating),
+                        email);
+                dynamoDBManager.updateStateOfProduct(productID, "assessted");
+                Toast.makeText(getContext(), "Đã gửi email"+email, Toast.LENGTH_SHORT).show();
             }
         });
         btnBack.setOnClickListener(v->{

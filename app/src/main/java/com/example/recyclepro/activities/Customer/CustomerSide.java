@@ -1,4 +1,4 @@
-package com.example.recyclepro.activities;
+package com.example.recyclepro.activities.Customer;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -17,10 +17,13 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.recyclepro.activities.SignIn;
 import com.example.recyclepro.dynamoDB.DynamoDBManager;
 import com.example.recyclepro.R;
 import com.example.recyclepro.Validation.Regex;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Random;
 
 public class CustomerSide extends AppCompatActivity {
@@ -34,6 +37,7 @@ public class CustomerSide extends AppCompatActivity {
     private Button btnSend;
     private ImageButton btnExit;
     private DynamoDBManager dynamoDBManager;
+    private String email;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,6 +59,12 @@ public class CustomerSide extends AppCompatActivity {
         btnExit=findViewById(R.id.btnExit);
         dynamoDBManager=new DynamoDBManager(this);
         dynamoDBManager.checkDynamoDBConnection();
+        Bundle bundle=getIntent().getExtras(); // Lấy Bundle từ Intent
+        if(bundle != null) {
+            email = bundle.getString("email"); // Sử dụng key "email" để lấy dữ liệu
+            Log.d("CheckEmail", email);
+        }
+
         btnSend.setOnClickListener(v -> {
             Random rand = new Random();
             int number = rand.nextInt(1000000);
@@ -66,27 +76,25 @@ public class CustomerSide extends AppCompatActivity {
             String purchasedDate = etPurchasedDate.getText().toString().trim();
             String battery = etBattery.getText().toString().trim();
             String screen = etScreen.getText().toString().trim();
-
+            String currentTime=getCurrentDateTime();
             Log.d("check464","id"+id+"customerName"+customerName+"phone"+phone+"case"+caseDescribe+"purchasedDate"+
                     purchasedDate+"battery"+battery+"screen"+screen);
-            dynamoDBManager.SubmitProductInformationforRecycling(id, customerName, phone, productName,caseDescribe,purchasedDate, battery,screen, "1");
+            dynamoDBManager.SubmitProductInformationforRecycling(id, customerName, phone, productName,caseDescribe,purchasedDate, battery,screen, "not assessed yet", email, currentTime);
             Toast.makeText(this, "Submit successful", Toast.LENGTH_LONG).show(); // Added show() method
         });
         btnExit.setOnClickListener(v->{
-            android.app.AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setTitle("Confirm Logout");
-            builder.setMessage("Are you sure you want to log out?");
-            builder.setPositiveButton("Yes", (dialog, which) -> {
                 // Nếu người dùng đồng ý, thực hiện chuyển đổi sang activity đăng nhập
-                Intent intent = new Intent(this, SignIn.class);
+                Intent intent = new Intent(this, CustomerMenuSide.class);
                 startActivity(intent);
-            });
-            builder.setNegativeButton("Cancel", (dialog, which) -> {
-                // Nếu người dùng hủy bỏ, đóng dialog và không thực hiện hành động gì
-                dialog.dismiss();
-            });
-            builder.show();
-
         });
+    }
+    public static String getCurrentDateTime() {
+        // Định dạng cho ngày tháng năm và giờ
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+        // Lấy thời gian hiện tại
+        Date currentTime = new Date();
+        // Định dạng thời gian hiện tại thành chuỗi
+        String formattedDateTime = dateFormat.format(currentTime);
+        return formattedDateTime;
     }
 }

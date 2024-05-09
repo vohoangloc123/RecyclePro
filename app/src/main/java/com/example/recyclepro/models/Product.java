@@ -10,8 +10,10 @@ public class Product {
     private String purchasedDate;
     private String state;
     private String customerName;
+    private String time;
+    private String email;
 
-    public Product(String productID, String customerName, String phone, String productName, String battery, String caseDescribe, String purchasedDate, String screen) {
+    public Product(String productID, String customerName, String phone, String productName, String battery, String caseDescribe, String purchasedDate, String screen, String time, String email) {
         this.productID = productID;
         this.battery = battery;
         this.caseDescribe = caseDescribe;
@@ -20,6 +22,16 @@ public class Product {
         this.productName = productName;
         this.purchasedDate = purchasedDate;
         this.customerName = customerName;
+        this.time=time;
+        this.email=email;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getCustomerName() {
@@ -94,6 +106,13 @@ public class Product {
         this.state = state;
     }
 
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
+    }
 
     @Override
     public String toString() {
@@ -101,12 +120,14 @@ public class Product {
                 "productID='" + productID + '\'' +
                 ", battery='" + battery + '\'' +
                 ", caseDescribe='" + caseDescribe + '\'' +
-                ", describe='" + screen + '\'' +
+                ", screen='" + screen + '\'' +
                 ", phone='" + phone + '\'' +
                 ", productName='" + productName + '\'' +
                 ", purchasedDate='" + purchasedDate + '\'' +
                 ", state='" + state + '\'' +
                 ", customerName='" + customerName + '\'' +
+                ", time='" + time + '\'' +
+                ", email='" + email + '\'' +
                 '}';
     }
 }

@@ -64,4 +64,16 @@ public class AssessmentCompleted {
     public void setAvgRating(double avgRating) {
         this.avgRating = avgRating;
     }
+
+    @Override
+    public String toString() {
+        return "AssessmentCompleted{" +
+                "id='" + id + '\'' +
+                ", customerName='" + customerName + '\'' +
+                ", productName='" + productName + '\'' +
+                ", time='" + time + '\'' +
+                ", finalPrice=" + finalPrice +
+                ", avgRating=" + avgRating +
+                '}';
+    }
 }

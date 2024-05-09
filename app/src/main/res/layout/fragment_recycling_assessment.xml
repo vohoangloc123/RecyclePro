@@ -73,10 +73,20 @@
                     />
 
                 <TextView
-                    android:id="@+id/tvInformation"
-                    android:layout_width="158dp"
+                    android:id="@+id/tvInformation1"
+                    android:layout_width="150dp"
                     android:layout_height="100dp"
-                    android:layout_weight="1"
+                    android:background="@drawable/rounded_edittext"
+                    android:hint="Enter your information"
+                    android:padding="10dp"
+                    android:textColor="@color/black"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tvInformation2"
+                    android:layout_width="150dp"
+                    android:layout_height="100dp"
                     android:background="@drawable/rounded_edittext"
                     android:hint="Enter your information"
                     android:padding="10dp"

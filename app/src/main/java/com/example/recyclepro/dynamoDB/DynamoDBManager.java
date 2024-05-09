@@ -9,7 +9,9 @@ import com.amazonaws.auth.BasicAWSCredentials;
 import com.amazonaws.regions.Region;
 import com.amazonaws.regions.Regions;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClient;
+import com.amazonaws.services.dynamodbv2.model.AttributeAction;
 import com.amazonaws.services.dynamodbv2.model.AttributeValue;
+import com.amazonaws.services.dynamodbv2.model.AttributeValueUpdate;
 import com.amazonaws.services.dynamodbv2.model.ComparisonOperator;
 import com.amazonaws.services.dynamodbv2.model.Condition;
 import com.amazonaws.services.dynamodbv2.model.ListTablesResult;
@@ -17,6 +19,8 @@ import com.amazonaws.services.dynamodbv2.model.PutItemRequest;
 import com.amazonaws.services.dynamodbv2.model.PutItemResult;
 import com.amazonaws.services.dynamodbv2.model.ScanRequest;
 import com.amazonaws.services.dynamodbv2.model.ScanResult;
+import com.amazonaws.services.dynamodbv2.model.UpdateItemRequest;
+import com.amazonaws.services.dynamodbv2.model.UpdateItemResult;
 
 import java.util.HashMap;
 import java.util.List;
@@ -77,7 +81,7 @@ public class DynamoDBManager {
         }
     }
     private AmazonDynamoDBClient ddbClient;
-    public void SubmitProductInformationforRecycling(String productID, String customerName,String phone,String productName, String caseDescribe, String purchasedDate, String battery, String screen, String state) {
+    public void SubmitProductInformationforRecycling(String productID, String customerName,String phone,String productName, String caseDescribe, String purchasedDate, String battery, String screen, String state, String email, String time) {
         try {
             if (ddbClient == null) {
                 initializeDynamoDB();
@@ -98,6 +102,8 @@ public class DynamoDBManager {
                         item.put("battery", new AttributeValue().withS(battery));
                         item.put("screen", new AttributeValue().withS(screen));
                         item.put("state", new AttributeValue().withS(state));
+                        item.put("email", new AttributeValue().withS(email));
+                        item.put("time", new AttributeValue().withS(time));
                         // Tạo yêu cầu chèn mục vào bảng
                         PutItemRequest putItemRequest = new PutItemRequest()
                                 .withTableName("RecyclingProducts")
@@ -144,13 +150,15 @@ public class DynamoDBManager {
                             String screen=item.get("screen").getS();
                             String phone=item.get("phone").getS();
                             String purchasedDate=item.get("purchasedDate").getS();
+                            String time=item.get("time").getS();
+                            String email=item.get("email").getS();
                             // Cập nhật giao diện
                             Handler handler = new Handler(Looper.getMainLooper());
                             handler.post(new Runnable() {
                                 @Override
                                 public void run() {
                                     Log.d("sequence506", "stage 1 in dynamoDB"+id+customerName+phone+productName+battery+caseDescribe+purchasedDate+screen);
-                                    listener.onFound(id, customerName,phone, productName,  battery, caseDescribe, purchasedDate,  screen);
+                                    listener.onFound(id, customerName,phone, productName,  battery, caseDescribe, purchasedDate,  screen, time, email);
                                 }
                             });
 
@@ -166,7 +174,7 @@ public class DynamoDBManager {
     }
 
     public interface LoadRecyclingProductListListener {
-        void onFound(String id,String customerName,String phone, String productName, String battery, String caseDescribe,String purchasedDate,String screen);
+        void onFound(String id,String customerName,String phone, String productName, String battery, String caseDescribe,String purchasedDate,String screen, String time, String email);
     }
     public void createAccount(String email, String password, String userName,String role) {
         try {
@@ -307,7 +315,7 @@ public class DynamoDBManager {
                                    String caseRating, String caseCondition,
                                    String uptimeRating, String uptimeCondition,
                                    String screenRating, String screenCondition,
-                                   String finalPrice, String time, String avgRating) {
+                                   String finalPrice, String time, String avgRating, String email) {
         try {
             if (ddbClient == null) {
                 initializeDynamoDB();
@@ -358,6 +366,8 @@ public class DynamoDBManager {
                         item.put("time", new AttributeValue().withS(time));
                         //avgRating
                         item.put("avgRating", new AttributeValue().withN(avgRating));
+                        //email
+                        item.put("email", new AttributeValue().withS(email));
                         // Tạo yêu cầu chèn mục vào bảng
                         PutItemRequest putItemRequest = new PutItemRequest()
                                 .withTableName("ProductPrices")
@@ -408,11 +418,19 @@ public class DynamoDBManager {
                             String phone = productMap.get("phone").getS();
                             String productName = productMap.get("productName").getS();
                             // Xử lý các trường khác tương tự
+                            Handler handler = new Handler(Looper.getMainLooper());
+                            handler.post(new Runnable() {
+                                @Override
 
+                                public void run() {
+
+                                    if(listener != null) {
+                                        listener.onLoadCompleted(id,customerName, productName, finalPrice, time, avgRating);
+                                    }
+                                }
+                            });
                             // Do something with the retrieved data
-                            if(listener != null) {
-                                listener.onLoadCompleted(id,customerName, productName, finalPrice, time, avgRating);
-                            }
+
                         }
 
                         // Gọi listener để thông báo đã load xong
@@ -428,6 +446,90 @@ public class DynamoDBManager {
     }
     public interface LoadAssessmentCompletedListListener {
         void onLoadCompleted(String id, String customerName,String productName, double finalPrice, String time, double avgRating);
+    }
+    public void updateStateOfProduct(String productID,String state) {
+        try {
+            if (ddbClient == null) {
+                initializeDynamoDB();
+            }
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        // Tạo một mục mới
+                        Map<String, AttributeValue> key = new HashMap<>();
+                        key.put("_id", new AttributeValue().withS(productID));
+
+                        Map<String, AttributeValueUpdate> updates = new HashMap<>();
+                        updates.put("state", new AttributeValueUpdate().withValue(new AttributeValue().withS(state)).withAction(AttributeAction.PUT));
+                        // Tạo yêu cầu cập nhật
+                        UpdateItemRequest updateItemRequest = new UpdateItemRequest()
+                                .withTableName("RecyclingProducts")
+                                .withKey(key)
+                                .withAttributeUpdates(updates);
+
+                        // Thực hiện yêu cầu cập nhật và nhận kết quả
+                        UpdateItemResult result = ddbClient.updateItem(updateItemRequest);
+
+                    } catch (Exception e) {
+                        Log.e("Error", "Exception occurred: ", e);
+                    }
+                }
+            }).start(); // Khởi chạy thread
+        } catch (Exception e) {
+            // Log exception for debugging
+            Log.e("DynamoDBManager", "Error checking DynamoDB connection: " + e.getMessage());
+        }
+    }
+    public void loadRecyclingSubmission(String email, LoadRecyclingSubmissionListListener listener) {
+        try {
+            if (ddbClient == null) {
+                initializeDynamoDB();
+            }
+            new Thread(new Runnable() {
+
+                @Override
+                public void run() {
+                    try {
+                        Log.d("PayAttention", "run"+email);
+                        // Tạo một yêu cầu truy vấn
+                        HashMap<String, Condition> scanFilter = new HashMap<String, Condition>();
+                        Condition condition = new Condition()
+                                .withComparisonOperator(ComparisonOperator.EQ.toString())
+                                .withAttributeValueList(new AttributeValue().withS(email));
+                        scanFilter.put("email", condition);
+                        ScanRequest scanRequest = new ScanRequest("RecyclingProducts").withScanFilter(scanFilter);
+                        ScanResult scanResult = ddbClient.scan(scanRequest);
+
+                        // Xử lý kết quả
+                        for (Map<String, AttributeValue> item : scanResult.getItems()) {
+                            String id = item.get("_id").getS();
+                            String productName = item.get("productName").getS();
+                            String time = item.get("time").getS();
+                            String state = item.get("state").getS();
+                            // Cập nhật giao diện
+                            Handler handler = new Handler(Looper.getMainLooper());
+                            Log.d("PayAttention", id+productName+time+state);
+                            handler.post(new Runnable() {
+                                @Override
+
+                                public void run() {
+                                  listener.onFound(id, productName,time,state);
+                                }
+                            });
+
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            }).start(); // Khởi chạy thread
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    public interface LoadRecyclingSubmissionListListener {
+        void onFound(String id,String productName,String time, String state);
     }
 
 }

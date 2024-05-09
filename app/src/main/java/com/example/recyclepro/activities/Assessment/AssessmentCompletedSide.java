@@ -1,7 +1,10 @@
-package com.example.recyclepro.activities;
+package com.example.recyclepro.activities.Assessment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Button;
+import android.widget.ImageButton;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -23,8 +26,9 @@ import java.util.ArrayList;
 
 public class AssessmentCompletedSide extends AppCompatActivity {
     private RecyclerView rcvAssessmentCompleted;
-    private DynamoDBManager dynamoDBManager;
     private ArrayList<AssessmentCompleted> listAssessmentCompleted;
+    private DynamoDBManager dynamoDBManager;
+
     private AssessmentCompletedAdapter adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,18 +46,39 @@ public class AssessmentCompletedSide extends AppCompatActivity {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         rcvAssessmentCompleted.setLayoutManager(linearLayoutManager);
         adapter= new AssessmentCompletedAdapter(listAssessmentCompleted);
-
         rcvAssessmentCompleted.setAdapter(adapter);
         listAssessmentCompleted.clear();
+        loadAssessmentCompleted();
+        Button btnLoad=findViewById(R.id.btnReview);
+        btnLoad.setOnClickListener(v->{
+            dynamoDBManager.loadAssessmentCompleted(new DynamoDBManager.LoadAssessmentCompletedListListener() {
+
+                @Override
+                public void onLoadCompleted(String id, String customerName, String productName, double finalPrice, String time, double avgRating) {
+                    listAssessmentCompleted.clear();
+                    AssessmentCompleted assessmentCompleted = new AssessmentCompleted(id, customerName, productName, time, finalPrice, avgRating);
+                    listAssessmentCompleted.add(assessmentCompleted);
+                    adapter.notifyDataSetChanged();
+
+                }
+            });
+        });
+        ImageButton btnBack=findViewById(R.id.btnBack);
+        btnBack.setOnClickListener(v->{
+            Intent intent = new Intent(this, AssessmentMenuSide.class);
+            startActivity(intent);
+        });
+    }
+    private void loadAssessmentCompleted() {
         dynamoDBManager.loadAssessmentCompleted(new DynamoDBManager.LoadAssessmentCompletedListListener() {
             @Override
-            public void onLoadCompleted(String id,String customerName, String productName, double finalPrice, String time, double avgRating) {
-                Log.d("CheckOnLoadCompleted", customerName+productName+finalPrice+time+avgRating);
-                AssessmentCompleted assessmentCompleted=new AssessmentCompleted(id, customerName, productName, time, finalPrice, avgRating);
+            public void onLoadCompleted(String id, String customerName, String productName, double finalPrice, String time, double avgRating) {
+                Log.d("CheckOnLoadCompleted", customerName + productName + finalPrice + time + avgRating);
+                AssessmentCompleted assessmentCompleted = new AssessmentCompleted(id, customerName, productName, time, finalPrice, avgRating);
                 listAssessmentCompleted.add(assessmentCompleted);
                 adapter.notifyDataSetChanged();
+
             }
         });
-
     }
 }

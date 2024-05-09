@@ -10,9 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.recyclepro.R;
-import com.example.recyclepro.activities.AssessmentCompletedSide;
 import com.example.recyclepro.models.AssessmentCompleted;
-import com.example.recyclepro.models.Product;
 
 import java.util.List;
 
@@ -37,14 +35,20 @@ public class AssessmentCompletedAdapter extends RecyclerView.Adapter<AssessmentC
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_assessment_completed, parent, false);
         return new AssessmentCompletedAdapter.AssessmentCompletedListViewHolder(view);
     }
-
+    @Override
+    public int getItemCount() {
+        if(listAssessmentCompleted!=null)
+        {
+            return listAssessmentCompleted.size();
+        }
+        return 0;
+    }
     @Override
     public void onBindViewHolder(@NonNull AssessmentCompletedAdapter.AssessmentCompletedListViewHolder holder, int position) {
         AssessmentCompleted assessmentCompleted =listAssessmentCompleted.get(position);
         if(assessmentCompleted==null){
             return;
         }
-        Log.d("sequence506", assessmentCompleted.toString());
         holder.tvCustomerName.setText("Customer name:"+assessmentCompleted.getCustomerName());
         holder.tvProductName.setText("Product name:"+assessmentCompleted.getProductName());
         holder.tvTime.setText("Time:"+assessmentCompleted.getTime());
@@ -62,14 +66,7 @@ public class AssessmentCompletedAdapter extends RecyclerView.Adapter<AssessmentC
         });
     }
 
-    @Override
-    public int getItemCount() {
-        if(listAssessmentCompleted!=null)
-        {
-            return listAssessmentCompleted.size();
-        }
-        return 0;
-    }
+
     public class AssessmentCompletedListViewHolder extends RecyclerView.ViewHolder {
 
         public TextView tvProductName, tvCustomerName, tvTime, tvFinalPrice, tvAvgRating;

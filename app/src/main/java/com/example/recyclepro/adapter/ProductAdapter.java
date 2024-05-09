@@ -21,7 +21,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductL
 
 
     public interface OnItemClickListener {
-        void onItemClick(String productID, String customerName, String phone, String productName, String battery, String caseDescribe, String purchasedDate, String screen);
+        void onItemClick(String productID, String customerName, String phone, String productName, String battery, String caseDescribe, String purchasedDate, String screen, String time, String email);
     }
     public void setOnItemClickListener(ProductAdapter.OnItemClickListener listener) {
         mListener = listener;
@@ -55,11 +55,12 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductL
         Log.d("sequence506", product.toString());
         holder.tvCustomerName.setText("Customer name: "+product.getCustomerName());
         holder.tvProductName.setText("Product name: "+product.getProductName());
+        holder.tvTime.setText("Time: "+product.getTime());
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (mListener != null) {
-                    mListener.onItemClick(product.getProductID(),product.getCustomerName(), product.getPhone(), product.getProductName(), product.getBattery(), product.getCaseDescribe(), product.getPurchasedDate(), product.getScreen());
+                    mListener.onItemClick(product.getProductID(),product.getCustomerName(), product.getPhone(), product.getProductName(), product.getBattery(), product.getCaseDescribe(), product.getPurchasedDate(), product.getScreen(), product.getTime(), product.getEmail());
                 }
             }
         });
@@ -70,12 +71,13 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductL
 
     public class ProductListViewHolder extends RecyclerView.ViewHolder {
 
-        public TextView tvProductName, tvCustomerName;
+        public TextView tvProductName, tvCustomerName, tvTime;
 
         public ProductListViewHolder(@NonNull View itemView) {
             super(itemView);
             tvCustomerName=itemView.findViewById(R.id.tvCustomerName);
             tvProductName= itemView.findViewById(R.id.tvProductName);
+            tvTime=itemView.findViewById(R.id.tvTime);
         }
     }
 

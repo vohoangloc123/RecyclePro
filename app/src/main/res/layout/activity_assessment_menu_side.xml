@@ -27,6 +27,7 @@
         app:layout_constraintStart_toStartOf="@id/headerBackground"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
+        android:background="@color/button_color3"
         />
 
     <!-- RecyceIcon ở trung tâm header -->
@@ -34,7 +35,7 @@
         android:id="@+id/recyceIcon"
         android:layout_width="150dp"
         android:layout_height="150dp"
-        android:src="@drawable/recycle"
+        android:src="@drawable/baseline_recycling_24"
         app:layout_constraintTop_toTopOf="@id/headerBackground"
         app:layout_constraintBottom_toBottomOf="@id/headerBackground"
         app:layout_constraintStart_toEndOf="@id/btnExit"
@@ -76,11 +77,60 @@
         app:layout_constraintTop_toBottomOf="@id/guideline"
         app:layout_constraintBottom_toBottomOf="parent">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center_vertical"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp">
+
+            <!-- Email -->
+            <TextView
+                android:id="@+id/textEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Email: example@example.com"
+                android:textSize="18sp"
+                android:textColor="@android:color/black"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"/>
+
+            <!-- User Name -->
+            <TextView
+                android:id="@+id/textUserName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="User Name: John Doe"
+                android:textSize="18sp"
+                android:textColor="@android:color/black"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"/>
+
+            <!-- Role -->
+            <TextView
+                android:id="@+id/textRole"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Role: Admin"
+                android:textSize="18sp"
+                android:textColor="@android:color/black"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"/>
+
+        </LinearLayout>
+
         <!-- Nút 1 -->
         <Button
             android:id="@+id/btnWaitingProductList"
             android:layout_width="match_parent"
-            android:layout_height="80dp"
+            android:layout_height="70dp"
             android:text="Waiting product list"
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
@@ -94,7 +144,7 @@
         <Button
             android:id="@+id/btnEvaluationHistory"
             android:layout_width="match_parent"
-            android:layout_height="80dp"
+            android:layout_height="70dp"
             android:text="Evaluation history"
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
@@ -107,7 +157,7 @@
         <Button
             android:id="@+id/btnAnalyst"
             android:layout_width="match_parent"
-            android:layout_height="80dp"
+            android:layout_height="70dp"
             android:text="Analys"
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"

@@ -301,6 +301,13 @@ public class RecyclingAssessmentFragment extends Fragment {
                         Double.parseDouble(String.valueOf(caseRating))+
                         Double.parseDouble(String.valueOf(uptimeRating))+
                         Double.parseDouble(String.valueOf(screenRating)))/4;
+                String typeOfRecycle=null;
+                if(avgRating>3)
+                {
+                    typeOfRecycle="Resale";
+                }else{
+                    typeOfRecycle="Recycling";
+                }
                 dynamoDBManager.SubmitProductPrice(productID, productID, customerName, phone,
                         productName, productCaseDescribe, productPurchasedDate,
                         productBattery, productScreen, "reviewed",
@@ -310,8 +317,8 @@ public class RecyclingAssessmentFragment extends Fragment {
                         String.valueOf(screenRating), screenCondition,
                         String.valueOf(finalPrice),
                         currentTime, String.valueOf(avgRating),
-                        email);
-                dynamoDBManager.updateStateOfProduct(productID, "assessted");
+                        email, typeOfRecycle);
+                dynamoDBManager.updateStateOfProduct(productID, "assessed");
                 Toast.makeText(getContext(), "Đã gửi email"+email, Toast.LENGTH_SHORT).show();
             }
         });

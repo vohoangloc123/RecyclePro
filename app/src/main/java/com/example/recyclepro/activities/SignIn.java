@@ -53,17 +53,24 @@ public class SignIn extends AppCompatActivity {
             String password = etPassword.getText().toString().trim();
             boolean loggedIn = dynamoDBManager.loadUsers(email, password, new DynamoDBManager.LoadUsersCallback() {
                 @Override
-                public void onLoginSuccess(String role) {
+                public void onLoginSuccess(String role, String name) {
                     if(role.equals("customer"))
                     {
                         Bundle bundle=new Bundle();
-                        bundle.putString("email", email); // Thay "customerEmail" thành "email"
+                        bundle.putString("email", email);
+                        bundle.putString("name", name);
+                        bundle.putString("role", role);
                         Intent intent=new Intent(SignIn.this, CustomerMenuSide.class);
                         intent.putExtras(bundle); // Sử dụng putExtras() để chuyển Bundle qua Intent
                         startActivity(intent);
                     }else
                     {
+                        Bundle bundle=new Bundle();
+                        bundle.putString("email", email);
+                        bundle.putString("name", name);
+                        bundle.putString("role", role);
                         Intent intent=new Intent(SignIn.this, AssessmentMenuSide.class);
+                        intent.putExtras(bundle);
                         startActivity(intent);
                     }
                     Toast.makeText(SignIn.this, "Đăng nhập thành công", Toast.LENGTH_LONG).show();

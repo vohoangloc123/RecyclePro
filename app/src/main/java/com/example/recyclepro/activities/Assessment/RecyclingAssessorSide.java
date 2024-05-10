@@ -76,8 +76,19 @@ public class RecyclingAssessorSide extends AppCompatActivity {
         });
         btnBack =findViewById(R.id.btnBack);
         btnBack.setOnClickListener(v->{
+            Bundle bundle=getIntent().getExtras(); // Lấy Bundle từ Intent
+            String email = bundle.getString("email"); // Sử dụng key "email" để lấy dữ liệu
+            String name = bundle.getString("name");
+            String role = bundle.getString("role");
+            if(bundle != null) {
+                bundle.putString("email", email);
+                bundle.putString("name", name);
+                bundle.putString("role", role);
                 Intent intent = new Intent(this, AssessmentMenuSide.class);
+                intent.putExtras(bundle);
                 startActivity(intent);
+            }
+
         });
         adapter.setOnItemClickListener(new ProductAdapter.OnItemClickListener() {
             @Override

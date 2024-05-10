@@ -50,19 +50,20 @@ public class AssessmentCompletedSide extends AppCompatActivity {
         listAssessmentCompleted.clear();
         loadAssessmentCompleted();
         Button btnLoad=findViewById(R.id.btnReview);
-        btnLoad.setOnClickListener(v->{
-            dynamoDBManager.loadAssessmentCompleted(new DynamoDBManager.LoadAssessmentCompletedListListener() {
-
-                @Override
-                public void onLoadCompleted(String id, String customerName, String productName, double finalPrice, String time, double avgRating) {
-                    listAssessmentCompleted.clear();
-                    AssessmentCompleted assessmentCompleted = new AssessmentCompleted(id, customerName, productName, time, finalPrice, avgRating);
-                    listAssessmentCompleted.add(assessmentCompleted);
-                    adapter.notifyDataSetChanged();
-
-                }
-            });
-        });
+//        btnLoad.setOnClickListener(v->{
+//            dynamoDBManager.loadAssessmentCompleted(new DynamoDBManager.LoadAssessmentCompletedListListener() {
+//
+//                @Override
+//                public void onLoadCompleted(String id, String customerName, String productName, double finalPrice, String time, double avgRating, String typeOfRecycle) {
+//                    listAssessmentCompleted.clear();
+//                    AssessmentCompleted assessmentCompleted = new AssessmentCompleted(id, customerName, productName, time, finalPrice, avgRating, typeOfRecycle);
+//                    listAssessmentCompleted.add(assessmentCompleted);
+//                    Log.d("CheckAssessmentCompleted", listAssessmentCompleted.toString());
+//                    adapter.notifyDataSetChanged();
+//
+//                }
+//            });
+//        });
         ImageButton btnBack=findViewById(R.id.btnBack);
         btnBack.setOnClickListener(v->{
             Intent intent = new Intent(this, AssessmentMenuSide.class);
@@ -72,9 +73,9 @@ public class AssessmentCompletedSide extends AppCompatActivity {
     private void loadAssessmentCompleted() {
         dynamoDBManager.loadAssessmentCompleted(new DynamoDBManager.LoadAssessmentCompletedListListener() {
             @Override
-            public void onLoadCompleted(String id, String customerName, String productName, double finalPrice, String time, double avgRating) {
+            public void onLoadCompleted(String id, String customerName, String productName, double finalPrice, String time, double avgRating, String typeOfRecycle) {
                 Log.d("CheckOnLoadCompleted", customerName + productName + finalPrice + time + avgRating);
-                AssessmentCompleted assessmentCompleted = new AssessmentCompleted(id, customerName, productName, time, finalPrice, avgRating);
+                AssessmentCompleted assessmentCompleted = new AssessmentCompleted(id, customerName, productName, time, finalPrice, avgRating, typeOfRecycle);
                 listAssessmentCompleted.add(assessmentCompleted);
                 adapter.notifyDataSetChanged();
 

@@ -255,7 +255,7 @@ public class DynamoDBManager {
         }
     }
     public interface LoadUsersCallback {
-        void onLoginSuccess(String role);
+        void onLoginSuccess(String role, String name);
         void onLoginFailure();
     }
     public boolean loadUsers(String email, String password, LoadUsersCallback callback) {
@@ -287,7 +287,8 @@ public class DynamoDBManager {
                             if (storedPassword.equals(password)) {
                                 // Mật khẩu đúng, đánh dấu xác thực thành công và thoát khỏi vòng lặp
                                 String role = item.get("role").getS();
-                                callback.onLoginSuccess(role);
+                                String name=item.get("username").getS();
+                                callback.onLoginSuccess(role, name);
                                 isAuthenticated.set(true);
                                 return;
                             } else {
@@ -315,7 +316,8 @@ public class DynamoDBManager {
                                    String caseRating, String caseCondition,
                                    String uptimeRating, String uptimeCondition,
                                    String screenRating, String screenCondition,
-                                   String finalPrice, String time, String avgRating, String email) {
+                                   String finalPrice, String time, String avgRating, String email,
+                                   String typeOfRecycle) {
         try {
             if (ddbClient == null) {
                 initializeDynamoDB();
@@ -368,6 +370,8 @@ public class DynamoDBManager {
                         item.put("avgRating", new AttributeValue().withN(avgRating));
                         //email
                         item.put("email", new AttributeValue().withS(email));
+                        //typeOfRecycle
+                        item.put("typeOfRecycle", new AttributeValue().withS(typeOfRecycle));
                         // Tạo yêu cầu chèn mục vào bảng
                         PutItemRequest putItemRequest = new PutItemRequest()
                                 .withTableName("ProductPrices")
@@ -395,6 +399,7 @@ public class DynamoDBManager {
                 @Override
                 public void run() {
                     try {
+                        Log.d("CheckAssessmentCompleted", "RUN");
                         // Tạo một yêu cầu truy vấn
                         HashMap<String, Condition> scanFilter = new HashMap<String, Condition>();
                         // Thêm các điều kiện scan vào để truy vấn dữ liệu
@@ -417,6 +422,8 @@ public class DynamoDBManager {
                             String customerName = productMap.get("customerName").getS();
                             String phone = productMap.get("phone").getS();
                             String productName = productMap.get("productName").getS();
+                            String typeOfRecycle=item.get("typeOfRecycle").getS();
+
                             // Xử lý các trường khác tương tự
                             Handler handler = new Handler(Looper.getMainLooper());
                             handler.post(new Runnable() {
@@ -425,7 +432,8 @@ public class DynamoDBManager {
                                 public void run() {
 
                                     if(listener != null) {
-                                        listener.onLoadCompleted(id,customerName, productName, finalPrice, time, avgRating);
+                                        listener.onLoadCompleted(id,customerName, productName, finalPrice, time, avgRating, typeOfRecycle);
+                                        Log.d("CheckAssessmentCompleted", typeOfRecycle);
                                     }
                                 }
                             });
@@ -445,7 +453,7 @@ public class DynamoDBManager {
         }
     }
     public interface LoadAssessmentCompletedListListener {
-        void onLoadCompleted(String id, String customerName,String productName, double finalPrice, String time, double avgRating);
+        void onLoadCompleted(String id, String customerName,String productName, double finalPrice, String time, double avgRating, String typeOfRecycle);
     }
     public void updateStateOfProduct(String productID,String state) {
         try {
@@ -530,6 +538,99 @@ public class DynamoDBManager {
     }
     public interface LoadRecyclingSubmissionListListener {
         void onFound(String id,String productName,String time, String state);
+    }
+    public void loadAProductPrices(String id, LoadAProductPriceListener listener) {
+        try {
+            if (ddbClient == null) {
+                initializeDynamoDB();
+            }
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        Log.d("CheckAssessmentCompleted", "RUN"+id);
+                        // Tạo một yêu cầu truy vấn
+                        HashMap<String, Condition> scanFilter = new HashMap<String, Condition>();
+                        Condition condition = new Condition()
+                                .withComparisonOperator(ComparisonOperator.EQ.toString())
+                                .withAttributeValueList(new AttributeValue().withS(id));
+                        scanFilter.put("_id", condition);
+                        ScanRequest scanRequest = new ScanRequest("ProductPrices").withScanFilter(scanFilter);
+                        ScanResult scanResult = ddbClient.scan(scanRequest);
+
+                        // Xử lý kết quả
+                        List<Map<String, AttributeValue>> items = scanResult.getItems();
+                        if (items.isEmpty()) {
+                            // Nếu không tìm thấy sản phẩm, gọi listener để thông báo
+                            Log.d("khong tim thay", "yes");
+                            if (listener != null) {
+                                listener.onNotFound("This product still not assessed yet");
+                            }
+                        } else {
+                            for (Map<String, AttributeValue> item : items) {
+                                // Lấy giá trị các trường trong item
+                                String id = item.get("_id").getS();
+                                String time = item.get("time").getS();
+                                Double finalPrice = Double.valueOf(item.get("finalPrice").getN());
+                                Double avgRating = Double.valueOf(item.get("avgRating").getN());
+                                String typeOfRecycle = item.get("typeOfRecycle").getS();
+                                // Lấy giá trị các trường trong productMap
+                                Map<String, AttributeValue> productMap = item.get("product").getM();
+                                String productId = productMap.get("_id").getS();
+                                String customerName = productMap.get("customerName").getS();
+                                String phone = productMap.get("phone").getS();
+                                String productName = productMap.get("productName").getS();
+                                String battery = productMap.get("battery").getS();
+                                String caseDescribe = productMap.get("caseDescribe").getS();
+                                String screen = productMap.get("screen").getS();
+                                String state = productMap.get("state").getS();
+                                String uptime = productMap.get("uptime").getS();
+
+                                // Lấy giá trị các trường trong screenMap
+                                Map<String, AttributeValue> screenMap = item.get("screen").getM();
+                                String screenCondition = screenMap.get("screenCondition").getS();
+                                Double screenRating = Double.valueOf(screenMap.get("screenRating").getN());
+
+                                // Lấy giá trị các trường trong uptimeMap
+                                Map<String, AttributeValue> uptimeMap = item.get("uptime").getM();
+                                String uptimeCondition = uptimeMap.get("uptimeCondition").getS();
+                                Double uptimeRating = Double.valueOf(uptimeMap.get("uptimeRating").getN());
+
+                                // Lấy giá trị các trường trong caseMap
+                                Map<String, AttributeValue> caseMap = item.get("case").getM();
+                                String caseCondition = caseMap.get("caseCondition").getS();
+                                Double caseRating = Double.valueOf(caseMap.get("caseRating").getN());
+
+                                // Lấy giá trị các trường trong batteryMap
+                                Map<String, AttributeValue> batteryMap = item.get("battery").getM();
+                                String batteryCondition = batteryMap.get("batteryCondition").getS();
+                                Double batteryRating = Double.valueOf(batteryMap.get("batteryRating").getN());
+                                // Gọi listener để thông báo đã load xong
+                                if (listener != null) {
+                                    listener.onLoadCompleted(id, customerName, productName, finalPrice, time, avgRating, typeOfRecycle,
+                                            phone, battery, caseDescribe, screen, uptime, state,
+                                            batteryCondition, caseCondition, uptimeCondition, screenCondition,
+                                            batteryRating, caseRating, uptimeRating, screenRating
+                                    );
+                                }
+                            }
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            }).start(); // Khởi chạy thread
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public interface LoadAProductPriceListener {
+        void onLoadCompleted(String id, String customerName,String productName, double finalPrice, String time, double avgRating, String typeOfRecycle,
+                             String phone, String battery, String caseDescribe, String screen, String uptime,String state,
+                             String batteryCondition, String caseCondition, String uptimeCondition, String screenCondition,
+                             Double batteryRating,Double caseRating, Double uptimeRating,  Double screenRating);
+        void onNotFound(String error);
     }
 
 }

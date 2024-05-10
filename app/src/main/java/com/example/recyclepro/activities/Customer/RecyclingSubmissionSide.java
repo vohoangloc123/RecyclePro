@@ -1,5 +1,6 @@
-package com.example.recyclepro.activities;
+package com.example.recyclepro.activities.Customer;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
@@ -46,7 +47,7 @@ public class RecyclingSubmissionSide extends AppCompatActivity {
         listRecyclingSubmission=new ArrayList<>();
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         rcvRecyclingSubmission.setLayoutManager(linearLayoutManager);
-        adapter= new RecyclingSubmissionAdapter(listRecyclingSubmission);
+        adapter= new RecyclingSubmissionAdapter(listRecyclingSubmission, dynamoDBManager, getApplicationContext());
         rcvRecyclingSubmission.setAdapter(adapter);
         listRecyclingSubmission.clear();
         dynamoDBManager.loadRecyclingSubmission(email, new DynamoDBManager.LoadRecyclingSubmissionListListener() {

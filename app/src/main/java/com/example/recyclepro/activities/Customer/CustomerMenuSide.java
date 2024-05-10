@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,13 +14,13 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.example.recyclepro.R;
-import com.example.recyclepro.activities.RecyclingSubmissionSide;
 import com.example.recyclepro.activities.SignIn;
 
 public class CustomerMenuSide extends AppCompatActivity {
     private Button btnSubmitProduct,btnRecyclingSubmissionHistory;
-    private String email;
+    private String email, name, role;
     private ImageButton btnExit;
+    private TextView tvEmail, tvUserName, tvRole;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,7 +34,15 @@ public class CustomerMenuSide extends AppCompatActivity {
         Bundle bundle=getIntent().getExtras(); // Lấy Bundle từ Intent
         if(bundle != null) {
             email = bundle.getString("email"); // Sử dụng key "email" để lấy dữ liệu
+            name = bundle.getString("name");
+            role = bundle.getString("role");
         }
+        tvEmail=findViewById(R.id.tvEmail);
+        tvUserName=findViewById(R.id.tvUserName);
+        tvRole=findViewById(R.id.tvRole);
+        tvEmail.setText("Email: "+ email);
+        tvUserName.setText("User: "+name);
+        tvRole.setText("Role: "+ role);
         btnSubmitProduct=findViewById(R.id.btnSubmitProduct);
         btnRecyclingSubmissionHistory=findViewById(R.id.btnRecyclingSubmissionHistory);
         btnSubmitProduct.setOnClickListener(v->{

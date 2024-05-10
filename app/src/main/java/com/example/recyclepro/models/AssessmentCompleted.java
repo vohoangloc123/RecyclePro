@@ -7,14 +7,24 @@ public class AssessmentCompleted {
     private String time;
     private double finalPrice;
     private double avgRating;
+    private String typeOfRecycle;
 
-    public AssessmentCompleted(String id, String customerName, String productName, String time, double finalPrice, double avgRating) {
+    public AssessmentCompleted(String id, String customerName, String productName, String time, double finalPrice, double avgRating, String typeOfRecycle) {
         this.id = id;
         this.customerName = customerName;
         this.productName = productName;
         this.time = time;
         this.finalPrice = finalPrice;
         this.avgRating = avgRating;
+        this.typeOfRecycle=typeOfRecycle;
+    }
+
+    public String getTypeOfRecycle() {
+        return typeOfRecycle;
+    }
+
+    public void setTypeOfRecycle(String typeOfRecycle) {
+        this.typeOfRecycle = typeOfRecycle;
     }
 
     public String getId() {
@@ -74,6 +84,7 @@ public class AssessmentCompleted {
                 ", time='" + time + '\'' +
                 ", finalPrice=" + finalPrice +
                 ", avgRating=" + avgRating +
+                ", typeOfRecycle='" + typeOfRecycle + '\'' +
                 '}';
     }
 }

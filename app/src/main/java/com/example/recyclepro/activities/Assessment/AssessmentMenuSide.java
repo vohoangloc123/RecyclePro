@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,6 +18,8 @@ import com.example.recyclepro.activities.SignIn;
 
 public class AssessmentMenuSide extends AppCompatActivity {
     private Button btnWaitingProductList, btnEvaluationHistory,btnAnalyst;
+    private TextView tvEmail, tvUserName, tvRole;
+    private String email, name, role;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,6 +30,18 @@ public class AssessmentMenuSide extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+        Bundle bundle=getIntent().getExtras(); // Lấy Bundle từ Intent
+        if(bundle != null) {
+            email = bundle.getString("email"); // Sử dụng key "email" để lấy dữ liệu
+            name = bundle.getString("name");
+            role = bundle.getString("role");
+        }
+        tvEmail=findViewById(R.id.tvEmail);
+        tvUserName=findViewById(R.id.tvUserName);
+        tvRole=findViewById(R.id.tvRole);
+        tvEmail.setText("Email: "+ email);
+        tvUserName.setText("User: "+name);
+        tvRole.setText("Role: "+ role);
         btnEvaluationHistory=findViewById(R.id.btnEvaluationHistory);
         btnWaitingProductList=findViewById(R.id.btnWaitingProductList);
         btnAnalyst=findViewById(R.id.btnAnalyst);

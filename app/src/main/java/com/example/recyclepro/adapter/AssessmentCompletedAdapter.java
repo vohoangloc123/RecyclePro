@@ -1,6 +1,5 @@
 package com.example.recyclepro.adapter;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,7 +18,7 @@ public class AssessmentCompletedAdapter extends RecyclerView.Adapter<AssessmentC
 
     private AssessmentCompletedAdapter.OnItemClickListener mListener;
     public interface OnItemClickListener {
-        void onItemClick(String id, String customerName, String productName, String time, String finalPrice, String avgRating);
+        void onItemClick(String id, String customerName, String productName, String time, String finalPrice, String avgRating, String typeOfRecycle);
     }
     public void setOnItemClickListener(AssessmentCompletedAdapter.OnItemClickListener listener) {
         mListener = listener;
@@ -56,11 +55,12 @@ public class AssessmentCompletedAdapter extends RecyclerView.Adapter<AssessmentC
         holder.tvFinalPrice.setText("Final price: "+finalPrice);
         String avgRating= String.valueOf(assessmentCompleted.getAvgRating());
         holder.tvAvgRating.setText("Avg rating: "+avgRating);
+        holder.tvTypeOfRecycle.setText("Type: "+assessmentCompleted.getTypeOfRecycle());
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (mListener != null) {
-                    mListener.onItemClick(assessmentCompleted.getId(), assessmentCompleted.getCustomerName(), assessmentCompleted.getProductName(), assessmentCompleted.getTime(), String.valueOf(assessmentCompleted.getFinalPrice()), String.valueOf(assessmentCompleted.getAvgRating()));
+                    mListener.onItemClick(assessmentCompleted.getId(), assessmentCompleted.getCustomerName(), assessmentCompleted.getProductName(), assessmentCompleted.getTime(), String.valueOf(assessmentCompleted.getFinalPrice()), String.valueOf(assessmentCompleted.getAvgRating()), assessmentCompleted.getTypeOfRecycle());
                 }
             }
         });
@@ -69,7 +69,7 @@ public class AssessmentCompletedAdapter extends RecyclerView.Adapter<AssessmentC
 
     public class AssessmentCompletedListViewHolder extends RecyclerView.ViewHolder {
 
-        public TextView tvProductName, tvCustomerName, tvTime, tvFinalPrice, tvAvgRating;
+        public TextView tvProductName, tvCustomerName, tvTime, tvFinalPrice, tvAvgRating, tvTypeOfRecycle;
 
         public AssessmentCompletedListViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -78,6 +78,7 @@ public class AssessmentCompletedAdapter extends RecyclerView.Adapter<AssessmentC
             tvTime=itemView.findViewById(R.id.tvTime);
             tvFinalPrice=itemView.findViewById(R.id.tvFinalPrice);
             tvAvgRating=itemView.findViewById(R.id.tvAvgRating);
+            tvTypeOfRecycle=itemView.findViewById(R.id.tvTypeOfRecycle);
         }
     }
 }

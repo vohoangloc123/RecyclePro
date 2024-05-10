@@ -88,7 +88,7 @@
 
             <!-- Email -->
             <TextView
-                android:id="@+id/textEmail"
+                android:id="@+id/tvEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Email: example@example.com"
@@ -101,7 +101,7 @@
 
             <!-- User Name -->
             <TextView
-                android:id="@+id/textUserName"
+                android:id="@+id/tvUserName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="User Name: John Doe"
@@ -114,7 +114,7 @@
 
             <!-- Role -->
             <TextView
-                android:id="@+id/textRole"
+                android:id="@+id/tvRole"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Role: Admin"

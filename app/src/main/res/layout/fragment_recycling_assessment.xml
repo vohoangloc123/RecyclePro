@@ -74,9 +74,9 @@
 
                 <TextView
                     android:id="@+id/tvInformation1"
-                    android:layout_width="150dp"
-                    android:layout_height="100dp"
-                    android:background="@drawable/rounded_edittext"
+                    android:layout_width="wrap_content"
+                    android:layout_height="120dp"
+                    android:background="@drawable/rounded_edittext_left"
                     android:hint="Enter your information"
                     android:padding="10dp"
                     android:textColor="@color/black"
@@ -85,9 +85,9 @@
 
                 <TextView
                     android:id="@+id/tvInformation2"
-                    android:layout_width="150dp"
-                    android:layout_height="100dp"
-                    android:background="@drawable/rounded_edittext"
+                    android:layout_width="wrap_content"
+                    android:layout_height="120dp"
+                    android:background="@drawable/rounded_edittext_right"
                     android:hint="Enter your information"
                     android:padding="10dp"
                     android:textColor="@color/black"

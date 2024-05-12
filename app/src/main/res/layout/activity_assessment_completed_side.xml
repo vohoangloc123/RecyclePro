@@ -36,11 +36,10 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
+                android:paddingRight="84dp"
                 android:text="List Assessment Completed"
                 android:textColor="@color/white"
-                android:textSize="20sp"
-                android:paddingRight="84dp"
-                />
+                android:textSize="20sp" />
         </LinearLayout>
 
 

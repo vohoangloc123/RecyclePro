@@ -67,23 +67,33 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.33" />
+        app:layout_constraintGuide_percent="0.31" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:orientation="vertical"
-        android:gravity="center_vertical"
         app:layout_constraintTop_toBottomOf="@id/guideline"
         app:layout_constraintBottom_toBottomOf="parent">
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:gravity="center_vertical"
             android:layout_marginTop="20dp"
             android:layout_marginBottom="20dp">
+
+            <!-- ImageView cho phonebackground -->
+            <ImageView
+                android:id="@+id/imagePhoneBackground"
+                android:layout_width="125dp"
+                android:layout_height="wrap_content"
+                android:src="@drawable/phonebackground"
+                android:scaleType="centerCrop"
+                android:adjustViewBounds="true"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"/>
 
             <!-- Email -->
             <TextView
@@ -93,9 +103,10 @@
                 android:text="Email: example@example.com"
                 android:textSize="18sp"
                 android:textColor="@android:color/black"
+                android:layout_toEndOf="@id/imagePhoneBackground"
                 android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
                 android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
                 android:layout_marginBottom="10dp"/>
 
             <!-- User Name -->
@@ -106,9 +117,11 @@
                 android:text="User Name: John Doe"
                 android:textSize="18sp"
                 android:textColor="@android:color/black"
+                android:layout_toEndOf="@id/imagePhoneBackground"
+                android:layout_below="@id/tvEmail"
                 android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
                 android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
                 android:layout_marginBottom="10dp"/>
 
             <!-- Role -->
@@ -119,22 +132,26 @@
                 android:text="Role: Admin"
                 android:textSize="18sp"
                 android:textColor="@android:color/black"
+                android:layout_toEndOf="@id/imagePhoneBackground"
+                android:layout_below="@id/tvUserName"
                 android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
                 android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
                 android:layout_marginBottom="10dp"/>
 
-        </LinearLayout>
+        </RelativeLayout>
+
+
 
         <!-- Nút 1 -->
         <Button
             android:id="@+id/btnWaitingProductList"
             android:layout_width="match_parent"
-            android:layout_height="70dp"
+            android:layout_height="60dp"
             android:text="Waiting product list"
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
-            android:layout_marginVertical="20dp"
+            android:layout_marginVertical="10dp"
             app:cornerRadius="5dp"
             android:backgroundTint="@color/button_color"
             android:textSize="20sp"
@@ -144,11 +161,11 @@
         <Button
             android:id="@+id/btnEvaluationHistory"
             android:layout_width="match_parent"
-            android:layout_height="70dp"
+            android:layout_height="60dp"
             android:text="Evaluation history"
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
-            android:layout_marginVertical="20dp"
+            android:layout_marginVertical="10dp"
             app:cornerRadius="5dp"
             android:backgroundTint="@color/button_color"
             android:textSize="20sp"            />
@@ -157,11 +174,11 @@
         <Button
             android:id="@+id/btnAnalyst"
             android:layout_width="match_parent"
-            android:layout_height="70dp"
+            android:layout_height="60dp"
             android:text="Analys"
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
-            android:layout_marginVertical="20dp"
+            android:layout_marginVertical="10dp"
             app:cornerRadius="5dp"
             android:backgroundTint="@color/button_color"
             android:textSize="20sp"            />

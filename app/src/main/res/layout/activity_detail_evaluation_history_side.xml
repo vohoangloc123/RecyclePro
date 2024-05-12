@@ -31,7 +31,7 @@
             android:textColor="@color/white"
             android:textSize="20sp"
             android:paddingRight="84dp"
-            android:text="Recycling assessment"
+            android:text="Detail evaluation history"
 
             />
     </LinearLayout>
@@ -167,109 +167,10 @@
                     android:textSize="12sp"
                     android:textStyle="bold" />
             </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:text="Phone: "
-                    android:textColor="@color/black"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
-
-                <EditText
-                    android:id="@+id/etPhone"
-                    android:layout_width="0dp"
-                    android:layout_height="40dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/rounded_edittext"
-                    android:textColor="@color/black"
-                    android:textSize="15sp"
-                    android:textStyle="bold"
-                    android:paddingHorizontal="10dp"
-                    android:hint="Enter your price"
-                    />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:orientation="horizontal">
-                <TextView
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:text="Address: "
-                    android:textColor="@color/black"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
-
-                <EditText
-                    android:id="@+id/etAddress"
-                    android:layout_width="0dp"
-                    android:layout_height="40dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/rounded_edittext"
-                    android:textColor="@color/black"
-                    android:textSize="15sp"
-                    android:textStyle="bold"
-                    android:paddingHorizontal="10dp"
-                    android:hint="Enter your price"
-                    />
-            </LinearLayout>
 
 
 
-            <!-- Usage time -->
 
-
-
-            <!-- Button -->
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <Button
-                    android:id="@+id/btnSave"
-                    android:layout_width="0dp"
-                    android:layout_height="60dp"
-                    android:layout_weight="4"
-                    android:layout_marginTop="16dp"
-                    android:backgroundTint="@color/button_color"
-                    android:drawablePadding="8dp"
-                    android:elevation="8dp"
-                    android:paddingStart="16dp"
-                    android:paddingEnd="16dp"
-                    android:text="Caculator"
-                    android:textAlignment="center"
-                    android:textSize="20sp"
-                    app:cornerRadius="5dp" />
-
-                <ImageButton
-                    android:id="@+id/btnSendEmail"
-                    android:layout_width="0dp"
-                    android:layout_height="60dp"
-                    android:layout_weight="1"
-                    android:layout_marginTop="16dp"
-                    android:backgroundTint="@color/button_color"
-                    android:drawablePadding="8dp"
-                    android:elevation="8dp"
-                    android:paddingStart="16dp"
-                    android:paddingEnd="16dp"
-                    android:textAlignment="center"
-                    android:textSize="20sp"
-                    android:src="@drawable/baseline_email_24"
-                    app:cornerRadius="5dp" />
-            </LinearLayout>
 
         </LinearLayout>
     </ScrollView>

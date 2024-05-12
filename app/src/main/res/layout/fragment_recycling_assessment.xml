@@ -75,7 +75,7 @@
                 <TextView
                     android:id="@+id/tvInformation1"
                     android:layout_width="wrap_content"
-                    android:layout_height="120dp"
+                    android:layout_height="200dp"
                     android:background="@drawable/rounded_edittext_left"
                     android:hint="Enter your information"
                     android:padding="10dp"
@@ -85,8 +85,8 @@
 
                 <TextView
                     android:id="@+id/tvInformation2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="120dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
                     android:background="@drawable/rounded_edittext_right"
                     android:hint="Enter your information"
                     android:padding="10dp"

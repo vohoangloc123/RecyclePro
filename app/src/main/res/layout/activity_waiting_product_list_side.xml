@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/assessmentCompletedSide">
+    android:id="@+id/main">
     <!-- TODO: Update blank fragment layout -->
     <LinearLayout
         android:layout_width="match_parent"
@@ -36,15 +36,16 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:paddingRight="84dp"
-                android:text="List Assessment Completed"
+                android:text="Waiting product list"
                 android:textColor="@color/white"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:paddingRight="84dp"
+                />
         </LinearLayout>
 
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rcvAssessmentCompleted"
+            android:id="@+id/rcvCustomer"
             android:layout_width="match_parent"
             android:layout_height="570dp" />
         <RelativeLayout

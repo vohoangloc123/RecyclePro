@@ -1,7 +1,13 @@
 package com.example.recyclepro.activities;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
+import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -48,39 +54,44 @@ public class SignIn extends AppCompatActivity {
             startActivity(intent);
         });
         btnSignIn=findViewById(R.id.btnSignIn);
-        btnSignIn.setOnClickListener(v-> {
-            String email = etEmail.getText().toString().trim();
-            String password = etPassword.getText().toString().trim();
-            boolean loggedIn = dynamoDBManager.loadUsers(email, password, new DynamoDBManager.LoadUsersCallback() {
-                @Override
-                public void onLoginSuccess(String role, String name) {
-                    if(role.equals("customer"))
-                    {
-                        Bundle bundle=new Bundle();
-                        bundle.putString("email", email);
-                        bundle.putString("name", name);
-                        bundle.putString("role", role);
-                        Intent intent=new Intent(SignIn.this, CustomerMenuSide.class);
-                        intent.putExtras(bundle); // Sử dụng putExtras() để chuyển Bundle qua Intent
-                        startActivity(intent);
-                    }else
-                    {
-                        Bundle bundle=new Bundle();
-                        bundle.putString("email", email);
-                        bundle.putString("name", name);
-                        bundle.putString("role", role);
-                        Intent intent=new Intent(SignIn.this, AssessmentMenuSide.class);
-                        intent.putExtras(bundle);
-                        startActivity(intent);
-                    }
-                    Toast.makeText(SignIn.this, "Đăng nhập thành công", Toast.LENGTH_LONG).show();
-                }
+        btnSignIn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String email = etEmail.getText().toString().trim();
+                String password = etPassword.getText().toString().trim();
+                dynamoDBManager.loadUsers(email, password, new DynamoDBManager.LoadUsersCallback() {
+                    @Override
+                    public void onLoginSuccess(String role, String name) {
+                        // Lưu thông tin người dùng vào SharedPreferences khi đăng nhập thành công
+                        SharedPreferences sharedPreferences = getSharedPreferences("UserData", Context.MODE_PRIVATE);
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                        editor.putString("email", email);
+                        editor.putString("name", name);
+                        editor.putString("role", role);
+                        editor.apply();
 
-                @Override
-                public void onLoginFailure() {
-                    Toast.makeText(SignIn.this, "Đăng nhập thất bại", Toast.LENGTH_LONG).show();
-                }
-            });
+                        // Chuyển qua Activity tiếp theo dựa trên vai trò của người dùng
+                        Intent intent;
+                        if (role.equals("customer")) {
+                            intent = new Intent(SignIn.this, CustomerMenuSide.class);
+                        } else {
+                            intent = new Intent(SignIn.this, AssessmentMenuSide.class);
+                        }
+                        startActivity(intent);
+                        Toast.makeText(SignIn.this, "Đăng nhập thành công", Toast.LENGTH_LONG).show();
+                    }
+
+                    @Override
+                    public void onLoginFailure() {
+                        new Handler(Looper.getMainLooper()).post(new Runnable() {
+                            @Override
+                            public void run() {
+                                Toast.makeText(getApplicationContext(),"Login failed, check your email and passwords", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                    }
+                });
+            }
         });
 
     }

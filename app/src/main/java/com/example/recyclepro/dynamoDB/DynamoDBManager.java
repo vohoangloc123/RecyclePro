@@ -292,7 +292,9 @@ public class DynamoDBManager {
                                 isAuthenticated.set(true);
                                 return;
                             } else {
+                                callback.onLoginFailure();
                             }
+
                         }
                     } catch (Exception e) {
                         e.printStackTrace();

@@ -1,9 +1,11 @@
 package com.example.recyclepro.activities.Customer;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,34 +16,32 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.recyclepro.R;
-import com.example.recyclepro.adapter.ProductAdapter;
 import com.example.recyclepro.adapter.RecyclingSubmissionAdapter;
 import com.example.recyclepro.dynamoDB.DynamoDBManager;
-import com.example.recyclepro.models.Product;
 import com.example.recyclepro.models.RecyclingSubmission;
 
 import java.util.ArrayList;
 
-public class RecyclingSubmissionSide extends AppCompatActivity {
+public class RecyclingSubmissionHistorySide extends AppCompatActivity {
     private RecyclerView rcvRecyclingSubmission;
     private ArrayList<RecyclingSubmission> listRecyclingSubmission;
     private DynamoDBManager dynamoDBManager;
     private RecyclingSubmissionAdapter adapter;
     private String email;
+    private ImageButton btnBack;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_recycling_submission_side);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.recyclingSubmissionSide), (v, insets) -> {
+        setContentView(R.layout.activity_recycling_submission_history_side);
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.recyclingSubmissionHistorySide), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-        Bundle bundle=getIntent().getExtras(); // Lấy Bundle từ Intent
-        if(bundle != null) {
-            email = bundle.getString("email"); // Sử dụng key "email" để lấy dữ liệu
-        }
+        SharedPreferences sharedPreferences = getSharedPreferences("UserData", Context.MODE_PRIVATE);
+        String email = sharedPreferences.getString("email", ""); // Lấy email từ SharedPreferences
+
         rcvRecyclingSubmission=findViewById(R.id.rcvRecyclingSubmission);
         dynamoDBManager=new DynamoDBManager(this);
         listRecyclingSubmission=new ArrayList<>();
@@ -70,6 +70,11 @@ public class RecyclingSubmissionSide extends AppCompatActivity {
                     adapter.notifyDataSetChanged();
                 }
             });
+        });
+        btnBack=findViewById(R.id.btnBack);
+        btnBack.setOnClickListener(v->{
+            Intent intent = new Intent(RecyclingSubmissionHistorySide.this, CustomerMenuSide.class);
+            startActivity(intent);
         });
     }
 }

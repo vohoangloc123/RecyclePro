@@ -1,0 +1,260 @@
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white2">
+
+    <!-- Header -->
+    <LinearLayout
+        android:id="@+id/headerLayout"
+        android:layout_width="match_parent"
+        android:layout_height="75dp"
+        android:background="@color/button_color"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageButton
+            android:id="@+id/btnBack"
+            android:layout_width="84dp"
+            android:layout_height="match_parent"
+            android:backgroundTint="@color/button_color"
+            android:src="@drawable/baseline_arrow_left_24" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:paddingRight="84dp"
+            android:text="Detail recycle submission"
+
+            />
+    </LinearLayout>
+
+    <!-- Form -->
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/headerLayout"
+        android:windowSoftInputMode="adjustResize">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <!-- Information -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:orientation="horizontal"
+                >
+
+                <TextView
+                    android:layout_width="74dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:text="Your product"
+                    android:textColor="@color/black"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+
+                <TextView
+                    android:id="@+id/tvProductInformation"
+                    android:layout_width="324dp"
+                    android:layout_height="75dp"
+                    android:background="@drawable/rounded_edittext"
+                    android:hint="Enter your information"
+                    android:padding="10dp"
+                    android:textColor="@color/black"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:orientation="horizontal"
+                >
+
+                <TextView
+                    android:layout_width="74dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:text="Rating"
+                    android:textColor="@color/black"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+
+                <TextView
+                    android:id="@+id/tvRatingInformation"
+                    android:layout_width="324dp"
+                    android:layout_height="94dp"
+                    android:background="@drawable/rounded_edittext"
+                    android:hint="Enter your information"
+                    android:padding="10dp"
+                    android:textColor="@color/black"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:orientation="horizontal"
+                >
+
+                <TextView
+                    android:layout_width="74dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:text="Condition"
+                    android:textColor="@color/black"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+
+                <TextView
+                    android:id="@+id/tvInformationCondition"
+                    android:layout_width="324dp"
+                    android:layout_height="100dp"
+                    android:background="@drawable/rounded_edittext"
+                    android:hint="Enter your information"
+                    android:padding="10dp"
+                    android:textColor="@color/black"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:orientation="horizontal"
+                >
+
+                <TextView
+                    android:layout_width="74dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:text="Other"
+                    android:textColor="@color/black"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+
+                <TextView
+                    android:id="@+id/tvPriceAndTypeInformation"
+                    android:layout_width="324dp"
+                    android:layout_height="65dp"
+                    android:background="@drawable/rounded_edittext"
+                    android:hint="Enter your information"
+                    android:padding="10dp"
+                    android:textColor="@color/black"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:text="Phone: "
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/etPhone"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/rounded_edittext"
+                    android:textColor="@color/black"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    android:paddingHorizontal="10dp"
+                    android:hint="Enter your price"
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:text="Address: "
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/etAddress"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/rounded_edittext"
+                    android:textColor="@color/black"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    android:paddingHorizontal="10dp"
+                    android:hint="Enter your price"
+                    />
+            </LinearLayout>
+
+
+
+            <!-- Usage time -->
+
+
+
+            <!-- Button -->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <ImageButton
+                    android:id="@+id/btnSendEmail"
+                    android:layout_width="0dp"
+                    android:layout_height="60dp"
+                    android:layout_weight="1"
+                    android:layout_marginTop="16dp"
+                    android:backgroundTint="@color/button_color"
+                    android:drawablePadding="8dp"
+                    android:elevation="8dp"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
+                    android:textAlignment="center"
+                    android:textSize="20sp"
+                    android:src="@drawable/baseline_email_24"
+                    app:cornerRadius="5dp" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

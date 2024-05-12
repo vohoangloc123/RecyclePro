@@ -16,8 +16,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.example.recyclepro.R;
+import com.example.recyclepro.activities.LiveData.MyViewModel;
 import com.example.recyclepro.dynamoDB.DynamoDBManager;
 import com.example.recyclepro.models.ConfigCondition;
 import com.example.recyclepro.models.ConfigRate;
@@ -58,6 +60,13 @@ public class RecyclingAssessmentFragment extends Fragment {
     public int batteryRating, caseRating, uptimeRating, screenRating;
     public String batteryCondition, caseCondition, uptimeCondition, screenCondition;
     public double finalPrice;
+    private MyViewModel viewModel;
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        viewModel = new ViewModelProvider(this).get(MyViewModel.class);
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -65,6 +74,7 @@ public class RecyclingAssessmentFragment extends Fragment {
         View view= inflater.inflate(R.layout.fragment_recycling_assessment, container, false);
         tvInformation1=view.findViewById(R.id.tvInformation1);
         tvInformation2=view.findViewById(R.id.tvInformation2);
+        viewModel = new ViewModelProvider(requireActivity()).get(MyViewModel.class);
         Bundle bundleReceive=getArguments();
         productID = bundleReceive.getString("productID");
         Log.d("CheckBundle", "product ID: "+productID);
@@ -336,6 +346,15 @@ public class RecyclingAssessmentFragment extends Fragment {
         String formattedDateTime = dateFormat.format(currentTime);
         return formattedDateTime;
     }
+    private void changeData() {
+        viewModel.setData("New data");
+    }
 
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        changeData(); // Cập nhật LiveData ở đây
+        Log.d("Detach", "onDestroyView: ");
+    }
 }
 

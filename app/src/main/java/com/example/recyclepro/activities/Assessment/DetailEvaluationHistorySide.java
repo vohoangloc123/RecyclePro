@@ -1,8 +1,10 @@
-package com.example.recyclepro.activities.Customer;
+package com.example.recyclepro.activities.Assessment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
@@ -13,15 +15,16 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.example.recyclepro.R;
 
-public class RecycleSubmissionHistorySide extends AppCompatActivity {
+public class DetailEvaluationHistorySide extends AppCompatActivity {
     private TextView tvProductInformation, tvRatingInformation, tvConditionInformation, tvPriceAndTypeInformation;
     private String id;
     private EditText etPhone;
+    private ImageButton btnBack;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_recycle_submission_history_side);
+        setContentView(R.layout.activity_detail_evaluation_history_side);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
@@ -31,7 +34,11 @@ public class RecycleSubmissionHistorySide extends AppCompatActivity {
         tvRatingInformation=findViewById(R.id.tvRatingInformation);
         tvConditionInformation=findViewById(R.id.tvInformationCondition);
         tvPriceAndTypeInformation=findViewById(R.id.tvPriceAndTypeInformation);
-        etPhone=findViewById(R.id.etPhone);
+        btnBack=findViewById(R.id.btnBack);
+        btnBack.setOnClickListener(v -> {
+            Intent intent=new Intent(this, EvaluationHistorySide.class);
+            startActivity(intent);
+        });
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
             String id = bundle.getString("id");
@@ -55,7 +62,6 @@ public class RecycleSubmissionHistorySide extends AppCompatActivity {
             double caseRating = bundle.getDouble("caseRating");
             double uptimeRating = bundle.getDouble("uptimeRating");
             double screenRating = bundle.getDouble("screenRating");
-
             tvProductInformation.setText("Customer name:"+customerName+"\n"+
                     "Product name: "+productName+"\n"+
                     "Time: "+time+"\n");
@@ -74,11 +80,10 @@ public class RecycleSubmissionHistorySide extends AppCompatActivity {
                     "State: "+state+"\n"+
                     "Type of recycle: "+typeOfRecycle
                     );
-            etPhone.setText(phone);
-
         } else {
             Log.d("ReceivedData", "Bundle is null");
         }
 
     }
+
 }

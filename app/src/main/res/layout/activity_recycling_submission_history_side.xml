@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/recycleAssessorSide">
+    android:id="@+id/recyclingSubmissionHistorySide">
     <!-- TODO: Update blank fragment layout -->
     <LinearLayout
         android:layout_width="match_parent"
@@ -36,7 +36,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="List customer"
+                android:text="Recycling Submission History"
                 android:textColor="@color/white"
                 android:textSize="20sp"
                 android:paddingRight="84dp"
@@ -45,7 +45,7 @@
 
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rcvCustomer"
+            android:id="@+id/rcvRecyclingSubmission"
             android:layout_width="match_parent"
             android:layout_height="570dp" />
         <RelativeLayout
@@ -55,7 +55,7 @@
             android:paddingLeft="130dp"
             >
             <Button
-                android:id="@+id/btnReview"
+                android:id="@+id/btnReload"
                 android:layout_width="150dp"
                 android:layout_height="55dp"
                 android:text="Reload"

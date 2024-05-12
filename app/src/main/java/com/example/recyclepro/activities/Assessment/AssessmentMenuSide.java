@@ -1,7 +1,9 @@
 package com.example.recyclepro.activities.Assessment;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -30,12 +32,10 @@ public class AssessmentMenuSide extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-        Bundle bundle=getIntent().getExtras(); // Lấy Bundle từ Intent
-        if(bundle != null) {
-            email = bundle.getString("email"); // Sử dụng key "email" để lấy dữ liệu
-            name = bundle.getString("name");
-            role = bundle.getString("role");
-        }
+        SharedPreferences sharedPreferences = getSharedPreferences("UserData", Context.MODE_PRIVATE);
+        String email = sharedPreferences.getString("email", ""); // "" là giá trị mặc định nếu không tìm thấy dữ liệu
+        String name = sharedPreferences.getString("name", "");
+        String role = sharedPreferences.getString("role", "");
         tvEmail=findViewById(R.id.tvEmail);
         tvUserName=findViewById(R.id.tvUserName);
         tvRole=findViewById(R.id.tvRole);
@@ -46,11 +46,11 @@ public class AssessmentMenuSide extends AppCompatActivity {
         btnWaitingProductList=findViewById(R.id.btnWaitingProductList);
         btnAnalyst=findViewById(R.id.btnAnalyst);
         btnWaitingProductList.setOnClickListener(v -> {
-            Intent intent=new Intent(this, RecyclingAssessorSide.class);
+            Intent intent=new Intent(this, WaitingProductListSide.class);
             startActivity(intent);
         });
         btnEvaluationHistory.setOnClickListener(v -> {
-            Intent intent=new Intent(this, AssessmentCompletedSide.class);
+            Intent intent=new Intent(this, EvaluationHistorySide.class);
             startActivity(intent);
         });
         ImageButton btnExit=findViewById(R.id.btnExit);

@@ -1,8 +1,11 @@
 package com.example.recyclepro.activities.Customer;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -31,12 +34,10 @@ public class CustomerMenuSide extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-        Bundle bundle=getIntent().getExtras(); // Lấy Bundle từ Intent
-        if(bundle != null) {
-            email = bundle.getString("email"); // Sử dụng key "email" để lấy dữ liệu
-            name = bundle.getString("name");
-            role = bundle.getString("role");
-        }
+        SharedPreferences sharedPreferences = getSharedPreferences("UserData", Context.MODE_PRIVATE);
+        String email = sharedPreferences.getString("email", ""); // "" là giá trị mặc định nếu không tìm thấy dữ liệu
+        String name = sharedPreferences.getString("name", "");
+        String role = sharedPreferences.getString("role", "");
         tvEmail=findViewById(R.id.tvEmail);
         tvUserName=findViewById(R.id.tvUserName);
         tvRole=findViewById(R.id.tvRole);
@@ -45,17 +46,25 @@ public class CustomerMenuSide extends AppCompatActivity {
         tvRole.setText("Role: "+ role);
         btnSubmitProduct=findViewById(R.id.btnSubmitProduct);
         btnRecyclingSubmissionHistory=findViewById(R.id.btnRecyclingSubmissionHistory);
-        btnSubmitProduct.setOnClickListener(v->{
-            bundle.putString("email", email); // Thay "customerEmail" thành "email"
-            Intent intent=new Intent(this, CustomerSide.class);
-            intent.putExtras(bundle); // Sử dụng putExtras() để chuyển Bundle qua Intent
-            startActivity(intent);
+        btnSubmitProduct.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SharedPreferences sharedPreferences = getSharedPreferences("UserData", Context.MODE_PRIVATE);
+                String email = sharedPreferences.getString("email", ""); // Lấy email từ SharedPreferences
+
+                Intent intent = new Intent(CustomerMenuSide.this, SubmitProductSide.class);
+                startActivity(intent);
+            }
         });
-        btnRecyclingSubmissionHistory.setOnClickListener(v->{
-            bundle.putString("email", email); // Thay "customerEmail" thành "email"
-            Intent intent=new Intent(this, RecyclingSubmissionSide.class);
-            intent.putExtras(bundle); // Sử dụng putExtras() để chuyển Bundle qua Intent
-            startActivity(intent);
+        btnRecyclingSubmissionHistory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SharedPreferences sharedPreferences = getSharedPreferences("UserData", Context.MODE_PRIVATE);
+                String email = sharedPreferences.getString("email", ""); // Lấy email từ SharedPreferences
+
+                Intent intent = new Intent(CustomerMenuSide.this, RecyclingSubmissionHistorySide.class);
+                startActivity(intent);
+            }
         });
         btnExit=findViewById(R.id.btnExit);
         btnExit.setOnClickListener(v->{

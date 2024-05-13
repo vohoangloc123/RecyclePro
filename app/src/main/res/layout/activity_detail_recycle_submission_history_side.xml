@@ -75,7 +75,7 @@
                 <TextView
                     android:id="@+id/tvProductInformation"
                     android:layout_width="324dp"
-                    android:layout_height="75dp"
+                    android:layout_height="100dp"
                     android:background="@drawable/rounded_edittext"
                     android:hint="Enter your information"
                     android:padding="10dp"
@@ -103,7 +103,7 @@
                 <TextView
                     android:id="@+id/tvRatingInformation"
                     android:layout_width="324dp"
-                    android:layout_height="94dp"
+                    android:layout_height="100dp"
                     android:background="@drawable/rounded_edittext"
                     android:hint="Enter your information"
                     android:padding="10dp"
@@ -159,7 +159,7 @@
                 <TextView
                     android:id="@+id/tvPriceAndTypeInformation"
                     android:layout_width="324dp"
-                    android:layout_height="65dp"
+                    android:layout_height="100dp"
                     android:background="@drawable/rounded_edittext"
                     android:hint="Enter your information"
                     android:padding="10dp"
@@ -186,7 +186,7 @@
                 <EditText
                     android:id="@+id/etPhone"
                     android:layout_width="0dp"
-                    android:layout_height="40dp"
+                    android:layout_height="50dp"
                     android:layout_weight="1"
                     android:background="@drawable/rounded_edittext"
                     android:textColor="@color/black"
@@ -214,7 +214,7 @@
                 <EditText
                     android:id="@+id/etAddress"
                     android:layout_width="0dp"
-                    android:layout_height="40dp"
+                    android:layout_height="50dp"
                     android:layout_weight="1"
                     android:background="@drawable/rounded_edittext"
                     android:textColor="@color/black"
@@ -224,12 +224,6 @@
                     android:hint="Enter your price"
                     />
             </LinearLayout>
-
-
-
-            <!-- Usage time -->
-
-
 
             <!-- Button -->
 

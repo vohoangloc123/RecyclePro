@@ -82,65 +82,89 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:layout_marginTop="20dp"
-            android:layout_marginBottom="20dp">
-
-            <!-- ImageView cho phonebackground -->
-            <ImageView
-                android:id="@+id/imagePhoneBackground"
-                android:layout_width="125dp"
-                android:layout_height="wrap_content"
-                android:src="@drawable/phonebackground"
-                android:scaleType="centerCrop"
-                android:adjustViewBounds="true"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"/>
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/rounded_edittext"
+            android:layout_margin="10dp">
 
             <!-- Email -->
+            <ImageView
+                android:id="@+id/iconEmail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:src="@drawable/baseline_email_color_24"
+                 />
+
             <TextView
                 android:id="@+id/tvEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_toEndOf="@id/iconEmail"
                 android:text="Email: example@example.com"
-                android:textSize="18sp"
+                android:textSize="19sp"
                 android:textColor="@android:color/black"
-                android:layout_toEndOf="@id/imagePhoneBackground"
-                android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="10dp"
-                android:layout_marginBottom="10dp"/>
+                android:layout_marginBottom="10dp"
+                android:layout_marginStart="10dp"
+                />
 
             <!-- User Name -->
+            <ImageView
+                android:id="@+id/iconUserName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tvEmail"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:src="@drawable/baseline_account_circle_24"
+                 />
+
             <TextView
                 android:id="@+id/tvUserName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="User Name: John Doe"
-                android:textSize="18sp"
-                android:textColor="@android:color/black"
-                android:layout_toEndOf="@id/imagePhoneBackground"
                 android:layout_below="@id/tvEmail"
+                android:layout_toEndOf="@id/iconUserName"
+                android:text="User Name: John Doe"
+                android:textSize="19sp"
+                android:textColor="@android:color/black"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="10dp"
-                android:layout_marginBottom="10dp"/>
+                android:layout_marginBottom="10dp" />
 
             <!-- Role -->
+            <ImageView
+                android:id="@+id/iconRole"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tvUserName"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:src="@drawable/baseline_assignment_ind_24"
+                />
+
             <TextView
                 android:id="@+id/tvRole"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Role: Admin"
-                android:textSize="18sp"
-                android:textColor="@android:color/black"
-                android:layout_toEndOf="@id/imagePhoneBackground"
                 android:layout_below="@id/tvUserName"
+                android:layout_toEndOf="@id/iconRole"
+                android:text="Role: Admin"
+                android:textSize="19sp"
+                android:textColor="@android:color/black"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="10dp"
-                android:layout_marginBottom="10dp"/>
+                android:layout_marginBottom="10dp" />
 
         </RelativeLayout>
+
 
 
 

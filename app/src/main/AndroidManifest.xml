@@ -18,6 +18,16 @@
         android:theme="@style/Theme.RecyclePro"
         tools:targetApi="31">
         <activity
+            android:name=".activities.AssessmentAnalysis"
+            android:exported="false" />
+        <activity
+            android:name=".activities.CustomerAnalysis"
+            android:exported="false" />
+        <activity
+            android:name=".activities.Customer.CustomerAnalysis"
+            android:exported="false"
+            android:theme="@style/Theme.RecyclePro" />
+        <activity
             android:name=".activities.Customer.DetailRecycleSubmissionHistorySide"
             android:exported="false" />
         <activity
@@ -26,14 +36,14 @@
         <activity
             android:name=".activities.Customer.RecyclingSubmissionHistorySide"
             android:exported="false" />
-
         <activity
             android:name=".activities.Assessment.AssessmentMenuSide"
             android:exported="false" />
         <activity
             android:name=".activities.Assessment.EvaluationHistorySide"
             android:exported="false" />
-        <activity android:name=".activities.Assessment.DetailEvaluationHistorySide"
+        <activity
+            android:name=".activities.Assessment.DetailEvaluationHistorySide"
             android:exported="false" />
         <activity
             android:name=".activities.SignUp"
@@ -45,7 +55,6 @@
             android:name=".activities.Customer.SubmitProductSide"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
-
         <activity
             android:name=".activities.SignIn"
             android:exported="true">

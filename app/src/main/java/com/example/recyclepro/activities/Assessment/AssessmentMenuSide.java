@@ -16,6 +16,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.example.recyclepro.R;
+import com.example.recyclepro.activities.AssessmentAnalysis;
 import com.example.recyclepro.activities.SignIn;
 
 public class AssessmentMenuSide extends AppCompatActivity {
@@ -51,6 +52,10 @@ public class AssessmentMenuSide extends AppCompatActivity {
         });
         btnEvaluationHistory.setOnClickListener(v -> {
             Intent intent=new Intent(this, EvaluationHistorySide.class);
+            startActivity(intent);
+        });
+        btnAnalyst.setOnClickListener(v->{
+            Intent intent=new Intent(this, AssessmentAnalysis.class);
             startActivity(intent);
         });
         ImageButton btnExit=findViewById(R.id.btnExit);

@@ -40,6 +40,10 @@ dependencies {
     implementation("com.amazonaws:aws-android-sdk-s3:2.75.0")
     //load ảnh
     implementation("com.squareup.picasso:picasso:2.71828")
+    //analys
+    //pie chart
+    implementation("com.github.blackfizz:eazegraph:1.2.5l@aar")
+    implementation("com.nineoldandroids:library:2.4.0")
     implementation(libs.appcompat)
     implementation(libs.material)
     implementation(libs.activity)
@@ -48,6 +52,8 @@ dependencies {
     implementation("com.google.android.material:material:1.10.0")
     implementation("androidx.activity:activity:1.8.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
+    implementation(libs.navigation.fragment)
+    implementation(libs.navigation.ui)
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)

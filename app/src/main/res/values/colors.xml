@@ -20,5 +20,11 @@
     <color name="background_basic">#F0F0F0</color>
     <color name="header_black">#444444</color>
     <color name="black_light">#666666</color>
+    <color name="colorNotAssessed">#FF0000</color> <!-- Màu đỏ cho "Not Assessed Yet" -->
+    <color name="colorAssessed">#00FF00</color> <!-- Màu xanh lá cây cho "Assessed" -->
+    <color name="color_one">#fb7268</color>
+    <color name="color_white">#ededf2</color>
+    <color name="color_two">#E3E0E0</color>
+    <color name="yellow">#FFC107</color>
 
 </resources>

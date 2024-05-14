@@ -1,0 +1,249 @@
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white2">
+
+    <!-- Header -->
+    <LinearLayout
+        android:id="@+id/headerLayout"
+        android:layout_width="match_parent"
+        android:layout_height="75dp"
+        android:background="@color/button_color"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageButton
+            android:id="@+id/btnBack"
+            android:layout_width="84dp"
+            android:layout_height="match_parent"
+            android:backgroundTint="@color/button_color"
+            android:src="@drawable/baseline_arrow_left_24" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:paddingRight="84dp"
+            android:text="Customer analysis "
+
+            />
+    </LinearLayout>
+
+    <!-- Form -->
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/headerLayout"
+        android:windowSoftInputMode="adjustResize">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:text="Pie Chart - Status of your recycle product"
+                    android:textColor="@color/black"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+
+                 <LinearLayout
+                     android:layout_width="match_parent"
+                     android:layout_height="wrap_content"
+                     android:orientation="horizontal">
+
+                     <org.eazegraph.lib.charts.PieChart
+                         android:id="@+id/piechart"
+                         android:layout_width="206dp"
+                         android:layout_height="250dp"
+                         android:layout_marginLeft="15dp"
+                         android:layout_marginTop="15dp"
+                         android:layout_marginBottom="15dp"
+                         android:layout_weight="1"
+                         android:padding="6dp" />
+                     <LinearLayout
+                         android:layout_width="wrap_content"
+                         android:layout_height="wrap_content"
+                         android:orientation="vertical">
+                         <View
+                             android:layout_width="15dp"
+                             android:layout_height="15dp"
+                             android:background="@color/colorAssessed"/>
+                         <!--Text view to display python text -->
+                         <TextView
+                             android:id="@+id/tvAssessed"
+                             android:layout_width="wrap_content"
+                             android:layout_height="wrap_content"
+                             android:text="Assessed"
+                             android:paddingLeft="10dp"/>
+                         <View
+                             android:layout_width="15dp"
+                             android:layout_height="15dp"
+                             android:background="@color/colorNotAssessed"/>
+
+                         <!--Text view to display C++ text -->
+                         <TextView
+                             android:id="@+id/tvNotAssessed"
+                             android:layout_width="wrap_content"
+                             android:layout_height="wrap_content"
+                             android:text="Not Assessed"
+                             android:paddingLeft="10dp"/>
+                     </LinearLayout>
+                 </LinearLayout>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:text="Bar chart- Review Over Time By Month"
+                    android:textColor="@color/black"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <org.eazegraph.lib.charts.BarChart
+                        android:id="@+id/barChart"
+                        android:layout_width="262dp"
+                        android:layout_height="250dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginBottom="15dp"
+                        android:layout_weight="1"
+                        android:padding="6dp"
+                        />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+                        <View
+                            android:layout_width="15dp"
+                            android:layout_height="15dp"
+                            android:background="@color/yellow"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Number Of Review"
+                            android:paddingLeft="10dp"/>
+                    </LinearLayout>
+                </LinearLayout>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:text="Phone: "
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/etPhone"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/rounded_edittext"
+                    android:textColor="@color/black"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    android:paddingHorizontal="10dp"
+                    android:hint="Enter your price"
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:text="Address: "
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/etAddress"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/rounded_edittext"
+                    android:textColor="@color/black"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    android:paddingHorizontal="10dp"
+                    android:hint="Enter your price"
+                    />
+            </LinearLayout>
+
+            <!-- Button -->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <ImageButton
+                    android:id="@+id/btnSendEmail"
+                    android:layout_width="0dp"
+                    android:layout_height="60dp"
+                    android:layout_weight="1"
+                    android:layout_marginTop="16dp"
+                    android:backgroundTint="@color/button_color"
+                    android:drawablePadding="8dp"
+                    android:elevation="8dp"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
+                    android:textAlignment="center"
+                    android:textSize="20sp"
+                    android:src="@drawable/baseline_email_24"
+                    app:cornerRadius="5dp" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -17,10 +17,11 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.example.recyclepro.R;
+import com.example.recyclepro.activities.CustomerAnalysis;
 import com.example.recyclepro.activities.SignIn;
 
 public class CustomerMenuSide extends AppCompatActivity {
-    private Button btnSubmitProduct,btnRecyclingSubmissionHistory;
+    private Button btnSubmitProduct,btnRecyclingSubmissionHistory, btnAnalyst;
     private String email, name, role;
     private ImageButton btnExit;
     private TextView tvEmail, tvUserName, tvRole;
@@ -65,6 +66,11 @@ public class CustomerMenuSide extends AppCompatActivity {
                 Intent intent = new Intent(CustomerMenuSide.this, RecyclingSubmissionHistorySide.class);
                 startActivity(intent);
             }
+        });
+        btnAnalyst=findViewById(R.id.btnAnalyst);
+        btnAnalyst.setOnClickListener(v->{
+            Intent intent = new Intent(CustomerMenuSide.this, CustomerAnalysis.class);
+            startActivity(intent);
         });
         btnExit=findViewById(R.id.btnExit);
         btnExit.setOnClickListener(v->{

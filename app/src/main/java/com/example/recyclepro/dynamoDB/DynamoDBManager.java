@@ -682,5 +682,118 @@ public class DynamoDBManager {
                              Double batteryRating,Double caseRating, Double uptimeRating,  Double screenRating);
         void onNotFound(String error);
     }
+    //Customer analysis
+    public void calculatePercentageDeviceStatus(String email, CalculatePercentageDeviceStatusListener listener) {
+        try {
+            if (ddbClient == null) {
+                initializeDynamoDB();
+            }
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        // Tạo một yêu cầu truy vấn
+                        HashMap<String, Condition> scanFilter = new HashMap<String, Condition>();
+                        Condition condition = new Condition()
+                                .withComparisonOperator(ComparisonOperator.EQ.toString())
+                                .withAttributeValueList(new AttributeValue().withS(email));
+                        scanFilter.put("email", condition);
+
+                        ScanRequest scanRequest = new ScanRequest("RecyclingProducts").withScanFilter(scanFilter);
+                        ScanResult scanResult = ddbClient.scan(scanRequest);
+
+                        // Đếm số lượng trạng thái thiết bị
+                        int totalCount = 0;
+                        int notAssessedCount = 0;
+                        int assessedCount = 0;
+
+                        for (Map<String, AttributeValue> item : scanResult.getItems()) {
+                            totalCount++;
+                            String state = item.get("state").getS();
+                            if (state.equals("not assessed yet")) {
+                                notAssessedCount++;
+                            } else {
+                                assessedCount++;
+                            }
+                        }
+
+                        // Tính phần trăm
+                        double notAssessedPercentage = (totalCount > 0) ? (notAssessedCount * 100.0 / totalCount) : 0;
+                        double assessedPercentage = (totalCount > 0) ? (assessedCount * 100.0 / totalCount) : 0;
+
+                        // Cập nhật giao diện
+                        Handler handler = new Handler(Looper.getMainLooper());
+                        handler.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                listener.onPercentageCalculated(notAssessedPercentage, assessedPercentage);
+                            }
+                        });
+
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            }).start(); // Khởi chạy thread
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public interface CalculatePercentageDeviceStatusListener {
+        void onPercentageCalculated(double notAssessedPercentage, double assessedPercentage);
+    }
+    public void NumberOfReviewOverTimeByMonth(NumberOfReviewOverTimeByMonthListener listener) {
+        try {
+            if (ddbClient == null) {
+                initializeDynamoDB();
+            }
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        // Tạo một yêu cầu truy vấn
+                        HashMap<String, Condition> scanFilter = new HashMap<String, Condition>();
+                        ScanRequest scanRequest = new ScanRequest("RecyclingProducts").withScanFilter(scanFilter);
+                        ScanResult scanResult = ddbClient.scan(scanRequest);
+
+                        // Đếm số lượng đánh giá theo tháng
+                        HashMap<String, Integer> reviewCountMap = new HashMap<>();
+
+                        for (Map<String, AttributeValue> item : scanResult.getItems()) {
+                            String time = item.get("time").getS(); // Lấy thời gian
+                            String[] parts = time.split(" "); // Tách ngày và giờ
+                            String[] dateParts = parts[0].split("/"); // Tách ngày tháng năm
+                            String monthYear = dateParts[1] + "/" + dateParts[2]; // Lấy tháng và năm
+                            if (reviewCountMap.containsKey(monthYear)) {
+                                int count = reviewCountMap.get(monthYear);
+                                reviewCountMap.put(monthYear, count + 1);
+                            } else {
+                                reviewCountMap.put(monthYear, 1);
+                            }
+                        }
+
+                        // Cập nhật giao diện
+                        Handler handler = new Handler(Looper.getMainLooper());
+                        handler.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                listener.onFound(reviewCountMap);
+                            }
+                        });
+
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            }).start(); // Khởi chạy thread
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public interface NumberOfReviewOverTimeByMonthListener {
+        void onFound(HashMap<String, Integer> reviewCountMap);
+    }
 
 }

@@ -22,9 +22,13 @@ import com.amazonaws.services.dynamodbv2.model.ScanResult;
 import com.amazonaws.services.dynamodbv2.model.UpdateItemRequest;
 import com.amazonaws.services.dynamodbv2.model.UpdateItemResult;
 
+import org.json.JSONObject;
+
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 public class DynamoDBManager {
@@ -757,14 +761,15 @@ public class DynamoDBManager {
                         ScanRequest scanRequest = new ScanRequest("RecyclingProducts").withScanFilter(scanFilter);
                         ScanResult scanResult = ddbClient.scan(scanRequest);
 
-                        // Đếm số lượng đánh giá theo tháng
-                        HashMap<String, Integer> reviewCountMap = new HashMap<>();
+                        // Sử dụng TreeMap để sắp xếp các cặp key-value theo thứ tự của key
+                        TreeMap<String, Integer> reviewCountMap = new TreeMap<>();
 
                         for (Map<String, AttributeValue> item : scanResult.getItems()) {
                             String time = item.get("time").getS(); // Lấy thời gian
                             String[] parts = time.split(" "); // Tách ngày và giờ
                             String[] dateParts = parts[0].split("/"); // Tách ngày tháng năm
                             String monthYear = dateParts[1] + "/" + dateParts[2]; // Lấy tháng và năm
+                            // Kiểm tra xem reviewCountMap đã chứa key này chưa
                             if (reviewCountMap.containsKey(monthYear)) {
                                 int count = reviewCountMap.get(monthYear);
                                 reviewCountMap.put(monthYear, count + 1);
@@ -792,8 +797,252 @@ public class DynamoDBManager {
         }
     }
 
+
     public interface NumberOfReviewOverTimeByMonthListener {
-        void onFound(HashMap<String, Integer> reviewCountMap);
+        void onFound(TreeMap<String, Integer> reviewCountMap);
+    }
+    //Assessment analysis
+    public void AverageRatingOfEachTypeOfReview(AverageRatingOfEachTypeOfReviewListener listener) {
+        try {
+            if (ddbClient == null) {
+                initializeDynamoDB();
+            }
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        // Tạo một yêu cầu truy vấn
+                        HashMap<String, Condition> scanFilter = new HashMap<String, Condition>();
+                        ScanRequest scanRequest = new ScanRequest("ProductPrices").withScanFilter(scanFilter);
+                        ScanResult scanResult = ddbClient.scan(scanRequest);
+
+                        // Biến để tính tổng rating và số lượng sản phẩm cho mỗi loại
+                        int batteryTotalRating = 0;
+                        int batteryCount = 0;
+                        int caseTotalRating = 0;
+                        int caseCount = 0;
+                        int screenTotalRating = 0;
+                        int screenCount = 0;
+                        int uptimeTotalRating = 0;
+                        int uptimeCount = 0;
+
+                        // Lặp qua các sản phẩm để tính tổng rating
+                        for (Map<String, AttributeValue> item : scanResult.getItems()) {
+                            // Tính tổng rating của từng loại
+                            if (item.containsKey("battery")) {
+                                Map<String, AttributeValue> battery = item.get("battery").getM();
+                                if (battery.containsKey("batteryRating")) {
+                                    batteryTotalRating += Integer.parseInt(battery.get("batteryRating").getN());
+                                    batteryCount++;
+                                }
+                            }
+                            if (item.containsKey("case")) {
+                                Map<String, AttributeValue> caseItem = item.get("case").getM();
+                                if (caseItem.containsKey("caseRating")) {
+                                    caseTotalRating += Integer.parseInt(caseItem.get("caseRating").getN());
+                                    caseCount++;
+                                }
+                            }
+                            if (item.containsKey("screen")) {
+                                Map<String, AttributeValue> screen = item.get("screen").getM();
+                                if (screen.containsKey("screenRating")) {
+                                    screenTotalRating += Integer.parseInt(screen.get("screenRating").getN());
+                                    screenCount++;
+                                }
+                            }
+                            if (item.containsKey("uptime")) {
+                                Map<String, AttributeValue> uptime = item.get("uptime").getM();
+                                if (uptime.containsKey("uptimeRating")) {
+                                    uptimeTotalRating += Integer.parseInt(uptime.get("uptimeRating").getN());
+                                    uptimeCount++;
+                                }
+                            }
+                        }
+
+                        // Tính trung bình rating cho từng loại
+                        double avgBatteryRating = batteryCount > 0 ? (double) batteryTotalRating / batteryCount : 0;
+                        double avgCaseRating = caseCount > 0 ? (double) caseTotalRating / caseCount : 0;
+                        double avgScreenRating = screenCount > 0 ? (double) screenTotalRating / screenCount : 0;
+                        double avgUptimeRating = uptimeCount > 0 ? (double) uptimeTotalRating / uptimeCount : 0;
+
+                        // Cập nhật giao diện
+                        Handler handler = new Handler(Looper.getMainLooper());
+                        handler.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                listener.onFound(avgBatteryRating, avgCaseRating, avgScreenRating, avgUptimeRating);
+                            }
+                        });
+
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            }).start(); // Khởi chạy thread
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
+    public interface AverageRatingOfEachTypeOfReviewListener {
+        void onFound(double avgBatteryRating, double avgCaseRating, double avgScreenRating, double avgUptimeRating);
+    }
+    public void CalculatePercentageTypeOfRecycle(CalculatePercentageTypeOfRecycleListener listener) {
+        try {
+            if (ddbClient == null) {
+                initializeDynamoDB();
+            }
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        // Tạo một yêu cầu truy vấn
+                        HashMap<String, Condition> scanFilter = new HashMap<String, Condition>();
+
+                        ScanRequest scanRequest = new ScanRequest("ProductPrices").withScanFilter(scanFilter);
+                        ScanResult scanResult = ddbClient.scan(scanRequest);
+
+                        // Đếm số lượng trạng thái thiết bị
+                        int totalCount = 0;
+                        int resaleCount = 0;
+                        int recycleCount = 0;
+
+                        for (Map<String, AttributeValue> item : scanResult.getItems()) {
+                            totalCount++;
+                            String state = item.get("typeOfRecycle").getS();
+                            if (state.equals("Resale")) {
+                                resaleCount++;
+                            } else {
+                                recycleCount++;
+                            }
+                        }
+
+                        // Tính phần trăm
+                        double resale = (totalCount > 0) ? (resaleCount * 100.0 / totalCount) : 0;
+                        double recycle= (totalCount > 0) ? (recycleCount * 100.0 / totalCount) : 0;
+
+                        // Cập nhật giao diện
+                        Handler handler = new Handler(Looper.getMainLooper());
+                        handler.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                listener.onPercentageCalculated(resale, recycle);
+                            }
+                        });
+
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            }).start(); // Khởi chạy thread
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public interface CalculatePercentageTypeOfRecycleListener {
+        void onPercentageCalculated(double resale, double recycle);
+    }
+    public void NumberOfHaveEvaluatedOverTimeByMonth(NumberOfHaveEvaluatedOverTimeByMonthListener listener) {
+        try {
+            if (ddbClient == null) {
+                initializeDynamoDB();
+            }
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        // Tạo một yêu cầu truy vấn
+                        HashMap<String, Condition> scanFilter = new HashMap<String, Condition>();
+                        ScanRequest scanRequest = new ScanRequest("ProductPrices").withScanFilter(scanFilter);
+                        ScanResult scanResult = ddbClient.scan(scanRequest);
+
+                        // Sử dụng TreeMap để sắp xếp các cặp key-value theo thứ tự của key
+                        TreeMap<String, Integer> reviewCountMap = new TreeMap<>();
+
+                        for (Map<String, AttributeValue> item : scanResult.getItems()) {
+                            String time = item.get("time").getS(); // Lấy thời gian
+                            String[] parts = time.split(" "); // Tách ngày và giờ
+                            String[] dateParts = parts[0].split("/"); // Tách ngày tháng năm
+                            String monthYear = dateParts[1] + "/" + dateParts[2]; // Lấy tháng và năm
+                            // Kiểm tra xem reviewCountMap đã chứa key này chưa
+                            if (reviewCountMap.containsKey(monthYear)) {
+                                int count = reviewCountMap.get(monthYear);
+                                reviewCountMap.put(monthYear, count + 1);
+                            } else {
+                                reviewCountMap.put(monthYear, 1);
+                            }
+                        }
+
+                        // Cập nhật giao diện
+                        Handler handler = new Handler(Looper.getMainLooper());
+                        handler.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                listener.onFound(reviewCountMap);
+                            }
+                        });
+
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            }).start(); // Khởi chạy thread
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public interface NumberOfHaveEvaluatedOverTimeByMonthListener {
+        void onFound(TreeMap<String, Integer> reviewCountMap);
+    }
+    public void FinalPriceDistribution(FinalPriceDistributionListener listener) {
+        Log.d("CheckBoxPlot","Run");
+        try {
+            if (ddbClient == null) {
+                initializeDynamoDB();
+            }
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        // Tạo một yêu cầu truy vấn
+                        HashMap<String, Condition> scanFilter = new HashMap<>();
+                        ScanRequest scanRequest = new ScanRequest("ProductPrices").withScanFilter(scanFilter);
+                        ScanResult scanResult = ddbClient.scan(scanRequest);
+                        Log.d("CheckBoxPlot",scanResult.toString());
+                        List<Float> finalPrices = new ArrayList<>();
+
+                        // Trích xuất finalPrice từ mỗi mục
+                        for (Map<String, AttributeValue> item : scanResult.getItems()) {
+                            AttributeValue value = item.get("finalPrice");
+                            if (value != null) {
+                                finalPrices.add(Float.parseFloat(value.getN()));
+                            }
+                        }
+
+                        // Cập nhật giao diện
+                        Handler handler = new Handler(Looper.getMainLooper());
+                        handler.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                Log.d("CheckBoxPlot", finalPrices.toString());
+                                listener.onFound(finalPrices);
+                            }
+                        });
+
+                    } catch (Exception e) {
+                        // Xử lý ngoại lệ khi truy vấn dữ liệu
+                        e.printStackTrace();
+                    }
+                }
+            }).start(); // Khởi chạy thread
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public interface FinalPriceDistributionListener {
+        void onFound(List<Float> finalPrices);
+    }
 }

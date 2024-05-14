@@ -93,10 +93,10 @@
                             android:background="@color/colorAssessed"/>
                         <!--Text view to display python text -->
                         <TextView
-                            android:id="@+id/tvAssessed"
+                            android:id="@+id/tvResale"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Assessed"
+                            android:text="Resale"
                             android:paddingLeft="10dp"/>
                         <View
                             android:layout_width="15dp"
@@ -105,10 +105,10 @@
 
                         <!--Text view to display C++ text -->
                         <TextView
-                            android:id="@+id/tvNotAssessed"
+                            android:id="@+id/tvRecycle"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Not Assessed"
+                            android:text="Recycle"
                             android:paddingLeft="10dp"/>
                     </LinearLayout>
                 </LinearLayout>
@@ -124,12 +124,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center_vertical"
-                    android:text="Bar chart- Review Over Time By Month"
+                    android:text="Bar chart - Average Rating Of Each Type Of Review"
                     android:textColor="@color/black"
                     android:textSize="15sp"
                     android:textStyle="bold" />
-
-
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -144,6 +142,62 @@
                         android:layout_weight="1"
                         android:padding="6dp"
                         />
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:text="Line chart - Number Of Product Have Evaluated Over Time By Month"
+                    android:textColor="@color/black"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <org.eazegraph.lib.charts.BarChart
+                        android:id="@+id/barChart1"
+                        android:layout_width="262dp"
+                        android:layout_height="250dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginBottom="15dp"
+                        android:layout_weight="1"
+                        android:padding="6dp"
+                        />
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:text="Box plot - "
+                    android:textColor="@color/black"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <org.eazegraph.lib.charts.BarChart
+                        android:id="@+id/boxplot"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"/>
 
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -162,87 +216,6 @@
                 </LinearLayout>
 
             </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:text="Phone: "
-                    android:textColor="@color/black"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
-
-                <EditText
-                    android:id="@+id/etPhone"
-                    android:layout_width="0dp"
-                    android:layout_height="50dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/rounded_edittext"
-                    android:textColor="@color/black"
-                    android:textSize="15sp"
-                    android:textStyle="bold"
-                    android:paddingHorizontal="10dp"
-                    android:hint="Enter your price"
-                    />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:orientation="horizontal">
-                <TextView
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:text="Address: "
-                    android:textColor="@color/black"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
-
-                <EditText
-                    android:id="@+id/etAddress"
-                    android:layout_width="0dp"
-                    android:layout_height="50dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/rounded_edittext"
-                    android:textColor="@color/black"
-                    android:textSize="15sp"
-                    android:textStyle="bold"
-                    android:paddingHorizontal="10dp"
-                    android:hint="Enter your price"
-                    />
-            </LinearLayout>
-
-            <!-- Button -->
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-                <ImageButton
-                    android:id="@+id/btnSendEmail"
-                    android:layout_width="0dp"
-                    android:layout_height="60dp"
-                    android:layout_weight="1"
-                    android:layout_marginTop="16dp"
-                    android:backgroundTint="@color/button_color"
-                    android:drawablePadding="8dp"
-                    android:elevation="8dp"
-                    android:paddingStart="16dp"
-                    android:paddingEnd="16dp"
-                    android:textAlignment="center"
-                    android:textSize="20sp"
-                    android:src="@drawable/baseline_email_24"
-                    app:cornerRadius="5dp" />
-            </LinearLayout>
-
         </LinearLayout>
     </ScrollView>
 

@@ -14,6 +14,11 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.example.recyclepro.R;
 import com.example.recyclepro.dynamoDB.DynamoDBManager;
+import com.github.mikephil.charting.components.XAxis;
+import com.github.mikephil.charting.data.BarData;
+import com.github.mikephil.charting.data.BarDataSet;
+import com.github.mikephil.charting.data.BarEntry;
+import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
 
 import org.eazegraph.lib.charts.BarChart;
 import org.eazegraph.lib.charts.PieChart;
@@ -21,15 +26,17 @@ import org.eazegraph.lib.models.BarModel;
 import org.eazegraph.lib.models.PieModel;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 
 public class CustomerAnalysis extends AppCompatActivity {
     private PieChart pieChart;
     private BarChart barChart;
     private DynamoDBManager dynamoDBManager;
     private TextView tvAssessed, tvNotAssessed;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,7 +56,7 @@ public class CustomerAnalysis extends AppCompatActivity {
         dynamoDBManager=new DynamoDBManager(getApplicationContext());
         dynamoDBManager.NumberOfReviewOverTimeByMonth(new DynamoDBManager.NumberOfReviewOverTimeByMonthListener() {
             @Override
-            public void onFound(HashMap<String, Integer> reviewCountMap) {
+            public void onFound(TreeMap<String, Integer> reviewCountMap) {
                 ArrayList<BarModel> bars = new ArrayList<>();
                 for (Map.Entry<String, Integer> entry : reviewCountMap.entrySet()) {
                     String monthYear = entry.getKey();

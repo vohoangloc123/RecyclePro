@@ -119,6 +119,7 @@ public class WaitingProductListSide extends AppCompatActivity {
         fragmentTransaction.addToBackStack(recyclingAssessmentFragment.TAG);
         fragmentTransaction.commit();
     }
+
     private void loadData() {
         Log.d("Detach", "onChanged: Loaded data");
         listProducts.clear();

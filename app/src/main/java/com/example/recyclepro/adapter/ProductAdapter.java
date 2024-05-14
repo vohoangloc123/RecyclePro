@@ -52,7 +52,6 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductL
         if(product==null){
             return;
         }
-        Log.d("sequence506", product.toString());
         holder.tvCustomerName.setText("Customer name: "+product.getCustomerName());
         holder.tvProductName.setText("Product name: "+product.getProductName());
         holder.tvTime.setText("Time: "+product.getTime());

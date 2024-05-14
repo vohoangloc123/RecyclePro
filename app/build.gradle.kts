@@ -38,6 +38,8 @@ dependencies {
     implementation("com.amazonaws:aws-android-sdk-ddb:2.75.0")
     implementation("com.amazonaws:aws-android-sdk-ddb-document:2.4.5")
     implementation("com.amazonaws:aws-android-sdk-s3:2.75.0")
+    //load ảnh
+    implementation("com.squareup.picasso:picasso:2.71828")
     implementation(libs.appcompat)
     implementation(libs.material)
     implementation(libs.activity)

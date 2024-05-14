@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
@@ -14,12 +15,16 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.example.recyclepro.R;
+import com.example.recyclepro.dynamoDB.DynamoDBManager;
+import com.squareup.picasso.Picasso;
 
 public class DetailEvaluationHistorySide extends AppCompatActivity {
     private TextView tvProductInformation, tvRatingInformation, tvConditionInformation, tvPriceAndTypeInformation;
     private String id;
     private EditText etPhone;
     private ImageButton btnBack;
+    private ImageView frontOfDevice, backOfDevice;
+    private DynamoDBManager dynamoDBManager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,6 +35,8 @@ public class DetailEvaluationHistorySide extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+        frontOfDevice=findViewById(R.id.ivFrontOfDevice);
+        backOfDevice=findViewById(R.id.ivBackOfDevice);
         tvProductInformation=findViewById(R.id.tvProductInformation);
         tvRatingInformation=findViewById(R.id.tvRatingInformation);
         tvConditionInformation=findViewById(R.id.tvInformationCondition);
@@ -39,6 +46,7 @@ public class DetailEvaluationHistorySide extends AppCompatActivity {
             Intent intent=new Intent(this, EvaluationHistorySide.class);
             startActivity(intent);
         });
+
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
             String id = bundle.getString("id");
@@ -62,6 +70,19 @@ public class DetailEvaluationHistorySide extends AppCompatActivity {
             double caseRating = bundle.getDouble("caseRating");
             double uptimeRating = bundle.getDouble("uptimeRating");
             double screenRating = bundle.getDouble("screenRating");
+            String urlFrontOfDevice = bundle.getString("frontOfDevice");
+            String urlBackOfDevice = bundle.getString("backOfDevice");
+            if (urlFrontOfDevice != null) {
+                Picasso.get()
+                        .load(urlFrontOfDevice)
+                        .into(frontOfDevice);
+            }
+
+            if (urlBackOfDevice != null) {
+                Picasso.get()
+                        .load(urlBackOfDevice)
+                        .into(backOfDevice);
+            }
             tvProductInformation.setText("Customer name:"+customerName+"\n"+
                     "Product name: "+productName+"\n"+
                     "Time: "+time+"\n");

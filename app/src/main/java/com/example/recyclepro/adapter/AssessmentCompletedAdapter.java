@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -85,31 +86,42 @@ public class AssessmentCompletedAdapter extends RecyclerView.Adapter<AssessmentC
                 dynamoDBManager.loadAProductPrices(assessmentCompleted.getId(), new DynamoDBManager.LoadAProductPriceListener() {
                     @Override
                     public void onLoadCompleted(String id, String customerName, String productName, double finalPrice, String time, double avgRating, String typeOfRecycle, String phone, String battery, String caseDescribe, String screen, String uptime, String state, String batteryCondition, String caseCondition, String uptimeCondition, String screenCondition, Double batteryRating, Double caseRating, Double uptimeRating, Double screenRating) {
-                        Intent intent = new Intent(v.getContext(), DetailEvaluationHistorySide.class);
-                        Bundle bundle = new Bundle();
-                        bundle.putString("id", assessmentCompleted.getId());
-                        bundle.putString("customerName", customerName);
-                        bundle.putString("productName", productName);
-                        bundle.putDouble("finalPrice", finalPrice);
-                        bundle.putString("time", time);
-                        bundle.putDouble("avgRating", avgRating);
-                        bundle.putString("typeOfRecycle", typeOfRecycle);
-                        bundle.putString("phone", phone);
-                        bundle.putString("battery", battery);
-                        bundle.putString("caseDescribe", caseDescribe);
-                        bundle.putString("screen", screen);
-                        bundle.putString("uptime", uptime);
-                        bundle.putString("state", state);
-                        bundle.putString("batteryCondition", batteryCondition);
-                        bundle.putString("caseCondition", caseCondition);
-                        bundle.putString("uptimeCondition", uptimeCondition);
-                        bundle.putString("screenCondition", screenCondition);
-                        bundle.putDouble("batteryRating", batteryRating);
-                        bundle.putDouble("caseRating", caseRating);
-                        bundle.putDouble("uptimeRating", uptimeRating);
-                        bundle.putDouble("screenRating", screenRating);
-                        intent.putExtras(bundle);
-                        v.getContext().startActivity(intent);
+
+                        dynamoDBManager.loadImagesOfProduct(assessmentCompleted.getId(), new DynamoDBManager.LoadImagesOfProductListener() {
+                            @Override
+                            public void onFound(String id, String frontOfDevice, String backOfDevice) {
+                                Intent intent = new Intent(v.getContext(), DetailEvaluationHistorySide.class);
+                                Bundle bundle = new Bundle();
+                                bundle.putString("id", assessmentCompleted.getId());
+                                bundle.putString("customerName", customerName);
+                                bundle.putString("productName", productName);
+                                bundle.putDouble("finalPrice", finalPrice);
+                                bundle.putString("time", time);
+                                bundle.putDouble("avgRating", avgRating);
+                                bundle.putString("typeOfRecycle", typeOfRecycle);
+                                bundle.putString("phone", phone);
+                                bundle.putString("battery", battery);
+                                bundle.putString("caseDescribe", caseDescribe);
+                                bundle.putString("screen", screen);
+                                bundle.putString("uptime", uptime);
+                                bundle.putString("state", state);
+                                bundle.putString("batteryCondition", batteryCondition);
+                                bundle.putString("caseCondition", caseCondition);
+                                bundle.putString("uptimeCondition", uptimeCondition);
+                                bundle.putString("screenCondition", screenCondition);
+                                bundle.putDouble("batteryRating", batteryRating);
+                                bundle.putDouble("caseRating", caseRating);
+                                bundle.putDouble("uptimeRating", uptimeRating);
+                                bundle.putDouble("screenRating", screenRating);
+                                bundle.putString("frontOfDevice", frontOfDevice);
+                                bundle.putString("backOfDevice", backOfDevice);
+                                Log.d("checkassessmentcompleted", frontOfDevice+backOfDevice);
+                                intent.putExtras(bundle);
+                                v.getContext().startActivity(intent);
+
+                            }
+                        });
+
                     }
                     @Override
                     public void onNotFound(String error) {

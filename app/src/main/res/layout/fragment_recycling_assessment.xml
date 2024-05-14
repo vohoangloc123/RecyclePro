@@ -119,27 +119,36 @@
                     android:layout_weight="2"
                     />
             </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_weight="1"
+                android:orientation="horizontal">
 
-<!--        <LinearLayout-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginTop="16dp"-->
-<!--            android:orientation="horizontal"-->
-<!--            android:layout_weight="1">-->
-<!--            -->
-<!--            <TextView-->
-<!--                android:id="@+id/tvInformation2"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="200dp"-->
-<!--                android:background="@drawable/rounded_edittext_right"-->
-<!--                android:hint="Enter your information"-->
-<!--                android:padding="10dp"-->
-<!--                android:textColor="@color/black"-->
-<!--                android:textSize="12sp"-->
-<!--                android:textStyle="bold" />-->
-<!--        </LinearLayout>-->
+                <TextView
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:text="Images of product: "
+                    android:textColor="@color/black"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
 
-            <!-- Price -->
+                <ImageButton
+                    android:id="@+id/btnImages"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/rounded_edittext"
+                    android:textColor="@color/black"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    android:paddingHorizontal="10dp"
+                    android:hint="Enter your price"
+                    />
+            </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -506,23 +515,34 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
-
                 <Button
-                    android:id="@+id/btnSave"
-                    android:layout_width="0dp"
-                    android:layout_height="60dp"
-                    android:layout_weight="4"
+                    android:id="@+id/btnCalculator"
+                    android:layout_width="250dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
+                    android:layout_weight="4"
                     android:backgroundTint="@color/button_color"
                     android:elevation="8dp"
                     android:paddingStart="16dp"
                     android:paddingEnd="16dp"
-                    android:text="Send"
+                    android:text="Calculator"
                     android:textAlignment="center"
                     android:textSize="20sp"
-                    app:cornerRadius="5dp"
+                    app:cornerRadius="5dp" />
+                <ImageButton
+                    android:id="@+id/btnSendEmail"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_weight="4"
+                    android:backgroundTint="@color/button_color"
                     android:drawableRight="@drawable/baseline_email_24"
-                    />
+                    android:elevation="8dp"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
+                    android:textAlignment="center"
+                    android:textSize="20sp"
+                    app:cornerRadius="5dp" />
 
             </LinearLayout>
 

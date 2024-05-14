@@ -81,7 +81,7 @@ public class DynamoDBManager {
         }
     }
     private AmazonDynamoDBClient ddbClient;
-    public void SubmitProductInformationforRecycling(String productID, String customerName,String phone,String productName, String caseDescribe, String purchasedDate, String battery, String screen, String state, String email, String time) {
+    public void SubmitProductInformationforRecycling(String productID, String customerName,String phone,String productName, String caseDescribe, String purchasedDate, String battery, String screen, String state, String email, String time, String frontOfDevice, String backOfDevice) {
         try {
             if (ddbClient == null) {
                 initializeDynamoDB();
@@ -104,6 +104,8 @@ public class DynamoDBManager {
                         item.put("state", new AttributeValue().withS(state));
                         item.put("email", new AttributeValue().withS(email));
                         item.put("time", new AttributeValue().withS(time));
+                        item.put("frontOfDevice", new AttributeValue().withS(frontOfDevice));
+                        item.put("backOfDevice", new AttributeValue().withS(backOfDevice));
                         // Tạo yêu cầu chèn mục vào bảng
                         PutItemRequest putItemRequest = new PutItemRequest()
                                 .withTableName("RecyclingProducts")
@@ -175,6 +177,52 @@ public class DynamoDBManager {
 
     public interface LoadRecyclingProductListListener {
         void onFound(String id,String customerName,String phone, String productName, String battery, String caseDescribe,String purchasedDate,String screen, String time, String email);
+    }
+    public void loadImagesOfProduct(String id, LoadImagesOfProductListener listener) {
+        try {
+            if (ddbClient == null) {
+                initializeDynamoDB();
+            }
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        // Tạo một yêu cầu truy vấn
+                        HashMap<String, Condition> scanFilter = new HashMap<String, Condition>();
+                        Condition condition = new Condition()
+                                .withComparisonOperator(ComparisonOperator.EQ.toString())
+                                .withAttributeValueList(new AttributeValue().withS(id));
+                        scanFilter.put("_id", condition);
+
+                        ScanRequest scanRequest = new ScanRequest("RecyclingProducts").withScanFilter(scanFilter);
+                        ScanResult scanResult = ddbClient.scan(scanRequest);
+
+                        // Xử lý kết quả
+                        for (Map<String, AttributeValue> item : scanResult.getItems()) {
+                            String id = item.get("_id").getS();
+                            String frontOfDevice=item.get("frontOfDevice").getS();
+                            String backOfDevice=item.get("backOfDevice").getS();
+                            // Cập nhật giao diện
+                            Handler handler = new Handler(Looper.getMainLooper());
+                            handler.post(new Runnable() {
+                                @Override
+                                public void run() {
+                                    listener.onFound(id, frontOfDevice, backOfDevice);
+                                }
+                            });
+
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            }).start(); // Khởi chạy thread
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    public interface LoadImagesOfProductListener {
+        void onFound(String id, String frontOfDevice, String backOfDevice);
     }
     public void createAccount(String email, String password, String userName,String role) {
         try {

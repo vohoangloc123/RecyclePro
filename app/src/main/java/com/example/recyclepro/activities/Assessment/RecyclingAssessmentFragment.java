@@ -16,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.recyclepro.R;
@@ -47,7 +48,7 @@ public class RecyclingAssessmentFragment extends Fragment {
     private SeekBar sbScreen;
     private TextView tvRating1, tvRating2, tvRating3, tvRating4, tvFinalPrice,
             tvCondition1, tvCondition2, tvCondition3, tvCondition4;
-    private Button btnSave;
+    private Button btnCalculator;
     private ImageButton btnBack;
     private EditText etPrice;
     private Rating tiLeGiaPin;
@@ -55,12 +56,15 @@ public class RecyclingAssessmentFragment extends Fragment {
     private Rating tiLeGiaHoatDong;
     private Rating tiLeGiaManHinh;
     private Condition condition;
-    private ImageButton btnSendEmail;
+    private ImageButton btnSendEmail, btnImages;
     private DynamoDBManager dynamoDBManager;
     public int batteryRating, caseRating, uptimeRating, screenRating;
     public String batteryCondition, caseCondition, uptimeCondition, screenCondition;
     public double finalPrice;
     private MyViewModel viewModel;
+    private String urlFrontOfDevice;
+    private String urlBackOfDevice;
+    private WaitingProductListSide mainActivity;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -123,12 +127,26 @@ public class RecyclingAssessmentFragment extends Fragment {
         tvCondition3=view.findViewById(R.id.condition3);
         tvCondition4=view.findViewById(R.id.condition4);
         etPrice=view.findViewById(R.id.etPrice);
-        btnSave=view.findViewById(R.id.btnSave);
+        btnCalculator=view.findViewById(R.id.btnCalculator);
         btnBack=view.findViewById(R.id.btnBack);
         btnSendEmail=view.findViewById(R.id.btnSendEmail);
+        btnImages=view.findViewById(R.id.btnImages);
         tvFinalPrice=view.findViewById(R.id.tvFinalPrice);
         dynamoDBManager=new DynamoDBManager(getContext());
         condition=new Condition();
+        dynamoDBManager.loadImagesOfProduct(productID, new DynamoDBManager.LoadImagesOfProductListener() {
+            @Override
+            public void onFound(String id, String frontOfDevice, String backOfDevice) {
+                urlFrontOfDevice=frontOfDevice;
+                urlBackOfDevice=backOfDevice;
+            }
+        });
+        btnImages.setOnClickListener(v->{
+            Bundle bundle=new Bundle();
+            bundle.putString("frontOfDevice", urlFrontOfDevice);
+            bundle.putString("backOfDevice", urlBackOfDevice);
+            goToViewImagesOfProductFragment(bundle);
+        });
         sbBattery.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
@@ -279,7 +297,7 @@ public class RecyclingAssessmentFragment extends Fragment {
                 // Xử lý khi kết thúc chạm vào slider
             }
         });
-        btnSave.setOnClickListener(v -> {
+        btnCalculator.setOnClickListener(v -> {
             String giaNiemYet = etPrice.getText().toString();
             // Kiểm tra nếu có bất kỳ seekbar nào chưa được kéo
             if (tiLeGiaPin == null || tiLeGiaVo == null || tiLeGiaHoatDong == null || tiLeGiaManHinh == null) {
@@ -336,6 +354,15 @@ public class RecyclingAssessmentFragment extends Fragment {
             getActivity().getSupportFragmentManager().popBackStack();
         });
         return view;
+    }
+    public void goToViewImagesOfProductFragment(Bundle bundle) {
+        ViewImagesOfProductFragment viewImagesOfProductFragment = new ViewImagesOfProductFragment();
+        viewImagesOfProductFragment.setArguments(bundle);
+
+        FragmentTransaction fragmentTransaction = getParentFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.main, viewImagesOfProductFragment, viewImagesOfProductFragment.TAG);
+        fragmentTransaction.addToBackStack(viewImagesOfProductFragment.TAG);
+        fragmentTransaction.commit();
     }
     public static String getCurrentDateTime() {
         // Định dạng cho ngày tháng năm và giờ

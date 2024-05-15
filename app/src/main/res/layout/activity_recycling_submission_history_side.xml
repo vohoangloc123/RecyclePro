@@ -10,7 +10,7 @@
         android:id="@+id/headerLayout"
         android:layout_width="match_parent"
         android:layout_height="75dp"
-        android:background="@color/button_color2"
+        android:background="@color/button_color"
         android:orientation="horizontal"
         android:gravity="center_horizontal"
         app:layout_constraintTop_toTopOf="parent">
@@ -19,7 +19,7 @@
             android:id="@+id/btnBack"
             android:layout_width="84dp"
             android:layout_height="match_parent"
-            android:backgroundTint="@color/button_color2"
+            android:backgroundTint="@color/button_color"
             android:src="@drawable/baseline_arrow_left_24" />
 
         <TextView

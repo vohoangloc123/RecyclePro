@@ -57,11 +57,11 @@ public class CustomerAnalysis extends AppCompatActivity {
         dynamoDBManager.NumberOfReviewOverTimeByMonth(new DynamoDBManager.NumberOfReviewOverTimeByMonthListener() {
             @Override
             public void onFound(TreeMap<String, Integer> reviewCountMap) {
-                ArrayList<BarModel> bars = new ArrayList<>();
+                ArrayList<BarModel> bars = new ArrayList<BarModel>();
                 for (Map.Entry<String, Integer> entry : reviewCountMap.entrySet()) {
                     String monthYear = entry.getKey();
                     int reviewCount = entry.getValue();
-                    bars.add(new BarModel(monthYear, reviewCount, Color.parseColor("#FFC107")));
+                    bars.add(new BarModel(monthYear, reviewCount, getColor(R.color.pastel_yellow)));
                 }
 
                 // Cập nhật biểu đồ
@@ -84,8 +84,8 @@ public class CustomerAnalysis extends AppCompatActivity {
         String assessedLabel = String.format("Assessed (%.1f%%)", assessedPercentage);
         tvNotAssessed.setText(notAssessedLabel);
         tvAssessed.setText(assessedLabel);
-        pieChart.addPieSlice(new PieModel(notAssessedLabel, (float) notAssessedPercentage, getResources().getColor(R.color.colorNotAssessed)));
-        pieChart.addPieSlice(new PieModel(assessedLabel, (float) assessedPercentage, getResources().getColor(R.color.colorAssessed)));
+        pieChart.addPieSlice(new PieModel(notAssessedLabel, (float) notAssessedPercentage, getColor(R.color.pastel_red)));
+        pieChart.addPieSlice(new PieModel(assessedLabel, (float) assessedPercentage, getColor(R.color.pastel_green)));
         pieChart.startAnimation();
     }
     private void updateBarChart(ArrayList<BarModel> bars) {

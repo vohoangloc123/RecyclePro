@@ -29,7 +29,7 @@
             android:layout_weight="1"
             android:gravity="center"
             android:textColor="@color/white"
-            android:textSize="20sp"
+            android:textSize="16sp"
             android:paddingRight="84dp"
             android:text="Customer analysis "
 
@@ -90,7 +90,7 @@
                          <View
                              android:layout_width="15dp"
                              android:layout_height="15dp"
-                             android:background="@color/colorAssessed"/>
+                             android:background="@color/pastel_green"/>
                          <!--Text view to display python text -->
                          <TextView
                              android:id="@+id/tvAssessed"
@@ -101,7 +101,7 @@
                          <View
                              android:layout_width="15dp"
                              android:layout_height="15dp"
-                             android:background="@color/colorNotAssessed"/>
+                             android:background="@color/pastel_red"/>
 
                          <!--Text view to display C++ text -->
                          <TextView
@@ -152,7 +152,7 @@
                         <View
                             android:layout_width="15dp"
                             android:layout_height="15dp"
-                            android:background="@color/yellow"/>
+                            android:background="@color/pastel_yellow"/>
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"

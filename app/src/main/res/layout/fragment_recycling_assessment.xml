@@ -29,7 +29,7 @@
             android:layout_weight="1"
             android:gravity="center"
             android:textColor="@color/white"
-            android:textSize="20sp"
+            android:textSize="16sp"
             android:paddingRight="84dp"
             android:text="Recycling assessment"
 
@@ -56,36 +56,32 @@
             android:background="@color/background_basic"
             >
 
+
             <!-- Customer Information -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:orientation="horizontal"
-                android:layout_weight="1">
+                android:orientation="vertical">
 
+                <!-- Label -->
                 <TextView
-                    android:layout_width="0dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:text="Customer info"
+                    android:text="Customer information"
                     android:textColor="@color/black"
                     android:textSize="18sp"
-                    android:textStyle="bold"
-                    android:layout_weight="1"
-                />
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/tvInformation1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="100dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
                     android:background="@drawable/rounded_edittext"
                     android:padding="10dp"
                     android:textColor="@color/black"
-                    android:textSize="12sp"
-                    android:textStyle="bold"
-                    android:layout_weight="2"
-                />
+                    android:textSize="14sp"
+                    android:textStyle="normal" />
             </LinearLayout>
 
             <!-- Product information -->
@@ -93,61 +89,30 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:orientation="horizontal"
-                android:layout_weight="1">
+                android:orientation="vertical">
 
+                <!-- Label -->
                 <TextView
-                    android:layout_width="0dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:text="Product info"
+                    android:text="Product information"
                     android:textColor="@color/black"
                     android:textSize="18sp"
-                    android:textStyle="bold"
-                    android:layout_weight="1"
-                    />
+                    android:textStyle="bold" />
 
+                <!-- TextField -->
                 <TextView
                     android:id="@+id/tvInformation2"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="150dp"
                     android:background="@drawable/rounded_edittext"
                     android:padding="10dp"
                     android:textColor="@color/black"
-                    android:textSize="12sp"
-                    android:textStyle="bold"
-                    android:layout_weight="2"
-                    />
+                    android:textSize="14sp"
+                    android:textStyle="normal" />
             </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:layout_weight="1"
-                android:orientation="horizontal">
 
-                <TextView
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:text="Images of product: "
-                    android:textColor="@color/black"
-                    android:textSize="15sp"
-                    android:textStyle="bold" />
 
-                <ImageButton
-                    android:id="@+id/btnImages"
-                    android:layout_width="0dp"
-                    android:layout_height="40dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/rounded_edittext"
-                    android:textColor="@color/black"
-                    android:textSize="15sp"
-                    android:textStyle="bold"
-                    android:paddingHorizontal="10dp"
-                    android:hint="Enter your price"
-                    />
-            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -185,7 +150,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:orientation="vertical"
-
+                android:background="@drawable/rounded_edittext"
+                android:padding="10dp"
                 >
 
                 <TextView
@@ -195,58 +161,54 @@
                     android:textSize="15sp"
                     android:textStyle="bold"
                     android:textColor="@color/black"
-                    android:paddingLeft="150dp"
+                    android:paddingLeft="0dp"
                     android:paddingBottom="10dp"
-
+                    android:layout_gravity="center"
                     />
 
-                <LinearLayout
+                <SeekBar
+                    android:id="@+id/sbBattery"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:layout_height="40dp"
+                    android:background="@drawable/rounded_edittext"
+                    android:ems="10"
+                    android:inputType="text"
+                    android:textColor="@color/black"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:max="4"/>
 
-                    <LinearLayout
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginTop="5dp"
+                    >
+
+                    <TextView
+                        android:id="@+id/rating1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:id="@+id/rating1"
-                            android:layout_width="150dp"
-                            android:layout_height="wrap_content"
-                            android:gravity="center_vertical"
-                            android:text="Rating:"
-                            android:textSize="15sp"
-                            android:textStyle="normal"
-                            android:textColor="@color/black" />
-
-                        <TextView
-                            android:id="@+id/condition1"
-                            android:layout_width="150dp"
-                            android:layout_height="wrap_content"
-                            android:gravity="center_vertical"
-                            android:text="Condition: "
-                            android:textSize="15sp"
-                            android:textStyle="normal"
-                            android:textColor="@color/black" />
-
-                    </LinearLayout>
-
-                    <SeekBar
-                        android:id="@+id/sbBattery"
-                        android:layout_width="match_parent"
-                        android:layout_height="40dp"
-                        android:background="@drawable/rounded_edittext"
-                        android:ems="10"
-                        android:inputType="text"
-                        android:textColor="@color/black"
+                        android:gravity="center_vertical"
+                        android:text="Rating:"
                         android:textSize="15sp"
-                        android:textStyle="bold"
-                        android:paddingStart="10dp"
-                        android:paddingEnd="10dp"
-                        android:paddingTop="10dp"
-                        android:paddingBottom="10dp"
-                        android:max="4"/>
+                        android:textStyle="normal"
+                        android:textColor="@color/black" />
+
+                    <TextView
+                        android:id="@+id/condition1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:text="Condition: "
+                        android:textSize="15sp"
+                        android:textStyle="normal"
+                        android:textColor="@color/black" />
+
                 </LinearLayout>
 
             </LinearLayout>
@@ -257,26 +219,40 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:background="@drawable/rounded_edittext"
+                android:padding="10dp">
 
                 <!-- Text "Case" -->
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Case"
-                    android:textSize="15sp"
                     android:textStyle="bold"
                     android:textColor="@color/black"
-                    android:paddingLeft="150dp"
+                    android:paddingLeft="0dp"
                     android:paddingBottom="10dp"
-
+                    android:layout_gravity="center"
+                    android:textSize="15sp"
                     />
 
-                <!-- Linear layout containing rating and status -->
-                <LinearLayout
+                <!-- SeekBar -->
+                <SeekBar
+                    android:id="@+id/sbCase"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:layout_height="40dp"
+                    android:background="@drawable/rounded_edittext"
+                    android:ems="10"
+                    android:inputType="text"
+                    android:textColor="@color/black"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:max="4"/>
+
 
                     <!-- Rating and Status -->
                     <LinearLayout
@@ -287,7 +263,7 @@
                         <!-- Rating -->
                         <TextView
                             android:id="@+id/rating2"
-                            android:layout_width="150dp"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="center_vertical"
                             android:text="Rating:"
@@ -298,32 +274,14 @@
                         <!-- Status -->
                         <TextView
                             android:id="@+id/condition2"
-                            android:layout_width="150dp"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="center_vertical"
                             android:text="Condition:"
                             android:textSize="15sp"
                             android:textStyle="normal"
                             android:textColor="@color/black" />
-
                     </LinearLayout>
-
-                    <!-- SeekBar -->
-                    <SeekBar
-                        android:id="@+id/sbCase"
-                        android:layout_width="0dp"
-                        android:layout_height="40dp"
-                        android:layout_weight="1"
-                        android:background="@drawable/rounded_edittext"
-                        android:textColor="@color/black"
-                        android:textSize="15sp"
-                        android:textStyle="bold"
-                        android:paddingStart="10dp"
-                        android:paddingEnd="10dp"
-                        android:paddingTop="10dp"
-                        android:paddingBottom="10dp"
-                        android:max="4"/>
-                </LinearLayout>
             </LinearLayout>
 
             <!-- Usage time -->
@@ -331,27 +289,39 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:background="@drawable/rounded_edittext"
+                android:padding="10dp">
 
                 <!-- Text "Usage time" -->
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Usage time"
-                    android:textSize="15sp"
                     android:textStyle="bold"
                     android:textColor="@color/black"
-                    android:paddingLeft="150dp"
+                    android:paddingLeft="0dp"
                     android:paddingBottom="10dp"
-
-
+                    android:layout_gravity="center"
+                    android:textSize="15sp"
                     />
 
-                <!-- Linear layout containing rating and status -->
-                <LinearLayout
+                <!-- SeekBar -->
+                <SeekBar
+                    android:id="@+id/sbPurchasedDate"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:layout_height="40dp"
+                    android:background="@drawable/rounded_edittext"
+                    android:ems="10"
+                    android:inputType="text"
+                    android:textColor="@color/black"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:max="4"/>
 
                     <!-- Rating and Status -->
                     <LinearLayout
@@ -362,7 +332,7 @@
                         <!-- Rating -->
                         <TextView
                             android:id="@+id/rating3"
-                            android:layout_width="150dp"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="center_vertical"
                             android:text="Rating:"
@@ -373,7 +343,7 @@
                         <!-- Status -->
                         <TextView
                             android:id="@+id/condition3"
-                            android:layout_width="150dp"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="center_vertical"
                             android:text="Condition:"
@@ -383,23 +353,6 @@
 
                     </LinearLayout>
 
-                    <!-- SeekBar -->
-                    <SeekBar
-                        android:id="@+id/sbPurchasedDate"
-                        android:layout_width="0dp"
-                        android:layout_height="40dp"
-                        android:layout_weight="1"
-                        android:background="@drawable/rounded_edittext"
-                        android:textColor="@color/black"
-                        android:textSize="15sp"
-                        android:textStyle="bold"
-                        android:hint="Enter your case"
-                        android:paddingStart="10dp"
-                        android:paddingEnd="10dp"
-                        android:paddingTop="10dp"
-                        android:paddingBottom="10dp"
-                        android:max="4"/>
-                </LinearLayout>
             </LinearLayout>
 
             <!-- Screen rating -->
@@ -407,25 +360,38 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:background="@drawable/rounded_edittext"
+                android:padding="10dp">
 
                 <!-- Text "Screen rating" -->
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Screen"
-                    android:textSize="15sp"
                     android:textStyle="bold"
                     android:textColor="@color/black"
-                    android:paddingLeft="150dp"
+                    android:paddingLeft="0dp"
                     android:paddingBottom="10dp"
-                    />
+                    android:layout_gravity="center"
+                    android:textSize="15sp"/>
 
-                <!-- Linear layout containing rating and status -->
-                <LinearLayout
+                <!-- SeekBar -->
+                <SeekBar
+                    android:id="@+id/sbScreen"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:layout_height="40dp"
+                    android:background="@drawable/rounded_edittext"
+                    android:ems="10"
+                    android:inputType="text"
+                    android:textColor="@color/black"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:max="4"/>
 
                     <!-- Rating and Status -->
                     <LinearLayout
@@ -436,7 +402,7 @@
                         <!-- Rating -->
                         <TextView
                             android:id="@+id/rating4"
-                            android:layout_width="150dp"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="center_vertical"
                             android:text="Rating:"
@@ -447,7 +413,7 @@
                         <!-- Status -->
                         <TextView
                             android:id="@+id/condition4"
-                            android:layout_width="150dp"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="center_vertical"
                             android:text="Condition:"
@@ -456,26 +422,40 @@
                             android:textColor="@color/black" />
 
                     </LinearLayout>
-
-                    <!-- SeekBar -->
-                    <SeekBar
-                        android:id="@+id/sbScreen"
-                        android:layout_width="0dp"
-                        android:layout_height="40dp"
-                        android:layout_weight="1"
-                        android:background="@drawable/rounded_edittext"
-                        android:textColor="@color/black"
-                        android:textSize="15sp"
-                        android:textStyle="bold"
-                        android:hint="Enter your battery"
-                        android:paddingStart="10dp"
-                        android:paddingEnd="10dp"
-                        android:paddingTop="10dp"
-                        android:paddingBottom="10dp"
-                        android:max="4"/>
-                </LinearLayout>
             </LinearLayout>
 
+            <!--Image-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:text="Product's photos: "
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/btnImages"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
+                    android:backgroundTint="@color/button_color"
+                    android:textSize="16sp"
+                    android:textStyle="normal"
+                    android:paddingHorizontal="10dp"
+                    app:cornerRadius="5dp"
+                    android:drawableRight="@drawable/baseline_preview_24"
+                    android:text="View photos"
+                    android:textColor="@color/white"
+                    />
+            </LinearLayout>
 
             <!-- Fianl price -->
             <LinearLayout
@@ -497,11 +477,11 @@
                     android:layout_width="0dp"
                     android:layout_height="40dp"
                     android:layout_weight="1"
-                    android:background="@drawable/rounded_edittext"
-                    android:textColor="@color/black"
+                    android:background="@drawable/rounded_edittext_red"
+                    android:textColor="@color/pastel_red"
                     android:textSize="15sp"
                     android:textStyle="bold"
-                    android:hint="Enter your battery"
+                    android:hint="This is your price"
                     android:paddingStart="10dp"
                     android:paddingEnd="10dp"
                     android:paddingTop="10dp"
@@ -517,10 +497,10 @@
                 android:orientation="horizontal">
                 <Button
                     android:id="@+id/btnCalculator"
-                    android:layout_width="250dp"
-                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_weight="7"
                     android:layout_marginTop="16dp"
-                    android:layout_weight="4"
                     android:backgroundTint="@color/button_color"
                     android:elevation="8dp"
                     android:paddingStart="16dp"
@@ -532,11 +512,11 @@
                 <ImageButton
                     android:id="@+id/btnSendEmail"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="50dp"
+                    android:layout_weight="2"
                     android:layout_marginTop="16dp"
-                    android:layout_weight="4"
                     android:backgroundTint="@color/button_color"
-                    android:drawableRight="@drawable/baseline_email_24"
+                    android:src="@drawable/baseline_email_24"
                     android:elevation="8dp"
                     android:paddingStart="16dp"
                     android:paddingEnd="16dp"

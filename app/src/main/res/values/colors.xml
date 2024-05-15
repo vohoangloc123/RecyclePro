@@ -26,5 +26,14 @@
     <color name="color_white">#ededf2</color>
     <color name="color_two">#E3E0E0</color>
     <color name="yellow">#FFC107</color>
-
+    <color name="pastel_blue">#75C5FF</color>
+    <color name="pastel_green">#75FFD8</color>
+    <color name="pastel_yellow">#FFE386</color>
+    <color name="pastel_pink">#FFABCA</color>
+    <color name="pastel_purple">#C491FF</color>
+    <color name="pastel_grey">#CCCCCC</color>
+    <color name="pastel_white">#FFFFFF</color>
+    <color name="pastel_text_color">#4D4B55</color>
+    <color name="pastel_text_bold_color">#2C4569</color>
+    <color name="pastel_red">#FF8A8A</color>
 </resources>

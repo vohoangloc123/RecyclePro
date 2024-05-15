@@ -30,7 +30,7 @@
             android:gravity="center"
             android:text="Submit product"
             android:textColor="@color/white"
-            android:textSize="20sp"
+            android:textSize="16sp"
             android:paddingRight="84dp"
             />
     </LinearLayout>
@@ -168,7 +168,7 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/rounded_edittext"
                 android:ems="10"
-                android:hint="Enter your case"
+                android:hint="Detailed description of the phone case"
                 android:inputType="text"
                 android:paddingStart="10dp"
                 android:paddingTop="10dp"
@@ -191,18 +191,18 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center_vertical"
-                    android:text="Purchase date"
+                    android:text="Purchased date"
                     android:textSize="18sp"
                     android:textStyle="bold"
                     android:textColor="@color/black" />
 
-                <TextView
+                <Button
                     android:id="@+id/etPurchasedDate"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="@drawable/rounded_edittext"
-                    android:textColor="@color/black"
+                    android:backgroundTint="@color/button_color"
+                    android:textColor="@color/white2"
                     android:textSize="15sp"
                     android:textStyle="bold"
                     android:paddingStart="10dp"
@@ -210,6 +210,8 @@
                     android:paddingTop="10dp"
                     android:paddingBottom="10dp"
                     android:layout_marginLeft="10dp"
+                    app:cornerRadius="5dp"
+                    android:drawableRight="@drawable/baseline_calendar_month_24"
                     />
             </LinearLayout>
 
@@ -234,7 +236,7 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/rounded_edittext"
                 android:ems="10"
-                android:hint="Enter your battery"
+                android:hint="Detailed description of the phone battery"
                 android:inputType="text"
                 android:paddingStart="10dp"
                 android:paddingTop="10dp"
@@ -266,7 +268,7 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/rounded_edittext"
                 android:ems="10"
-                android:hint="Enter your screen"
+                android:hint="Detailed description of the phone screen"
                 android:inputType="text"
                 android:paddingStart="10dp"
                 android:paddingTop="10dp"
@@ -280,9 +282,12 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp"
+            >
             <LinearLayout
-                android:layout_width="200dp"
+                android:layout_width="0dp"
+                android:layout_weight="1"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
                 <TextView
@@ -294,12 +299,13 @@
                     android:textStyle="bold"
                     android:paddingBottom="10dp"
                     android:layout_marginTop="10dp"
+                    android:gravity="center"
                     />
                 <ImageButton
                     android:id="@+id/btnFrontOfDevice"
                     android:layout_width="match_parent"
                     android:layout_height="150dp"
-                    android:background="@drawable/baseline_phone_android_24"
+                    android:background="@drawable/mobile_screen"
                     android:ems="10"
 
                     android:hint="Enter your screen"
@@ -314,9 +320,11 @@
 
             </LinearLayout>
             <LinearLayout
-                android:layout_width="200dp"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:layout_weight="1"
+                android:orientation="vertical"
+                >
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -326,12 +334,13 @@
                     android:textStyle="bold"
                     android:paddingBottom="10dp"
                     android:layout_marginTop="10dp"
+                    android:gravity="center"
                     />
                 <ImageButton
                     android:id="@+id/btnBackOfDevice"
                     android:layout_width="match_parent"
                     android:layout_height="150dp"
-                    android:background="@drawable/baseline_phone_android_24"
+                    android:background="@drawable/mobile_back"
                     android:ems="10"
                     android:hint="Enter your screen"
                     android:inputType="text"

@@ -59,11 +59,11 @@ public class AssessmentAnalysis extends AppCompatActivity {
             @Override
             public void onFound(double avgBatteryRating, double avgCaseRating, double avgScreenRating, double avgUptimeRating) {
                 // Tạo danh sách dữ liệu cho biểu đồ BarChart
-                ArrayList<BarModel> bars = new ArrayList<>();
-                bars.add(new BarModel("Battery", (float) avgBatteryRating, Color.BLUE));
-                bars.add(new BarModel("Case", (float) avgCaseRating, Color.GREEN));
-                bars.add(new BarModel("Uptime", (float) avgUptimeRating, Color.YELLOW));
-                bars.add(new BarModel("Screen", (float) avgScreenRating, Color.RED));
+                ArrayList<BarModel> bars = new ArrayList<BarModel>();
+                bars.add(new BarModel("Battery", (float) avgBatteryRating, getColor(R.color.pastel_blue)));
+                bars.add(new BarModel("Case", (float) avgCaseRating, getColor(R.color.pastel_green)));
+                bars.add(new BarModel("Uptime", (float) avgUptimeRating, getColor(R.color.pastel_yellow)));
+                bars.add(new BarModel("Screen", (float) avgScreenRating, getColor(R.color.pastel_red)));
                 // Cập nhật biểu đồ
                 updateBarChart(bars);
             }
@@ -80,11 +80,11 @@ public class AssessmentAnalysis extends AppCompatActivity {
                 for (String monthYear : reviewCountMap.keySet()) {
                     Log.d("DataCheck", "MonthYear: " + monthYear + " Count: " + reviewCountMap.get(monthYear));
                 }
-                ArrayList<BarModel> bars = new ArrayList<>();
+                ArrayList<BarModel> bars = new ArrayList<BarModel>();
                 for (Map.Entry<String, Integer> entry : reviewCountMap.entrySet()) {
                     String monthYear = entry.getKey();
                     int reviewCount = entry.getValue();
-                    bars.add(new BarModel(monthYear, reviewCount, Color.parseColor("#FFC107")));
+                    bars.add(new BarModel(monthYear, reviewCount, getColor(R.color.pastel_yellow)));
                 }
                 // Cập nhật biểu đồ
                 updateBarChart1(bars);
@@ -107,8 +107,8 @@ public class AssessmentAnalysis extends AppCompatActivity {
         String assessedLabel = String.format("Recycle (%.1f%%)", recycle);
         tvRecycle.setText(notAssessedLabel);
         tvResale.setText(assessedLabel);
-        pieChart.addPieSlice(new PieModel(notAssessedLabel, (float) resale, getResources().getColor(R.color.colorNotAssessed)));
-        pieChart.addPieSlice(new PieModel(assessedLabel, (float) recycle, getResources().getColor(R.color.colorAssessed)));
+        pieChart.addPieSlice(new PieModel(notAssessedLabel, (float) resale, getColor(R.color.pastel_red)));
+        pieChart.addPieSlice(new PieModel(assessedLabel, (float) recycle, getColor(R.color.pastel_green)));
         pieChart.startAnimation();
     }
     private void updateBarChart(ArrayList<BarModel> bars) {
@@ -142,12 +142,12 @@ public class AssessmentAnalysis extends AppCompatActivity {
         float q3 = calculateMedian(finalPrices.subList((finalPrices.size() + 1) / 2, finalPrices.size()));
 
         // Tạo dữ liệu cho biểu đồ
-        ArrayList<BarModel> bars = new ArrayList<>();
-        bars.add(new BarModel("Min", min, Color.BLUE));
-        bars.add(new BarModel("Q1", q1, Color.GREEN));
-        bars.add(new BarModel("Median", median, Color.RED));
-        bars.add(new BarModel("Q3", q3, Color.YELLOW));
-        bars.add(new BarModel("Max", max, Color.MAGENTA));
+        ArrayList<BarModel> bars = new ArrayList<BarModel>();
+        bars.add(new BarModel("Min", min, getColor(R.color.pastel_blue)));
+        bars.add(new BarModel("Q1", q1, getColor(R.color.pastel_green)));
+        bars.add(new BarModel("Median", median, getColor(R.color.pastel_red)));
+        bars.add(new BarModel("Q3", q3, getColor(R.color.pastel_yellow)));
+        bars.add(new BarModel("Max", max, getColor(R.color.pastel_pink)));
         // Cập nhật biểu đồ
         updateBoxPlot(bars);
     }

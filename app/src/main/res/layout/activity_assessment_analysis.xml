@@ -28,10 +28,10 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
-            android:textColor="@color/white"
-            android:textSize="20sp"
             android:paddingRight="84dp"
             android:text="Assessment analysis"
+            android:textColor="@color/white"
+            android:textSize="16sp"
 
             />
     </LinearLayout>
@@ -89,7 +89,7 @@
                         <View
                             android:layout_width="15dp"
                             android:layout_height="15dp"
-                            android:background="@color/colorAssessed"/>
+                            android:background="@color/pastel_green"/>
                         <!--Text view to display python text -->
                         <TextView
                             android:id="@+id/tvResale"
@@ -100,7 +100,7 @@
                         <View
                             android:layout_width="15dp"
                             android:layout_height="15dp"
-                            android:background="@color/colorNotAssessed"/>
+                            android:background="@color/pastel_red"/>
 
                         <!--Text view to display C++ text -->
                         <TextView

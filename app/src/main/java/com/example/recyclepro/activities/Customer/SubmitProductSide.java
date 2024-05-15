@@ -64,7 +64,7 @@ public class SubmitProductSide extends AppCompatActivity {
     private EditText etPhone;
     private EditText etProductName;
     private EditText etCase;
-    private TextView etPurchasedDate;
+    private Button etPurchasedDate;
     private EditText etBattery;
     private EditText etScreen;
     private Button btnSend;

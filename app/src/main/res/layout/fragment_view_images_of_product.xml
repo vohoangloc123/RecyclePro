@@ -28,7 +28,7 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:textColor="@color/white"
-                android:textSize="20sp"
+                android:textSize="16sp"
                 android:paddingRight="84dp"
                 android:text="View images of product"
 
@@ -60,11 +60,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="200dp"
                     android:layout_marginTop="16dp"
-                    android:orientation="horizontal"
+                    android:orientation="vertical"
                     android:layout_weight="1">
 
                     <TextView
-                        android:layout_width="0dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center_vertical"
                         android:text="Front of device"
@@ -75,7 +75,7 @@
                         />
                     <ImageView
                         android:id="@+id/ivFrontOfDevice"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="200dp"
                         android:background="@drawable/rounded_edittext"
                         android:padding="10dp"
@@ -91,11 +91,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
-                    android:orientation="horizontal"
+                    android:orientation="vertical"
                     android:layout_weight="1">
 
                     <TextView
-                        android:layout_width="0dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center_vertical"
                         android:text="Back of device"
@@ -106,7 +106,7 @@
                         />
                     <ImageView
                         android:id="@+id/ivBackOfDevice"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="200dp"
                         android:background="@drawable/rounded_edittext"
                         android:padding="10dp"

@@ -56,7 +56,8 @@ public class RecyclingAssessmentFragment extends Fragment {
     private Rating tiLeGiaHoatDong;
     private Rating tiLeGiaManHinh;
     private Condition condition;
-    private ImageButton btnSendEmail, btnImages;
+    private ImageButton btnSendEmail;
+    private Button btnImages;
     private DynamoDBManager dynamoDBManager;
     public int batteryRating, caseRating, uptimeRating, screenRating;
     public String batteryCondition, caseCondition, uptimeCondition, screenCondition;

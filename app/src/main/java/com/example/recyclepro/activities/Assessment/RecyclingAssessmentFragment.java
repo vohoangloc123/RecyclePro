@@ -3,6 +3,7 @@ package com.example.recyclepro.activities.Assessment;
 import static com.example.recyclepro.services.PriceCalculationService.convertRatingToPercentage;
 import static com.example.recyclepro.services.PriceCalculationService.costingPrice;
 
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -15,6 +16,7 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
@@ -311,6 +313,9 @@ public class RecyclingAssessmentFragment extends Fragment {
 
                 // In ra giá cuối cùng để kiểm tra
                 Log.d(TAG, "Final Price: " + finalPrice);
+                Drawable drawable = ContextCompat.getDrawable(getContext(), R.drawable.rounded_edittext);
+
+                tvFinalPrice.setBackground(drawable);
                 tvFinalPrice.setText(String.valueOf(finalPrice));
             }
         });

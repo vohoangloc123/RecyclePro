@@ -1045,4 +1045,49 @@ public class DynamoDBManager {
     public interface FinalPriceDistributionListener {
         void onFound(List<Float> finalPrices);
     }
+    //product price
+    public void loadProductPrice(loadProductPriceListener listener) {
+        try {
+            if (ddbClient == null) {
+                initializeDynamoDB();
+            }
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        // Tạo một yêu cầu truy vấn
+                        HashMap<String, Condition> scanFilter = new HashMap<String, Condition>();
+
+                        ScanRequest scanRequest = new ScanRequest("Products").withScanFilter(scanFilter);
+                        ScanResult scanResult = ddbClient.scan(scanRequest);
+
+                        // Xử lý kết quả
+                        for (Map<String, AttributeValue> item : scanResult.getItems()) {
+                            String id = item.get("_id").getS();
+                            String productName = item.get("productName").getS();
+                            Double price = Double.valueOf(item.get("msrp").getN());
+                            String brand=item.get("brand").getS();
+                            // Cập nhật giao diện
+                            Handler handler = new Handler(Looper.getMainLooper());
+                            handler.post(new Runnable() {
+                                @Override
+                                public void run() {
+                                        listener.onFound(id, productName, price, brand);
+                                }
+                            });
+
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            }).start(); // Khởi chạy thread
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public interface loadProductPriceListener {
+        void onFound(String id, String productName, Double price, String brandName);
+    }
 }

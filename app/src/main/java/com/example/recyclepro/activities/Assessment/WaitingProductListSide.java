@@ -1,6 +1,8 @@
 package com.example.recyclepro.activities.Assessment;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ArrayAdapter;
@@ -13,12 +15,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.recyclepro.ProductPriceFragment;
 import com.example.recyclepro.R;
 import com.example.recyclepro.activities.LiveData.MyViewModel;
 import com.example.recyclepro.adapter.ProductAdapter;
@@ -97,16 +101,20 @@ public class WaitingProductListSide extends AppCompatActivity {
             @Override
             public void onItemClick(String productID, String customerName, String phone, String productName, String battery, String caseDescribe, String purchasedDate, String screen, String time, String email) {
                 Bundle bundle = new Bundle();
-                bundle.putString("productID", productID);
-                bundle.putString("customerName", customerName);
-                bundle.putString("phone", phone);
-                bundle.putString("productName",productName);
-                bundle.putString("productBattery", battery);
-                bundle.putString("productCaseDescribe", caseDescribe);
-                bundle.putString("productPurchasedDate", purchasedDate);
-                bundle.putString("productScreen", screen);
-                bundle.putString("time", time);
-                bundle.putString("email", email);
+                SharedPreferences sharedPreferences = getApplication().getSharedPreferences("productInfo", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putString("productID", productID);
+                editor.putString("customerName", customerName);
+                editor.putString("phone", phone);
+                editor.putString("productName", productName);
+                editor.putString("productBattery", battery);
+                editor.putString("productCaseDescribe", caseDescribe);
+                editor.putString("productPurchasedDate", purchasedDate);
+                editor.putString("productScreen", screen);
+                editor.putString("time", time);
+                editor.putString("email", email);
+                editor.apply();
+
                 goTorecyclingAssessmentFragment(bundle);
             }
 
@@ -115,6 +123,21 @@ public class WaitingProductListSide extends AppCompatActivity {
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.options_array, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
+
+    }
+    @Override
+    public void onBackPressed() {
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        int backStackEntryCount = fragmentManager.getBackStackEntryCount();
+
+        // Kiểm tra nếu có Fragment trong Stack
+        if (backStackEntryCount > 0) {
+            // Quay lại Fragment trước đó
+            fragmentManager.popBackStack();
+        } else {
+            // Nếu không có Fragment nào trong Stack, kết thúc Activity
+            super.onBackPressed();
+        }
     }
     public void goTorecyclingAssessmentFragment(Bundle bundle) {
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
@@ -125,6 +148,16 @@ public class WaitingProductListSide extends AppCompatActivity {
         fragmentTransaction.addToBackStack(recyclingAssessmentFragment.TAG);
         fragmentTransaction.commit();
     }
+    public void goTorProductPriceFragment() {
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        ProductPriceFragment productPriceFragment=new ProductPriceFragment();
+        // Thêm ChatHistoryFragment
+        fragmentTransaction.add(R.id.main,productPriceFragment, productPriceFragment.TAG);
+//        productPriceFragment.setArguments(bundle);
+        fragmentTransaction.addToBackStack(productPriceFragment.TAG);
+        fragmentTransaction.commit();
+    }
+
 
     private void loadData() {
         Log.d("Detach", "onChanged: Loaded data");

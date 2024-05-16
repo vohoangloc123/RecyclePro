@@ -59,7 +59,6 @@ public class EvaluationHistorySide extends AppCompatActivity {
 
                 @Override
                 public void onLoadCompleted(String id, String customerName, String productName, double finalPrice, String time, double avgRating, String typeOfRecycle) {
-                    listAssessmentCompleted.clear();
                     AssessmentCompleted assessmentCompleted = new AssessmentCompleted(id, customerName, productName, time, finalPrice, avgRating, typeOfRecycle);
                     listAssessmentCompleted.add(assessmentCompleted);
                     Log.d("CheckAssessmentCompleted", listAssessmentCompleted.toString());

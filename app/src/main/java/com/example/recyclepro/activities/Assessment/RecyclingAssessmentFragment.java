@@ -3,6 +3,8 @@ package com.example.recyclepro.activities.Assessment;
 import static com.example.recyclepro.services.PriceCalculationService.convertRatingToPercentage;
 import static com.example.recyclepro.services.PriceCalculationService.costingPrice;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
@@ -21,11 +23,15 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.recyclepro.ProductPriceFragment;
 import com.example.recyclepro.R;
 import com.example.recyclepro.activities.LiveData.MyViewModel;
+import com.example.recyclepro.activities.OnProductSelectedListener;
+import com.example.recyclepro.adapter.ProductPriceAdapter;
 import com.example.recyclepro.dynamoDB.DynamoDBManager;
 import com.example.recyclepro.models.ConfigCondition;
 import com.example.recyclepro.models.ConfigRate;
+import com.example.recyclepro.models.Product;
 import com.example.recyclepro.models.Rating;
 import com.example.recyclepro.services.Condition;
 
@@ -33,7 +39,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Random;
 
-public class RecyclingAssessmentFragment extends Fragment {
+public class RecyclingAssessmentFragment extends Fragment{
     public static final String TAG= RecyclingAssessmentFragment.class.getName();
     private TextView tvInformation1, tvInformation2;
     private String productID;
@@ -51,7 +57,7 @@ public class RecyclingAssessmentFragment extends Fragment {
     private TextView tvRating1, tvRating2, tvRating3, tvRating4, tvFinalPrice,
             tvCondition1, tvCondition2, tvCondition3, tvCondition4;
     private Button btnCalculator;
-    private ImageButton btnBack;
+    private ImageButton btnBack, btnPrice;
     private EditText etPrice;
     private Rating tiLeGiaPin;
     private Rating tiLeGiaVo;
@@ -82,27 +88,17 @@ public class RecyclingAssessmentFragment extends Fragment {
         tvInformation1=view.findViewById(R.id.tvInformation1);
         tvInformation2=view.findViewById(R.id.tvInformation2);
         viewModel = new ViewModelProvider(requireActivity()).get(MyViewModel.class);
-        Bundle bundleReceive=getArguments();
-        productID = bundleReceive.getString("productID");
-        Log.d("CheckBundle", "product ID: "+productID);
-        customerName= bundleReceive.getString("customerName");
-        Log.d("CheckBundle", "customer name: "+customerName);
-        phone= bundleReceive.getString("phone");
-        Log.d("CheckBundle", "phone: "+phone);
-        productName = bundleReceive.getString("productName");
-        Log.d("CheckBundle", "product name: "+productName);
-        productBattery= bundleReceive.getString("productBattery");
-        Log.d("CheckBundle", "product battery: "+productBattery);
-        productCaseDescribe= bundleReceive.getString("productCaseDescribe");
-        Log.d("CheckBundle", "product case describe: "+productCaseDescribe);
-        productPurchasedDate= bundleReceive.getString("productPurchasedDate");
-        Log.d("CheckBundle", "product purchased date: "+ productPurchasedDate);
-        productScreen = bundleReceive.getString("productScreen");
-        Log.d("CheckBundle", "product screen: "+ productScreen);
-        time = bundleReceive.getString("time");
-        Log.d("CheckBundle", "product screen: "+ productScreen);
-        email = bundleReceive.getString("email");
-        Log.d("CheckBundle", "product email: "+email);
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("productInfo", Context.MODE_PRIVATE);
+        String productID = sharedPreferences.getString("productID", "");
+        String customerName = sharedPreferences.getString("customerName", "");
+        String phone = sharedPreferences.getString("phone", "");
+        String productName = sharedPreferences.getString("productName", "");
+        productBattery = sharedPreferences.getString("productBattery", "");
+        productCaseDescribe = sharedPreferences.getString("productCaseDescribe", "");
+        productPurchasedDate = sharedPreferences.getString("productPurchasedDate", "");
+        productScreen = sharedPreferences.getString("productScreen", "");
+        String time = sharedPreferences.getString("time", "");
+        String email = sharedPreferences.getString("email", "");
         tvInformation1.setText("product ID: " + productID + "\n" +
                 "customer name: " + customerName + "\n" +
                 "phone: " + phone + "\n" +
@@ -134,9 +130,13 @@ public class RecyclingAssessmentFragment extends Fragment {
         btnBack=view.findViewById(R.id.btnBack);
         btnSendEmail=view.findViewById(R.id.btnSendEmail);
         btnImages=view.findViewById(R.id.btnImages);
+        btnPrice=view.findViewById(R.id.btnPrice);
         tvFinalPrice=view.findViewById(R.id.tvFinalPrice);
         dynamoDBManager=new DynamoDBManager(getContext());
         condition=new Condition();
+        String productPrice = getArguments().getString("price");
+        // Đặt giá sản phẩm vào etPrice
+        etPrice.setText(productPrice);
         dynamoDBManager.loadImagesOfProduct(productID, new DynamoDBManager.LoadImagesOfProductListener() {
             @Override
             public void onFound(String id, String frontOfDevice, String backOfDevice) {
@@ -359,6 +359,9 @@ public class RecyclingAssessmentFragment extends Fragment {
         btnBack.setOnClickListener(v->{
             getActivity().getSupportFragmentManager().popBackStack();
         });
+        btnPrice.setOnClickListener(v->{
+            goToProductPriceFragment();
+        });
         return view;
     }
     public void goToViewImagesOfProductFragment(Bundle bundle) {
@@ -370,6 +373,14 @@ public class RecyclingAssessmentFragment extends Fragment {
         fragmentTransaction.addToBackStack(viewImagesOfProductFragment.TAG);
         fragmentTransaction.commit();
     }
+    public void goToProductPriceFragment() {
+        ProductPriceFragment productPriceFragment = new ProductPriceFragment();
+        FragmentTransaction fragmentTransaction = getParentFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.main, productPriceFragment, productPriceFragment.TAG);
+        fragmentTransaction.addToBackStack(productPriceFragment.TAG);
+        fragmentTransaction.commit();
+    }
+
     public static String getCurrentDateTime() {
         // Định dạng cho ngày tháng năm và giờ
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");

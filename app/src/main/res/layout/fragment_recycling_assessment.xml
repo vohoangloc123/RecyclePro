@@ -122,14 +122,23 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:layout_width="150dp"
+                    android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:gravity="center_vertical"
                     android:text="Price: "
                     android:textColor="@color/black"
                     android:textSize="18sp"
                     android:textStyle="bold" />
-
+                <ImageButton
+                    android:id="@+id/btnPrice"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:gravity="center_vertical"
+                    android:text="Price: "
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    android:backgroundTint="@color/button_color"
+                    android:textStyle="bold" />
                 <EditText
                     android:id="@+id/etPrice"
                     android:layout_width="0dp"

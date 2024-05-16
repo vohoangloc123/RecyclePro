@@ -52,4 +52,13 @@
         <item>Sort by Date (Descending)</item>
         <!-- Thêm các tùy chọn khác nếu cần -->
     </string-array>
+    <string-array name="address_array">
+        <item>Address</item>
+        <item>Go Vap district</item>
+        <item>District 1</item>
+        <item>District 10</item>
+        <item>Thu Duc district</item>
+        <item>Binh Thanh district</item>
+        <!-- Thêm các tùy chọn khác nếu cần -->
+    </string-array>
 </resources>

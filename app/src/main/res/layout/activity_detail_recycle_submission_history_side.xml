@@ -177,6 +177,34 @@
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
                     android:gravity="center_vertical"
+                    android:text="Email: "
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/etEmail"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/rounded_edittext"
+                    android:textColor="@color/black"
+                    android:textSize="15sp"
+                    android:enabled="false"
+                    android:paddingHorizontal="10dp"
+                    android:hint="Enter your price"
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
                     android:text="Phone: "
                     android:textColor="@color/black"
                     android:textSize="18sp"
@@ -190,11 +218,11 @@
                     android:background="@drawable/rounded_edittext"
                     android:textColor="@color/black"
                     android:textSize="15sp"
-                    android:textStyle="bold"
                     android:paddingHorizontal="10dp"
                     android:hint="Enter your price"
                     />
             </LinearLayout>
+
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -205,7 +233,7 @@
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
                     android:gravity="center_vertical"
-                    android:text="Address: "
+                    android:text="Your address: "
                     android:textColor="@color/black"
                     android:textSize="18sp"
                     android:textStyle="bold" />
@@ -218,20 +246,91 @@
                     android:background="@drawable/rounded_edittext"
                     android:textColor="@color/black"
                     android:textSize="15sp"
-                    android:textStyle="bold"
                     android:paddingHorizontal="10dp"
                     android:hint="Enter your price"
                     />
             </LinearLayout>
 
             <!-- Button -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:text="Choose branch"/>
+                <Spinner
+                    android:id="@+id/spinner"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/rounded_edittext"
+                    android:layout_marginEnd="16dp"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:text="Branch address: "
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
 
+                <EditText
+                    android:id="@+id/etBranchAddress"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/rounded_edittext"
+                    android:textColor="@color/black"
+                    android:textSize="15sp"
+                    android:paddingHorizontal="10dp"
+                    android:hint="Enter your price"
+                    android:enabled="false"
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:text="Description: "
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/etDescription"
+                    android:layout_width="0dp"
+                    android:layout_height="100dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/rounded_edittext"
+                    android:textColor="@color/black"
+                    android:textSize="15sp"
+                    android:paddingHorizontal="10dp"
+                    android:hint="Enter your price"
+                    />
+            </LinearLayout>
             <LinearLayout
                 android:layout_width="160dp"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_gravity="center"
-                >
+                android:layout_gravity="center">
                 <Button
                     android:id="@+id/btnSendEmail"
                     android:layout_width="match_parent"
@@ -254,6 +353,7 @@
             </LinearLayout>
 
         </LinearLayout>
+
     </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

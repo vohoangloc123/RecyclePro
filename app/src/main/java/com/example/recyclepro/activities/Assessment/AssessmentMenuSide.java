@@ -15,12 +15,13 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.recyclepro.ProductRecyclingDecisionSide;
 import com.example.recyclepro.R;
 import com.example.recyclepro.activities.AssessmentAnalysis;
 import com.example.recyclepro.activities.SignIn;
 
 public class AssessmentMenuSide extends AppCompatActivity {
-    private Button btnWaitingProductList, btnEvaluationHistory,btnAnalyst;
+    private Button btnWaitingProductList, btnEvaluationHistory,btnAnalyst, btnRecyclingDecision;
     private TextView tvEmail, tvUserName, tvRole;
     private String email, name, role;
     @Override
@@ -45,6 +46,7 @@ public class AssessmentMenuSide extends AppCompatActivity {
         tvRole.setText("Role: "+ role);
         btnEvaluationHistory=findViewById(R.id.btnEvaluationHistory);
         btnWaitingProductList=findViewById(R.id.btnWaitingProductList);
+        btnRecyclingDecision=findViewById(R.id.btnRecyclingDecision);
         btnAnalyst=findViewById(R.id.btnAnalyst);
         btnWaitingProductList.setOnClickListener(v -> {
             Intent intent=new Intent(this, WaitingProductListSide.class);
@@ -56,6 +58,10 @@ public class AssessmentMenuSide extends AppCompatActivity {
         });
         btnAnalyst.setOnClickListener(v->{
             Intent intent=new Intent(this, AssessmentAnalysis.class);
+            startActivity(intent);
+        });
+        btnRecyclingDecision.setOnClickListener(v->{
+            Intent intent=new Intent(this, ProductRecyclingDecisionSide.class);
             startActivity(intent);
         });
         ImageButton btnExit=findViewById(R.id.btnExit);

@@ -171,7 +171,7 @@
             android:id="@+id/btnWaitingProductList"
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:text="Waiting product list"
+            android:text="List of waiting product"
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
             android:layout_marginVertical="10dp"
@@ -199,6 +199,18 @@
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:text="Analys"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginVertical="10dp"
+            app:cornerRadius="5dp"
+            android:backgroundTint="@color/button_color"
+            android:textSize="20sp"            />
+        <!-- Nút 4 -->
+        <Button
+            android:id="@+id/btnRecyclingDecision"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:text="List of product recycling decision"
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
             android:layout_marginVertical="10dp"

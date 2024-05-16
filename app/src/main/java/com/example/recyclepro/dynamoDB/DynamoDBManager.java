@@ -1090,4 +1090,89 @@ public class DynamoDBManager {
     public interface loadProductPriceListener {
         void onFound(String id, String productName, Double price, String brandName);
     }
+    public void SubmitProductRecyclingDecision(String productID,String customerName, String productName,String  email ,String phoneNumber, String customerAddress, String branchAddress, String description, String time) {
+        try {
+            if (ddbClient == null) {
+                initializeDynamoDB();
+            }
+
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        // Tạo một mục mới
+                        Map<String, AttributeValue> item = new HashMap<>();
+                        item.put("_id", new AttributeValue().withS(productID));
+                        item.put("customerName", new AttributeValue().withS(customerName));
+                        item.put("productName", new AttributeValue().withS(productName));
+                        item.put("email", new AttributeValue().withS(email));
+                        item.put("phoneNumber", new AttributeValue().withS(phoneNumber));
+                        item.put("customerAddress", new AttributeValue().withS(customerAddress));
+                        item.put("branchAddress", new AttributeValue().withS(branchAddress));
+                        item.put("description", new AttributeValue().withS(description));
+                        item.put("time", new AttributeValue().withS(time));
+                        // Tạo yêu cầu chèn mục vào bảng
+                        PutItemRequest putItemRequest = new PutItemRequest()
+                                .withTableName("ProductRecyclingDecisions")
+                                .withItem(item);
+                        // Thực hiện yêu cầu chèn mục và nhận kết quả
+                        PutItemResult result = ddbClient.putItem(putItemRequest);
+
+                    } catch (Exception e) {
+                        Log.e("Error", "Exception occurred: ", e);
+                    }
+                }
+            }).start(); // Khởi chạy thread
+        } catch (Exception e) {
+            // Log exception for debugging
+            Log.e("DynamoDBManager", "Error checking DynamoDB connection: " + e.getMessage());
+        }
+    }
+    public void loadProductRecyclingDecision(loadProductRecyclingDecisionListListener listener) {
+        try {
+            if (ddbClient == null) {
+                initializeDynamoDB();
+            }
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        // Tạo một yêu cầu truy vấn
+                        HashMap<String, Condition> scanFilter = new HashMap<String, Condition>();
+                        ScanRequest scanRequest = new ScanRequest("ProductRecyclingDecisions").withScanFilter(scanFilter);
+                        ScanResult scanResult = ddbClient.scan(scanRequest);
+                        // Xử lý kết quả
+                        for (Map<String, AttributeValue> item : scanResult.getItems()) {
+                            String id = item.get("_id").getS();
+                            String customerName=item.get("customerName").getS();
+                            String productName=item.get("productName").getS();
+                            String email=item.get("email").getS();
+                            String phoneNumber = item.get("phoneNumber").getS();
+                            String customerAddress = item.get("customerAddress").getS();
+                            String branchAddress = item.get("branchAddress").getS();
+                            String description = item.get("description").getS();
+                            String time = item.get("time").getS();
+                            // Cập nhật giao diện
+                            Handler handler = new Handler(Looper.getMainLooper());
+                            handler.post(new Runnable() {
+                                @Override
+                                public void run() {
+                                    listener.onFound(id, customerName, productName, email,phoneNumber, customerAddress,branchAddress, description, time);
+                                }
+                            });
+
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            }).start(); // Khởi chạy thread
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public interface loadProductRecyclingDecisionListListener {
+        void onFound(String id, String customerName, String productName, String email, String phoneNumber, String customerAddress, String branchAddress, String description, String time);
+    }
 }

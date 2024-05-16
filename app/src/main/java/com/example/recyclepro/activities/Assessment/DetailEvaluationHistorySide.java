@@ -1,6 +1,8 @@
 package com.example.recyclepro.activities.Assessment;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.EditText;
@@ -83,6 +85,7 @@ public class DetailEvaluationHistorySide extends AppCompatActivity {
                         .load(urlBackOfDevice)
                         .into(backOfDevice);
             }
+
             tvProductInformation.setText("Customer name:"+customerName+"\n"+
                     "Product name: "+productName+"\n"+
                     "Time: "+time+"\n");

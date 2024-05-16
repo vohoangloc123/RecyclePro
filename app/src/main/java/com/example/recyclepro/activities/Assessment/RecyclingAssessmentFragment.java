@@ -23,15 +23,11 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.recyclepro.ProductPriceFragment;
 import com.example.recyclepro.R;
 import com.example.recyclepro.activities.LiveData.MyViewModel;
-import com.example.recyclepro.activities.OnProductSelectedListener;
-import com.example.recyclepro.adapter.ProductPriceAdapter;
 import com.example.recyclepro.dynamoDB.DynamoDBManager;
 import com.example.recyclepro.models.ConfigCondition;
 import com.example.recyclepro.models.ConfigRate;
-import com.example.recyclepro.models.Product;
 import com.example.recyclepro.models.Rating;
 import com.example.recyclepro.services.Condition;
 

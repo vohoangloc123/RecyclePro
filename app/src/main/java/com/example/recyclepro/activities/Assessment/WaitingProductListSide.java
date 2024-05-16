@@ -22,14 +22,12 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.recyclepro.ProductPriceFragment;
 import com.example.recyclepro.R;
 import com.example.recyclepro.activities.LiveData.MyViewModel;
 import com.example.recyclepro.adapter.ProductAdapter;
 import com.example.recyclepro.dynamoDB.DynamoDBManager;
 import com.example.recyclepro.models.Product;
-import androidx.lifecycle.ViewModelProvider;
-import com.example.recyclepro.activities.LiveData.MyViewModel;
+
 import java.util.ArrayList;
 
 public class WaitingProductListSide extends AppCompatActivity {

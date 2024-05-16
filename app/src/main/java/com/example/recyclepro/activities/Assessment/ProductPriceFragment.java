@@ -1,4 +1,4 @@
-package com.example.recyclepro;
+package com.example.recyclepro.activities.Assessment;
 
 import android.os.Bundle;
 
@@ -12,7 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 
-import com.example.recyclepro.activities.Assessment.RecyclingAssessmentFragment;
+import com.example.recyclepro.R;
 import com.example.recyclepro.adapter.ProductPriceAdapter;
 import com.example.recyclepro.dynamoDB.DynamoDBManager;
 import com.example.recyclepro.models.Price;

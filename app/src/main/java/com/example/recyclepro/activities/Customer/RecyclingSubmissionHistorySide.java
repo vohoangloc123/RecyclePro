@@ -63,10 +63,11 @@ public class RecyclingSubmissionHistorySide extends AppCompatActivity {
         });
         Button btnLoad=findViewById(R.id.btnReload);
         btnLoad.setOnClickListener(v->{
+            listRecyclingSubmission.clear();
             dynamoDBManager.loadRecyclingSubmission(email, new DynamoDBManager.LoadRecyclingSubmissionListListener() {
                 @Override
                 public void onFound(String id, String productName, String time, String state) {
-                    listRecyclingSubmission.clear();
+
                     RecyclingSubmission recyclingSubmission=new RecyclingSubmission(id, productName, time, state);
                     listRecyclingSubmission.add(recyclingSubmission);
                     adapter.notifyDataSetChanged();

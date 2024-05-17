@@ -1,6 +1,5 @@
 package com.example.recyclepro.adapter;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,7 +19,7 @@ public class ProductRecyclingDecisionAdapter extends RecyclerView.Adapter<Produc
     private ProductRecyclingDecisionAdapter.OnItemClickListener mListener;
     public interface OnItemClickListener {
 
-        void onItemClick(String id, String customerName, String productName, String email, String phone, String customerAddress, String branchAddress, String description, String time);
+        void onItemClick(String id, String customerName, String productName, String email, String phone, String customerAddress, String branchAddress, String description, String time, String status);
     }
     public void setOnItemClickListener(ProductRecyclingDecisionAdapter.OnItemClickListener listener) {
         mListener = listener;
@@ -56,13 +55,14 @@ public class ProductRecyclingDecisionAdapter extends RecyclerView.Adapter<Produc
         holder.tvTime.setText("Time: "+productRecyclingDecision.getTime());
         holder.tvEmail.setText("Email: "+productRecyclingDecision.getEmail());
         holder.tvPhone.setText("Phone: "+productRecyclingDecision.getPhone());
+        holder.tvStatus.setText("Status: "+productRecyclingDecision.getStatus());
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (mListener != null) {
                     mListener.onItemClick(productRecyclingDecision.getId(), productRecyclingDecision.getCustomerName(),
                             productRecyclingDecision.getProductName(), productRecyclingDecision.getEmail(), productRecyclingDecision.getPhone(),
-                            productRecyclingDecision.getCustomerAddress(),productRecyclingDecision.getBranchAddress(), productRecyclingDecision.getDescription(),productRecyclingDecision.getTime());
+                            productRecyclingDecision.getCustomerAddress(),productRecyclingDecision.getBranchAddress(), productRecyclingDecision.getDescription(),productRecyclingDecision.getTime(), productRecyclingDecision.getStatus());
                 }
             }
         });
@@ -70,7 +70,7 @@ public class ProductRecyclingDecisionAdapter extends RecyclerView.Adapter<Produc
     }
     public class ProductRecyclingDecisionListViewHolder extends RecyclerView.ViewHolder {
 
-        public TextView tvProductName, tvCustomerName, tvTime, tvPhone, tvEmail;
+        public TextView tvProductName, tvCustomerName, tvTime, tvPhone, tvEmail, tvStatus;
 
         public ProductRecyclingDecisionListViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -79,6 +79,7 @@ public class ProductRecyclingDecisionAdapter extends RecyclerView.Adapter<Produc
             tvTime=itemView.findViewById(R.id.tvTime);
             tvEmail=itemView.findViewById(R.id.tvEmail);
             tvPhone=itemView.findViewById(R.id.tvPhone);
+            tvStatus=itemView.findViewById(R.id.tvStatus);
         }
     }
 

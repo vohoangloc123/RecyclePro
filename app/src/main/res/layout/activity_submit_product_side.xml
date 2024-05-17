@@ -215,6 +215,36 @@
                     android:drawableRight="@drawable/baseline_calendar_month_24"
                     />
             </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Software description: "
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:paddingBottom="10dp"
+                    android:layout_marginTop="10dp"
+                    />
+                <EditText
+                    android:id="@+id/etSoftwareDescription"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/rounded_edittext"
+                    android:ems="10"
+                    android:hint="Detailed description of the software"
+                    android:inputType="text"
+                    android:paddingStart="10dp"
+                    android:paddingTop="10dp"
+                    android:paddingEnd="10dp"
+                    android:paddingBottom="10dp"
+                    android:textColor="@color/black"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
 
             <!-- Battery -->
         <LinearLayout

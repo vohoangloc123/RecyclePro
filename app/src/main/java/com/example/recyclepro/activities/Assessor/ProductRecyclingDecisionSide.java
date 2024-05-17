@@ -52,7 +52,7 @@ public class ProductRecyclingDecisionSide extends AppCompatActivity {
         adapter.setOnItemClickListener(new ProductRecyclingDecisionAdapter.OnItemClickListener() {
 
             @Override
-            public void onItemClick(String id, String customerName, String productName, String email, String phone, String customerAddress, String branchAddress, String description, String time) {
+            public void onItemClick(String id, String customerName, String productName, String email, String phone, String customerAddress, String branchAddress, String description, String time, String status) {
                 SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 editor.putString("id", id);
@@ -64,6 +64,7 @@ public class ProductRecyclingDecisionSide extends AppCompatActivity {
                 editor.putString("branchAddress", branchAddress);
                 editor.putString("description", description);
                 editor.putString("time", time);
+                editor.putString("status", status);
                 editor.apply();
                 Intent intent=new Intent(ProductRecyclingDecisionSide.this, DetailProductRecyclingDecision.class);
                 startActivity(intent);
@@ -71,8 +72,8 @@ public class ProductRecyclingDecisionSide extends AppCompatActivity {
         });
         dynamoDBManager.loadProductRecyclingDecision(new DynamoDBManager.loadProductRecyclingDecisionListListener() {
             @Override
-            public void onFound(String id, String customerName, String productName, String email, String phoneNumber, String customerAddress, String branchAddress, String description, String time) {
-                ProductRecyclingDecision productRecyclingDecision = new ProductRecyclingDecision(id, customerName, productName, email, phoneNumber, customerAddress, branchAddress, description, time);
+            public void onFound(String id, String customerName, String productName, String email, String phoneNumber, String customerAddress, String branchAddress, String description, String time, String status) {
+                ProductRecyclingDecision productRecyclingDecision = new ProductRecyclingDecision(id, customerName, productName, email, phoneNumber, customerAddress, branchAddress, description, time, status);
                 productRecyclingDecisionArrayList.add(productRecyclingDecision);
                 adapter.notifyDataSetChanged();
             }

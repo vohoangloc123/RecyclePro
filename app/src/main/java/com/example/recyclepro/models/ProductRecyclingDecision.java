@@ -10,8 +10,9 @@ public class ProductRecyclingDecision {
     private String branchAddress;
     private String description;
     private String time;
+    private String status;
 
-    public ProductRecyclingDecision(String id, String customerName, String productName, String email, String phone, String customerAddress, String branchAddres, String description, String time) {
+    public ProductRecyclingDecision(String id, String customerName, String productName, String email, String phone, String customerAddress, String branchAddres, String description, String time, String status) {
         this.id = id;
         this.customerName = customerName;
         this.productName = productName;
@@ -21,6 +22,15 @@ public class ProductRecyclingDecision {
         this.branchAddress = branchAddres;
         this.description = description;
         this.time = time;
+        this.status=status;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public String getId() {
@@ -104,9 +114,10 @@ public class ProductRecyclingDecision {
                 ", email='" + email + '\'' +
                 ", phone='" + phone + '\'' +
                 ", customerAddress='" + customerAddress + '\'' +
-                ", branchAddres='" + branchAddress + '\'' +
+                ", branchAddress='" + branchAddress + '\'' +
                 ", description='" + description + '\'' +
                 ", time='" + time + '\'' +
+                ", status='" + status + '\'' +
                 '}';
     }
 }

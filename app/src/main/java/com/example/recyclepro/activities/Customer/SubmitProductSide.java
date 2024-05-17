@@ -66,7 +66,7 @@ public class SubmitProductSide extends AppCompatActivity {
     private EditText etCase;
     private Button etPurchasedDate;
     private EditText etBattery;
-    private EditText etScreen;
+    private EditText etScreen, etSoftwareDescription;
     private Button btnSend;
     private ImageButton btnBack, btnBackOfDevice, btnFrontOfDevice;
     private DynamoDBManager dynamoDBManager;
@@ -102,6 +102,7 @@ public class SubmitProductSide extends AppCompatActivity {
                 showDatePickerDialog();
             }
         });
+        etSoftwareDescription=findViewById(R.id.etSoftwareDescription);
         etBattery=findViewById(R.id.etBattery);
         etScreen =findViewById(R.id.etScreen);
         btnSend=findViewById(R.id.btnSave);
@@ -127,16 +128,17 @@ public class SubmitProductSide extends AppCompatActivity {
             String purchasedDate = etPurchasedDate.getText().toString().trim();
             String battery = etBattery.getText().toString().trim();
             String screen = etScreen.getText().toString().trim();
+            String softwareDescription=etSoftwareDescription.getText().toString();
             String currentTime=getCurrentDateTime();
             if(id.isEmpty()||customerName.isEmpty()||phone.isEmpty()||productName.isEmpty()||caseDescribe.isEmpty()||purchasedDate.isEmpty()
-            ||battery.isEmpty()||screen.isEmpty()||currentTime.isEmpty())
+            ||battery.isEmpty()||screen.isEmpty()||currentTime.isEmpty()||softwareDescription.isEmpty())
             {
                 Toast.makeText(this, "You have not entered enough data", Toast.LENGTH_LONG).show(); // Added show() method
             }
             else
             {
                 Log.d("CheckingPictures",urlBackOfDevice.toString()+urlFrontOfDevice.toString());
-                dynamoDBManager.SubmitProductInformationforRecycling(id, customerName, phone, productName,caseDescribe,purchasedDate, battery,screen, "not assessed yet", email, currentTime, urlFrontOfDevice, urlBackOfDevice);
+                dynamoDBManager.SubmitProductInformationforRecycling(id, customerName, phone, productName,caseDescribe,"purchased: "+ purchasedDate+" and condition: "+softwareDescription, battery,screen, "not assessed yet", email, currentTime, urlFrontOfDevice, urlBackOfDevice);
                 Toast.makeText(this, "Submit successful", Toast.LENGTH_LONG).show(); // Added show() method
                 Intent intent=new Intent(this, CustomerMenuSide.class);
                 startActivity(intent);

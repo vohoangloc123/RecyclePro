@@ -338,6 +338,24 @@
                 android:orientation="horizontal"
                 android:layout_gravity="center">
                 <Button
+                    android:id="@+id/btnNotAgree"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_weight="1"
+                    android:layout_marginTop="16dp"
+                    android:backgroundTint="@color/button_color"
+                    android:drawablePadding="8dp"
+                    android:elevation="8dp"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
+                    android:textAlignment="center"
+                    android:textSize="20sp"
+                    android:text="Not agree"
+                    android:icon="@drawable/baseline_email_24"
+                    app:cornerRadius="5dp"
+                    android:gravity="center_vertical|center_horizontal"
+                    />
+                <Button
                     android:id="@+id/btnSendEmail"
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
@@ -350,7 +368,7 @@
                     android:paddingEnd="16dp"
                     android:textAlignment="center"
                     android:textSize="20sp"
-                    android:text="Send"
+                    android:text="Agree"
                     android:icon="@drawable/baseline_email_24"
                     app:cornerRadius="5dp"
                     android:gravity="center_vertical|center_horizontal"

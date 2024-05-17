@@ -1090,7 +1090,7 @@ public class DynamoDBManager {
     public interface loadProductPriceListener {
         void onFound(String id, String productName, Double price, String brandName);
     }
-    public void SubmitProductRecyclingDecision(String productID,String customerName, String productName,String  email ,String phoneNumber, String customerAddress, String branchAddress, String description, String time) {
+    public void SubmitProductRecyclingDecision(String productID,String customerName, String productName,String  email ,String phoneNumber, String customerAddress, String branchAddress, String description, String time, String status) {
         try {
             if (ddbClient == null) {
                 initializeDynamoDB();
@@ -1111,6 +1111,7 @@ public class DynamoDBManager {
                         item.put("branchAddress", new AttributeValue().withS(branchAddress));
                         item.put("description", new AttributeValue().withS(description));
                         item.put("time", new AttributeValue().withS(time));
+                        item.put("status", new AttributeValue().withS(status));
                         // Tạo yêu cầu chèn mục vào bảng
                         PutItemRequest putItemRequest = new PutItemRequest()
                                 .withTableName("ProductRecyclingDecisions")
@@ -1152,12 +1153,13 @@ public class DynamoDBManager {
                             String branchAddress = item.get("branchAddress").getS();
                             String description = item.get("description").getS();
                             String time = item.get("time").getS();
+                            String status = item.get("status").getS();
                             // Cập nhật giao diện
                             Handler handler = new Handler(Looper.getMainLooper());
                             handler.post(new Runnable() {
                                 @Override
                                 public void run() {
-                                    listener.onFound(id, customerName, productName, email,phoneNumber, customerAddress,branchAddress, description, time);
+                                    listener.onFound(id, customerName, productName, email,phoneNumber, customerAddress,branchAddress, description, time, status);
                                 }
                             });
 
@@ -1173,6 +1175,6 @@ public class DynamoDBManager {
     }
 
     public interface loadProductRecyclingDecisionListListener {
-        void onFound(String id, String customerName, String productName, String email, String phoneNumber, String customerAddress, String branchAddress, String description, String time);
+        void onFound(String id, String customerName, String productName, String email, String phoneNumber, String customerAddress, String branchAddress, String description, String time, String status);
     }
 }

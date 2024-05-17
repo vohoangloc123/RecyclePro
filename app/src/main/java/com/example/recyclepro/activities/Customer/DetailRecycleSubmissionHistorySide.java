@@ -1,5 +1,6 @@
 package com.example.recyclepro.activities.Customer;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -22,6 +23,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.example.recyclepro.R;
+import com.example.recyclepro.activities.SignIn;
 import com.example.recyclepro.dynamoDB.DynamoDBManager;
 
 import java.text.SimpleDateFormat;
@@ -159,11 +161,41 @@ public class DetailRecycleSubmissionHistorySide extends AppCompatActivity {
                 Toast.makeText(this, "You have not entered enough information", Toast.LENGTH_SHORT).show();
             }else
             {
-                dynamoDBManager.SubmitProductRecyclingDecision(id, productName, name ,email,phoneNumber,customerAddress, brandAddress, description,currentDateTime);
+                dynamoDBManager.SubmitProductRecyclingDecision(id, productName, name ,email,phoneNumber,customerAddress, brandAddress, description,currentDateTime, "Agree");
                 Toast.makeText(this, "Your information has been sent to the branch", Toast.LENGTH_SHORT).show();
                 Intent intent=new Intent(this, RecyclingSubmissionHistorySide.class);
                 startActivity(intent);
             }
+        });
+        Button btnNotAgree=findViewById(R.id.btnNotAgree);
+        btnNotAgree.setOnClickListener(v->{
+
+            android.app.AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle("Confirm not agree");
+            builder.setMessage("Are you sure it's not recycled?");
+            builder.setPositiveButton("Yes", (dialog, which) -> {
+                // Nếu người dùng đồng ý, thực hiện chuyển đổi sang activity đăng nhập
+                String customerAddress="not provided";
+                String phoneNumber=etPhone.getText().toString();
+                String brandAddress="not provided";
+                String currentDateTime=getCurrentDateTime();
+                String description="not provided";
+                if(email.isEmpty()||phoneNumber.isEmpty()||customerAddress.isEmpty()||brandAddress.isEmpty()||description.isEmpty())
+                {
+                    Toast.makeText(this, "You have not entered enough information", Toast.LENGTH_SHORT).show();
+                }else
+                {
+                    dynamoDBManager.SubmitProductRecyclingDecision(id, productName, name ,email,phoneNumber,customerAddress, brandAddress, description,currentDateTime, "Not agree");
+                    Toast.makeText(this, "Your information has been sent to the branch", Toast.LENGTH_SHORT).show();
+                    Intent intent=new Intent(this, RecyclingSubmissionHistorySide.class);
+                    startActivity(intent);
+                }
+            });
+            builder.setNegativeButton("Cancel", (dialog, which) -> {
+                // Nếu người dùng hủy bỏ, đóng dialog và không thực hiện hành động gì
+                dialog.dismiss();
+            });
+            builder.show();
         });
 
     }

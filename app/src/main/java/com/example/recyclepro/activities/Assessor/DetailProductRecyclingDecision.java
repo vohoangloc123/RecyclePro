@@ -41,7 +41,7 @@ public class DetailProductRecyclingDecision extends AppCompatActivity {
         String branchAddress = sharedPreferences.getString("branchAddress", "");
         String description = sharedPreferences.getString("description", "");
         String time = sharedPreferences.getString("time", "");
-
+        String status=sharedPreferences.getString("status", "");
         // Combine all product information into one string
         String productInformation = "ID: " + id + "\n" +
                 "Customer Name: " + customerName + "\n" +
@@ -51,7 +51,8 @@ public class DetailProductRecyclingDecision extends AppCompatActivity {
                 "Customer Address: " + customerAddress + "\n" +
                 "Branch Address: " + branchAddress + "\n" +
                 "Description: " + description + "\n" +
-                "Time: " + time;
+                "Time: " + time+"\n"+
+                "Status: "+status;
         TextView tvInformation = findViewById(R.id.tvInformation);
         tvInformation.setText(productInformation);
         btnBack.setOnClickListener(v->{

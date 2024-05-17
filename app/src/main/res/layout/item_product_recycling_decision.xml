@@ -50,6 +50,14 @@
         android:textColor="@color/black"
         android:textSize="16sp"
         android:layout_marginBottom="5dp" />
+    <TextView
+        android:id="@+id/tvStatus"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Status: "
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:layout_marginBottom="5dp" />
 
     <!-- Time -->
     <TextView

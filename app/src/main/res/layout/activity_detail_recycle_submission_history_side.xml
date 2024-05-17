@@ -350,7 +350,7 @@
                     android:paddingEnd="16dp"
                     android:textAlignment="center"
                     android:textSize="20sp"
-                    android:text="Not agree"
+                    android:text="Disagree"
                     android:icon="@drawable/baseline_email_24"
                     app:cornerRadius="5dp"
                     android:gravity="center_vertical|center_horizontal"

@@ -171,7 +171,7 @@ public class DetailRecycleSubmissionHistorySide extends AppCompatActivity {
         btnNotAgree.setOnClickListener(v->{
 
             android.app.AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setTitle("Confirm not agree");
+            builder.setTitle("Confirm disagree");
             builder.setMessage("Are you sure it's not recycled?");
             builder.setPositiveButton("Yes", (dialog, which) -> {
                 // Nếu người dùng đồng ý, thực hiện chuyển đổi sang activity đăng nhập
@@ -185,7 +185,7 @@ public class DetailRecycleSubmissionHistorySide extends AppCompatActivity {
                     Toast.makeText(this, "You have not entered enough information", Toast.LENGTH_SHORT).show();
                 }else
                 {
-                    dynamoDBManager.SubmitProductRecyclingDecision(id, productName, name ,email,phoneNumber,customerAddress, brandAddress, description,currentDateTime, "Not agree");
+                    dynamoDBManager.SubmitProductRecyclingDecision(id, productName, name ,email,phoneNumber,customerAddress, brandAddress, description,currentDateTime, "Disagree");
                     Toast.makeText(this, "Your information has been sent to the branch", Toast.LENGTH_SHORT).show();
                     Intent intent=new Intent(this, RecyclingSubmissionHistorySide.class);
                     startActivity(intent);

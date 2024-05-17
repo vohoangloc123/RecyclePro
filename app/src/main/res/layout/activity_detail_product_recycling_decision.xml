@@ -58,7 +58,6 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
                 android:orientation="vertical"
                 >
 
@@ -68,20 +67,20 @@
                     android:gravity="center_vertical"
                     android:text="Customer information"
                     android:textColor="@color/black"
-                    android:textSize="15sp"
+                    android:textSize="20sp"
+                    android:layout_marginVertical="10dp"
                     android:textStyle="bold" />
-
-
+                
                 <TextView
                     android:id="@+id/tvInformation"
                     android:layout_width="match_parent"
-                    android:layout_height="100dp"
+                    android:layout_height="wrap_content"
                     android:background="@drawable/rounded_edittext"
                     android:hint="Enter your information"
                     android:padding="10dp"
                     android:textColor="@color/black"
-                    android:textSize="12sp"
-                    android:textStyle="bold" />
+                    android:textSize="16sp"
+                    android:textStyle="normal" />
             </LinearLayout>
 
         </LinearLayout>

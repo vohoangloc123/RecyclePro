@@ -39,7 +39,7 @@
             android:text="10:45"
             android:textColor="@color/black_light"
             android:textSize="16sp"
-            android:textStyle="normal" />
+            android:textStyle="italic" />
     </LinearLayout>
 
 

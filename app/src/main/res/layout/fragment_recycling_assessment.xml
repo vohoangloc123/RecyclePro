@@ -76,7 +76,7 @@
                 <TextView
                     android:id="@+id/tvInformation1"
                     android:layout_width="match_parent"
-                    android:layout_height="150dp"
+                    android:layout_height="wrap_content"
                     android:background="@drawable/rounded_edittext"
                     android:padding="10dp"
                     android:textColor="@color/black"
@@ -104,7 +104,7 @@
                 <TextView
                     android:id="@+id/tvInformation2"
                     android:layout_width="match_parent"
-                    android:layout_height="150dp"
+                    android:layout_height="wrap_content"
                     android:background="@drawable/rounded_edittext"
                     android:padding="10dp"
                     android:textColor="@color/black"
@@ -129,27 +129,31 @@
                     android:textColor="@color/black"
                     android:textSize="18sp"
                     android:textStyle="bold" />
-                <ImageButton
+                <Button
                     android:id="@+id/btnPrice"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
                     android:gravity="center_vertical"
-                    android:text="Price: "
-                    android:textColor="@color/black"
-                    android:textSize="18sp"
+                    android:text="Select "
+                    android:textSize="14sp"
                     android:backgroundTint="@color/button_color"
-                    android:textStyle="bold" />
+                    android:textStyle="normal"
+                    app:cornerRadius="5dp"
+                    android:textColor="@color/white"
+                    android:drawableRight="@drawable/choice"
+                    android:layout_marginRight="10dp"
+                    />
                 <EditText
                     android:id="@+id/etPrice"
                     android:layout_width="0dp"
-                    android:layout_height="40dp"
+                    android:layout_height="50dp"
                     android:layout_weight="1"
                     android:background="@drawable/rounded_edittext"
                     android:textColor="@color/black"
                     android:textSize="15sp"
                     android:textStyle="bold"
                     android:paddingHorizontal="10dp"
-                    android:hint="Enter your price"
+                    android:hint="Here is your price"
                     />
             </LinearLayout>
             <!--Image-->

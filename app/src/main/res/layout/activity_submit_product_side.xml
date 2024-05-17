@@ -209,6 +209,7 @@
                     android:paddingEnd="10dp"
                     android:paddingTop="10dp"
                     android:paddingBottom="10dp"
+                    android:text="Calendar"
                     android:layout_marginLeft="10dp"
                     app:cornerRadius="5dp"
                     android:drawableRight="@drawable/baseline_calendar_month_24"

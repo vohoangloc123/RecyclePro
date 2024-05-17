@@ -53,7 +53,8 @@ public class RecyclingAssessmentFragment extends Fragment{
     private TextView tvRating1, tvRating2, tvRating3, tvRating4, tvFinalPrice,
             tvCondition1, tvCondition2, tvCondition3, tvCondition4;
     private Button btnCalculator;
-    private ImageButton btnBack, btnPrice;
+    private ImageButton btnBack;
+    private Button btnPrice;
     private EditText etPrice;
     private Rating tiLeGiaPin;
     private Rating tiLeGiaVo;

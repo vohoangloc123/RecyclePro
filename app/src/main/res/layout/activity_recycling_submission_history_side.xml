@@ -33,27 +33,38 @@
             android:textSize="16sp"
             android:paddingRight="84dp" />
     </LinearLayout>
+    <!-- Sort Section -->
     <LinearLayout
         android:id="@+id/line1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/headerLayout"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
+        android:padding="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        android:orientation="horizontal">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/headerLayout">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Sort"/>
+            android:layout_gravity="center_vertical"
+            android:text="Sort"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:textSize="18sp" />
+
         <Spinner
             android:id="@+id/spinner"
             android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center_vertical"
             android:layout_marginStart="16dp"
-            android:background="@drawable/rounded_edittext"
-            android:layout_marginEnd="16dp"/>
+            android:layout_marginTop="0dp"
+            android:layout_marginEnd="0dp"
+            android:background="@drawable/rounded_edittext_combobox" />
     </LinearLayout>
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rcvRecyclingSubmission"

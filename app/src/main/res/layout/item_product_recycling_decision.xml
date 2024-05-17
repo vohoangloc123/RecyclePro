@@ -1,79 +1,64 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal"
+    android:orientation="vertical"
     android:layout_marginBottom="10dp"
     android:layout_marginHorizontal="5dp"
     android:layout_marginVertical="5dp"
+    android:padding="10dp"
     android:background="@drawable/rounded_textview">
 
-    <LinearLayout
+    <!-- Customer Name -->
+    <TextView
+        android:id="@+id/tvCustomerName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:text="Customer name: "
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="5dp" />
 
-        <!-- Customer Name -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <TextView
-                android:id="@+id/tvCustomerName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Customer Name"
-                android:textColor="@color/black"
-                android:textSize="18sp"
-                android:textStyle="bold" />
+    <!-- Product Name -->
+    <TextView
+        android:id="@+id/tvProductName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Product name: "
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="5dp" />
 
-            <!-- Product Name -->
-            <TextView
-                android:id="@+id/tvProductName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+    <!-- Email -->
+    <TextView
+        android:id="@+id/tvEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Email: "
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:textStyle="normal"
+        android:layout_marginBottom="5dp" />
 
-                android:text="Product name"
-                android:textColor="@color/black"
-                android:textSize="16sp" />
-        </LinearLayout>
+    <!-- Phone -->
+    <TextView
+        android:id="@+id/tvPhone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Phone: "
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:layout_marginBottom="5dp" />
 
-        <!-- Time -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <TextView
-                android:id="@+id/tvEmail"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Email"
-                android:textColor="@color/black"
-                android:textSize="18sp"
-                android:textStyle="bold" />
-
-            <!-- Product Name -->
-            <TextView
-                android:id="@+id/tvPhone"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Phone"
-                android:textColor="@color/black"
-                android:textSize="16sp" />
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <TextView
-                android:id="@+id/tvTime"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Time"
-                android:textColor="@color/black"
-                android:textSize="18sp"
-                android:textStyle="bold" />
-        </LinearLayout>
-
-    </LinearLayout>
-
+    <!-- Time -->
+    <TextView
+        android:id="@+id/tvTime"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Time: "
+        android:textColor="@color/black_light"
+        android:textSize="16sp"
+        android:textStyle="italic"
+        android:layout_marginBottom="5dp" />
 </LinearLayout>

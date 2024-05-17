@@ -68,20 +68,22 @@
                     android:gravity="center_vertical"
                     android:text="Your product"
                     android:textColor="@color/black"
-                    android:textSize="15sp"
-                    android:textStyle="bold" />
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="10dp"
+                    />
 
 
                 <TextView
                     android:id="@+id/tvProductInformation"
                     android:layout_width="match_parent"
-                    android:layout_height="100dp"
+                    android:layout_height="wrap_content"
                     android:background="@drawable/rounded_edittext"
-                    android:hint="Enter your information"
+                    android:hint="Enter your  information"
                     android:padding="10dp"
                     android:textColor="@color/black"
-                    android:textSize="12sp"
-                    android:textStyle="bold" />
+                    android:textSize="16sp"
+                    android:textStyle="normal" />
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -96,20 +98,22 @@
                     android:gravity="center_vertical"
                     android:text="Rating"
                     android:textColor="@color/black"
-                    android:textSize="15sp"
-                    android:textStyle="bold" />
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="10dp"
+                    />
 
 
                 <TextView
                     android:id="@+id/tvRatingInformation"
                     android:layout_width="match_parent"
-                    android:layout_height="100dp"
+                    android:layout_height="wrap_content"
                     android:background="@drawable/rounded_edittext"
                     android:hint="Enter your information"
                     android:padding="10dp"
                     android:textColor="@color/black"
-                    android:textSize="12sp"
-                    android:textStyle="bold" />
+                    android:textSize="16sp"
+                    android:textStyle="normal" />
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -124,20 +128,21 @@
                     android:gravity="center_vertical"
                     android:text="Condition"
                     android:textColor="@color/black"
-                    android:textSize="15sp"
+                    android:textSize="16sp"
+                    android:layout_marginBottom="10dp"
                     android:textStyle="bold" />
 
 
                 <TextView
                     android:id="@+id/tvInformationCondition"
                     android:layout_width="match_parent"
-                    android:layout_height="100dp"
+                    android:layout_height="wrap_content"
                     android:background="@drawable/rounded_edittext"
                     android:hint="Enter your information"
                     android:padding="10dp"
                     android:textColor="@color/black"
-                    android:textSize="12sp"
-                    android:textStyle="bold" />
+                    android:textSize="16sp"
+                    android:textStyle="normal" />
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -152,14 +157,15 @@
                     android:gravity="center_vertical"
                     android:text="Other"
                     android:textColor="@color/black"
-                    android:textSize="15sp"
+                    android:textSize="16sp"
+                    android:layout_marginBottom="10dp"
                     android:textStyle="bold" />
 
 
                 <TextView
                     android:id="@+id/tvPriceAndTypeInformation"
                     android:layout_width="match_parent"
-                    android:layout_height="100dp"
+                    android:layout_height="wrap_content"
                     android:background="@drawable/rounded_edittext"
                     android:hint="Enter your information"
                     android:padding="10dp"
@@ -179,7 +185,7 @@
                     android:gravity="center_vertical"
                     android:text="Email: "
                     android:textColor="@color/black"
-                    android:textSize="18sp"
+                    android:textSize="16sp"
                     android:textStyle="bold" />
 
                 <EditText
@@ -192,7 +198,7 @@
                     android:textSize="15sp"
                     android:enabled="false"
                     android:paddingHorizontal="10dp"
-                    android:hint="Enter your price"
+                    android:hint="Enter your email"
                     />
             </LinearLayout>
             <LinearLayout
@@ -207,7 +213,7 @@
                     android:gravity="center_vertical"
                     android:text="Phone: "
                     android:textColor="@color/black"
-                    android:textSize="18sp"
+                    android:textSize="16sp"
                     android:textStyle="bold" />
 
                 <EditText
@@ -219,7 +225,7 @@
                     android:textColor="@color/black"
                     android:textSize="15sp"
                     android:paddingHorizontal="10dp"
-                    android:hint="Enter your price"
+                    android:hint="Enter your phone"
                     />
             </LinearLayout>
 
@@ -235,7 +241,7 @@
                     android:gravity="center_vertical"
                     android:text="Your address: "
                     android:textColor="@color/black"
-                    android:textSize="18sp"
+                    android:textSize="16sp"
                     android:textStyle="bold" />
 
                 <EditText
@@ -247,7 +253,7 @@
                     android:textColor="@color/black"
                     android:textSize="15sp"
                     android:paddingHorizontal="10dp"
-                    android:hint="Enter your price"
+                    android:hint="Enter your address"
                     />
             </LinearLayout>
 
@@ -262,16 +268,16 @@
                     android:layout_height="wrap_content"
                     android:gravity="center_vertical"
                     android:textColor="@color/black"
-                    android:textSize="18sp"
+                    android:textSize="16sp"
                     android:textStyle="bold"
                     android:text="Choose branch"/>
+
                 <Spinner
                     android:id="@+id/spinner"
                     android:layout_width="0dp"
                     android:layout_height="50dp"
                     android:layout_weight="1"
-                    android:background="@drawable/rounded_edittext"
-                    android:layout_marginEnd="16dp"/>
+                    android:background="@drawable/rounded_edittext" />
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -284,19 +290,19 @@
                     android:gravity="center_vertical"
                     android:text="Branch address: "
                     android:textColor="@color/black"
-                    android:textSize="18sp"
+                    android:textSize="16sp"
                     android:textStyle="bold" />
 
                 <EditText
                     android:id="@+id/etBranchAddress"
                     android:layout_width="0dp"
-                    android:layout_height="50dp"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:background="@drawable/rounded_edittext"
                     android:textColor="@color/black"
                     android:textSize="15sp"
                     android:paddingHorizontal="10dp"
-                    android:hint="Enter your price"
+                    android:hint="Enter your branch address"
                     android:enabled="false"
                     />
             </LinearLayout>
@@ -311,23 +317,23 @@
                     android:gravity="center_vertical"
                     android:text="Description: "
                     android:textColor="@color/black"
-                    android:textSize="18sp"
+                    android:textSize="16sp"
                     android:textStyle="bold" />
 
                 <EditText
                     android:id="@+id/etDescription"
                     android:layout_width="0dp"
-                    android:layout_height="100dp"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:background="@drawable/rounded_edittext"
                     android:textColor="@color/black"
                     android:textSize="15sp"
                     android:paddingHorizontal="10dp"
-                    android:hint="Enter your price"
+                    android:hint="Enter your description"
                     />
             </LinearLayout>
             <LinearLayout
-                android:layout_width="160dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:layout_gravity="center">
@@ -347,7 +353,6 @@
                     android:text="Send"
                     android:icon="@drawable/baseline_email_24"
                     app:cornerRadius="5dp"
-                    android:drawableRight="@drawable/baseline_email_24"
                     android:gravity="center_vertical|center_horizontal"
                     />
             </LinearLayout>

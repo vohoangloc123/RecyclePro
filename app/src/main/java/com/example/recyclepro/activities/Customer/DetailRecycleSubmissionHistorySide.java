@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -131,9 +132,12 @@ public class DetailRecycleSubmissionHistorySide extends AppCompatActivity {
                 else if (selectedAddress.equals("Thu Duc district")) {
                     // Thiết lập text cho etBranch là "12 Nguyễn Văn Bảo, Gò Vấp"
                     etBrandAddress.setText("242 D. Pham Van Dong, Thu Duc district");
-                }else
+                }else if(selectedAddress.equals("Binh Thanh district"))
                 {
                     etBrandAddress.setText("720A D. Dien Bien Phu, Vinhomes Tan Cang, Binh Thanh");
+                }else
+                {
+                    etBrandAddress.setText("");
                 }
             }
 
@@ -150,7 +154,16 @@ public class DetailRecycleSubmissionHistorySide extends AppCompatActivity {
             String brandAddress=etBrandAddress.getText().toString();
             String currentDateTime=getCurrentDateTime();
             String description=etDescription.getText().toString();
-            dynamoDBManager.SubmitProductRecyclingDecision(id, productName, name ,email,phoneNumber,customerAddress, brandAddress, description,currentDateTime);
+            if(email.isEmpty()||phoneNumber.isEmpty()||customerAddress.isEmpty()||brandAddress.isEmpty()||description.isEmpty())
+            {
+                Toast.makeText(this, "You have not entered enough information", Toast.LENGTH_SHORT).show();
+            }else
+            {
+                dynamoDBManager.SubmitProductRecyclingDecision(id, productName, name ,email,phoneNumber,customerAddress, brandAddress, description,currentDateTime);
+                Toast.makeText(this, "Your information has been sent to the branch", Toast.LENGTH_SHORT).show();
+                Intent intent=new Intent(this, RecyclingSubmissionHistorySide.class);
+                startActivity(intent);
+            }
         });
 
     }

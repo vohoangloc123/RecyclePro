@@ -62,7 +62,6 @@ public class CustomerMenuSide extends AppCompatActivity {
             public void onClick(View v) {
                 SharedPreferences sharedPreferences = getSharedPreferences("UserData", Context.MODE_PRIVATE);
                 String email = sharedPreferences.getString("email", ""); // Lấy email từ SharedPreferences
-
                 Intent intent = new Intent(CustomerMenuSide.this, RecyclingSubmissionHistorySide.class);
                 startActivity(intent);
             }

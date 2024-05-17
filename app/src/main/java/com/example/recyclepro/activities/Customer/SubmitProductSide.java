@@ -112,7 +112,10 @@ public class SubmitProductSide extends AppCompatActivity {
         dynamoDBManager.checkDynamoDBConnection();
         SharedPreferences sharedPreferences = getSharedPreferences("UserData", Context.MODE_PRIVATE);
         String email = sharedPreferences.getString("email", ""); // Lấy email từ SharedPreferences
-
+        urlFrontOfDevice = "https://recyclepro.s3.ap-southeast-1.amazonaws.com/mobile_screen.png";
+        urlBackOfDevice = "https://recyclepro.s3.ap-southeast-1.amazonaws.com/mobile_back.png";
+        String currentDate=getCurrentDate();
+        etPurchasedDate.setText(currentDate);
         btnSend.setOnClickListener(v -> {
             Random rand = new Random();
             int number = rand.nextInt(1000000);
@@ -125,10 +128,19 @@ public class SubmitProductSide extends AppCompatActivity {
             String battery = etBattery.getText().toString().trim();
             String screen = etScreen.getText().toString().trim();
             String currentTime=getCurrentDateTime();
-            Log.d("check464","id"+id+"customerName"+customerName+"phone"+phone+"case"+caseDescribe+"purchasedDate"+
-                    purchasedDate+"battery"+battery+"screen"+screen);
-            dynamoDBManager.SubmitProductInformationforRecycling(id, customerName, phone, productName,caseDescribe,purchasedDate, battery,screen, "not assessed yet", email, currentTime, urlFrontOfDevice, urlBackOfDevice);
-            Toast.makeText(this, "Submit successful", Toast.LENGTH_LONG).show(); // Added show() method
+            if(id.isEmpty()||customerName.isEmpty()||phone.isEmpty()||productName.isEmpty()||caseDescribe.isEmpty()||purchasedDate.isEmpty()
+            ||battery.isEmpty()||screen.isEmpty()||currentTime.isEmpty())
+            {
+                Toast.makeText(this, "You have not entered enough data", Toast.LENGTH_LONG).show(); // Added show() method
+            }
+            else
+            {
+                Log.d("CheckingPictures",urlBackOfDevice.toString()+urlFrontOfDevice.toString());
+                dynamoDBManager.SubmitProductInformationforRecycling(id, customerName, phone, productName,caseDescribe,purchasedDate, battery,screen, "not assessed yet", email, currentTime, urlFrontOfDevice, urlBackOfDevice);
+                Toast.makeText(this, "Submit successful", Toast.LENGTH_LONG).show(); // Added show() method
+                Intent intent=new Intent(this, CustomerMenuSide.class);
+                startActivity(intent);
+            }
         });
         btnBack.setOnClickListener(v->{
                 // Nếu người dùng đồng ý, thực hiện chuyển đổi sang activity đăng nhập
@@ -246,6 +258,15 @@ public class SubmitProductSide extends AppCompatActivity {
     public static String getCurrentDateTime() {
         // Định dạng cho ngày tháng năm và giờ
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+        // Lấy thời gian hiện tại
+        Date currentTime = new Date();
+        // Định dạng thời gian hiện tại thành chuỗi
+        String formattedDateTime = dateFormat.format(currentTime);
+        return formattedDateTime;
+    }
+    public static String getCurrentDate() {
+        // Định dạng cho ngày tháng năm và giờ
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         // Lấy thời gian hiện tại
         Date currentTime = new Date();
         // Định dạng thời gian hiện tại thành chuỗi

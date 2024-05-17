@@ -6,7 +6,6 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -19,7 +18,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.example.recyclepro.R;
-import com.example.recyclepro.activities.Assessment.AssessmentMenuSide;
+import com.example.recyclepro.activities.Assessor.AssessmentMenuSide;
 import com.example.recyclepro.activities.Customer.CustomerMenuSide;
 import com.example.recyclepro.dynamoDB.DynamoDBManager;
 

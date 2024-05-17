@@ -18,10 +18,10 @@
         android:theme="@style/Theme.RecyclePro"
         tools:targetApi="31">
         <activity
-            android:name=".DetailProductRecyclingDecision"
+            android:name=".activities.Assessor.DetailProductRecyclingDecision"
             android:exported="false" />
         <activity
-            android:name=".ProductRecyclingDecisionSide"
+            android:name=".activities.Assessor.ProductRecyclingDecisionSide"
             android:exported="false" />
         <activity
             android:name=".activities.AssessmentAnalysis"
@@ -43,19 +43,19 @@
             android:name=".activities.Customer.RecyclingSubmissionHistorySide"
             android:exported="false" />
         <activity
-            android:name=".activities.Assessment.AssessmentMenuSide"
+            android:name=".activities.Assessor.AssessmentMenuSide"
             android:exported="false" />
         <activity
-            android:name=".activities.Assessment.EvaluationHistorySide"
+            android:name=".activities.Assessor.EvaluationHistorySide"
             android:exported="false" />
         <activity
-            android:name=".activities.Assessment.DetailEvaluationHistorySide"
+            android:name=".activities.Assessor.DetailEvaluationHistorySide"
             android:exported="false" />
         <activity
             android:name=".activities.SignUp"
             android:exported="false" />
         <activity
-            android:name=".activities.Assessment.WaitingProductListSide"
+            android:name=".activities.Assessor.WaitingProductListSide"
             android:exported="false" />
         <activity
             android:name=".activities.Customer.SubmitProductSide"

@@ -1,4 +1,4 @@
-package com.example.recyclepro.activities.Assessment;
+package com.example.recyclepro.activities.Assessor;
 
 import android.os.Bundle;
 

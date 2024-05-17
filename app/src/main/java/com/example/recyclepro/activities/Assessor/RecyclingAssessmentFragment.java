@@ -1,9 +1,10 @@
-package com.example.recyclepro.activities.Assessment;
+package com.example.recyclepro.activities.Assessor;
 
 import static com.example.recyclepro.services.PriceCalculationService.convertRatingToPercentage;
 import static com.example.recyclepro.services.PriceCalculationService.costingPrice;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -319,9 +320,9 @@ public class RecyclingAssessmentFragment extends Fragment{
         btnSendEmail.setOnClickListener(v->{
            String price=tvFinalPrice.getText().toString();
             if (tiLeGiaPin == null || tiLeGiaVo == null || tiLeGiaHoatDong == null || tiLeGiaManHinh == null) {
-                Toast.makeText(getContext(), "Bạn chưa đánh giá đủ các tiêu chí", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "You have not evaluated enough criteria", Toast.LENGTH_SHORT).show();
             }else if (price.isEmpty()) {
-                Toast.makeText(getContext(), "Bạn chưa có giá chót", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "You don't have a final price yet", Toast.LENGTH_SHORT).show();
             }else
             {
                 String currentTime=getCurrentDateTime();
@@ -350,7 +351,9 @@ public class RecyclingAssessmentFragment extends Fragment{
                         currentTime, String.valueOf(avgRating),
                         email, typeOfRecycle);
                 dynamoDBManager.updateStateOfProduct(productID, "assessed");
-                Toast.makeText(getContext(), "Đã gửi email"+email, Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "Send to email: "+email, Toast.LENGTH_SHORT).show();
+                Intent intent=new Intent(getContext(), WaitingProductListSide.class);
+                startActivity(intent);
             }
         });
         btnBack.setOnClickListener(v->{

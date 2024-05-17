@@ -1,4 +1,4 @@
-package com.example.recyclepro.activities.Assessment;
+package com.example.recyclepro.activities.Assessor;
 
 import android.content.Context;
 import android.content.Intent;

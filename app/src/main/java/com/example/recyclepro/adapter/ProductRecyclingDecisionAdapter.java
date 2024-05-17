@@ -19,7 +19,8 @@ public class ProductRecyclingDecisionAdapter extends RecyclerView.Adapter<Produc
 
     private ProductRecyclingDecisionAdapter.OnItemClickListener mListener;
     public interface OnItemClickListener {
-        void onItemClick(String productID, String customerName, String phone, String productName, String battery, String caseDescribe, String purchasedDate, String screen, String time);
+
+        void onItemClick(String id, String customerName, String productName, String email, String phone, String customerAddress, String branchAddress, String description, String time);
     }
     public void setOnItemClickListener(ProductRecyclingDecisionAdapter.OnItemClickListener listener) {
         mListener = listener;

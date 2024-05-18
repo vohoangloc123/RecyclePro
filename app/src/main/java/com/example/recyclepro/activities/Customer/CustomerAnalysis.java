@@ -1,9 +1,10 @@
-package com.example.recyclepro.activities;
+package com.example.recyclepro.activities.Customer;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Color;
 import android.os.Bundle;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
@@ -13,12 +14,8 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.example.recyclepro.R;
-import com.example.recyclepro.dynamoDB.DynamoDBManager;
-import com.github.mikephil.charting.components.XAxis;
-import com.github.mikephil.charting.data.BarData;
-import com.github.mikephil.charting.data.BarDataSet;
-import com.github.mikephil.charting.data.BarEntry;
-import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
+import com.example.recyclepro.activities.Assessor.AssessmentAnalysis;
+import com.example.recyclepro.models.DynamoDBManager;
 
 import org.eazegraph.lib.charts.BarChart;
 import org.eazegraph.lib.charts.PieChart;
@@ -26,9 +23,6 @@ import org.eazegraph.lib.models.BarModel;
 import org.eazegraph.lib.models.PieModel;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -74,7 +68,11 @@ public class CustomerAnalysis extends AppCompatActivity {
                 updatePieChart(notAssessedPercentage, assessedPercentage);
             }
         });
-
+        ImageButton btnBack=findViewById(R.id.btnBack);
+        btnBack.setOnClickListener(v->{
+            Intent intent=new Intent(this, CustomerMenuSide.class);
+            startActivity(intent);
+        });
 
     }
     private void updatePieChart(double notAssessedPercentage, double assessedPercentage) {

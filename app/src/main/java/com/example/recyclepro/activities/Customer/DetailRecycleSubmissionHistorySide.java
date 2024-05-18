@@ -23,8 +23,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.example.recyclepro.R;
-import com.example.recyclepro.activities.SignIn;
-import com.example.recyclepro.dynamoDB.DynamoDBManager;
+import com.example.recyclepro.models.DynamoDBManager;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

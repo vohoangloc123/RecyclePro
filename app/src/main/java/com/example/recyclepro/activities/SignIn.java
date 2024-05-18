@@ -20,7 +20,7 @@ import androidx.core.view.WindowInsetsCompat;
 import com.example.recyclepro.R;
 import com.example.recyclepro.activities.Assessor.AssessmentMenuSide;
 import com.example.recyclepro.activities.Customer.CustomerMenuSide;
-import com.example.recyclepro.dynamoDB.DynamoDBManager;
+import com.example.recyclepro.models.DynamoDBManager;
 
 public class SignIn extends AppCompatActivity {
     private Button btnSignInAsCustomer;

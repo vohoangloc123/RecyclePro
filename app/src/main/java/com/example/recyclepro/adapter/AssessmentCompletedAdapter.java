@@ -17,7 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.recyclepro.R;
 import com.example.recyclepro.activities.Assessor.DetailEvaluationHistorySide;
-import com.example.recyclepro.dynamoDB.DynamoDBManager;
+import com.example.recyclepro.models.DynamoDBManager;
 import com.example.recyclepro.models.AssessmentCompleted;
 
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.example.recyclepro.activities.LiveData;
+package com.example.recyclepro.LiveData;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;

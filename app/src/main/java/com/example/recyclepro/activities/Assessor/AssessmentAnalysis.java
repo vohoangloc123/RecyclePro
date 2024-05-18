@@ -1,8 +1,9 @@
-package com.example.recyclepro.activities;
+package com.example.recyclepro.activities.Assessor;
 
-import android.graphics.Color;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
@@ -12,24 +13,15 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.example.recyclepro.R;
-import com.example.recyclepro.dynamoDB.DynamoDBManager;
-import com.github.mikephil.charting.components.XAxis;
-import com.github.mikephil.charting.data.BarData;
-import com.github.mikephil.charting.data.BarDataSet;
-import com.github.mikephil.charting.data.BarEntry;
-import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
+import com.example.recyclepro.models.DynamoDBManager;
 
 import org.eazegraph.lib.charts.BarChart;
 import org.eazegraph.lib.charts.PieChart;
-import org.eazegraph.lib.charts.ValueLineChart;
 import org.eazegraph.lib.models.BarModel;
 import org.eazegraph.lib.models.PieModel;
-import org.eazegraph.lib.models.ValueLinePoint;
-import org.eazegraph.lib.models.ValueLineSeries;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
@@ -98,6 +90,11 @@ public class AssessmentAnalysis extends AppCompatActivity {
                 Log.d("CheckBoxPlot", finalPrices.toString());
                 createBoxPlot(finalPrices);
             }
+        });
+        ImageButton btnBack=findViewById(R.id.btnBack);
+        btnBack.setOnClickListener(v->{
+            Intent intent=new Intent(this, AssessmentMenuSide.class);
+            startActivity(intent);
         });
     }
     private void updatePieChart(double resale, double recycle) {

@@ -32,7 +32,6 @@
             android:text="Detail product recycling decision"
             android:textColor="@color/white"
             android:textSize="16sp"
-
             />
     </LinearLayout>
 
@@ -42,7 +41,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:fillViewport="true"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/bottomLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/headerLayout"
@@ -70,7 +69,7 @@
                     android:textSize="20sp"
                     android:layout_marginVertical="10dp"
                     android:textStyle="bold" />
-                
+
                 <TextView
                     android:id="@+id/tvInformation"
                     android:layout_width="match_parent"
@@ -86,5 +85,41 @@
         </LinearLayout>
 
     </ScrollView>
+
+    <!-- Bottom Buttons -->
+    <LinearLayout
+        android:id="@+id/bottomLayout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <Button
+            android:id="@+id/btnReturn"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Return product"
+            android:textColor="@color/white"
+            android:backgroundTint="@color/button_color"
+            android:textSize="16sp"
+            app:cornerRadius="5dp"
+            />
+
+        <Button
+            android:id="@+id/btnPay"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Pay"
+            android:textColor="@color/white"
+            android:backgroundTint="@color/button_color"
+            android:textSize="16sp"
+            android:layout_marginStart="16dp"
+            app:cornerRadius="5dp"            />
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

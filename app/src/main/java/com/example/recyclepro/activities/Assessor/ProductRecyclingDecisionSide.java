@@ -19,7 +19,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.recyclepro.R;
 import com.example.recyclepro.adapter.ProductRecyclingDecisionAdapter;
-import com.example.recyclepro.dynamoDB.DynamoDBManager;
+import com.example.recyclepro.models.DynamoDBManager;
 import com.example.recyclepro.models.ProductRecyclingDecision;
 
 import java.util.ArrayList;

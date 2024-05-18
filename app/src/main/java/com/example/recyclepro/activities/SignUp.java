@@ -14,7 +14,7 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.example.recyclepro.R;
 import com.example.recyclepro.Validation.Regex;
-import com.example.recyclepro.dynamoDB.DynamoDBManager;
+import com.example.recyclepro.models.DynamoDBManager;
 
 public class SignUp extends AppCompatActivity {
     private EditText etEmail;

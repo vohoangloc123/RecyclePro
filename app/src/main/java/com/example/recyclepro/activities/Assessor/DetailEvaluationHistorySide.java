@@ -15,7 +15,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.example.recyclepro.R;
-import com.example.recyclepro.dynamoDB.DynamoDBManager;
+import com.example.recyclepro.models.DynamoDBManager;
 import com.squareup.picasso.Picasso;
 
 public class DetailEvaluationHistorySide extends AppCompatActivity {

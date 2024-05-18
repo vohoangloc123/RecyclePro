@@ -16,7 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.recyclepro.R;
 import com.example.recyclepro.activities.Customer.DetailRecycleSubmissionHistorySide;
-import com.example.recyclepro.dynamoDB.DynamoDBManager;
+import com.example.recyclepro.models.DynamoDBManager;
 import com.example.recyclepro.models.RecyclingSubmission;
 
 import java.util.List;

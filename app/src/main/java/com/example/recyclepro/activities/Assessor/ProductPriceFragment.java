@@ -14,7 +14,7 @@ import android.widget.ImageButton;
 
 import com.example.recyclepro.R;
 import com.example.recyclepro.adapter.ProductPriceAdapter;
-import com.example.recyclepro.dynamoDB.DynamoDBManager;
+import com.example.recyclepro.models.DynamoDBManager;
 import com.example.recyclepro.models.Price;
 
 import java.util.ArrayList;

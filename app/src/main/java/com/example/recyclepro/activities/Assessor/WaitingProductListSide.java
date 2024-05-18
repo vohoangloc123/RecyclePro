@@ -23,9 +23,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.recyclepro.R;
-import com.example.recyclepro.activities.LiveData.MyViewModel;
+import com.example.recyclepro.LiveData.MyViewModel;
 import com.example.recyclepro.adapter.ProductAdapter;
-import com.example.recyclepro.dynamoDB.DynamoDBManager;
+import com.example.recyclepro.models.DynamoDBManager;
 import com.example.recyclepro.models.Product;
 
 import java.util.ArrayList;

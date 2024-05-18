@@ -24,15 +24,11 @@
             android:name=".activities.Assessor.ProductRecyclingDecisionSide"
             android:exported="false" />
         <activity
-            android:name=".activities.AssessmentAnalysis"
-            android:exported="false" />
-        <activity
-            android:name=".activities.CustomerAnalysis"
+            android:name=".activities.Assessor.AssessmentAnalysis"
             android:exported="false" />
         <activity
             android:name=".activities.Customer.CustomerAnalysis"
-            android:exported="false"
-            android:theme="@style/Theme.RecyclePro" />
+            android:exported="false" />
         <activity
             android:name=".activities.Customer.DetailRecycleSubmissionHistorySide"
             android:exported="false" />

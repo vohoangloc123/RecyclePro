@@ -14,8 +14,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -25,7 +23,6 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.amazonaws.AmazonClientException;
-import com.amazonaws.AmazonServiceException;
 import com.amazonaws.auth.BasicAWSCredentials;
 import com.amazonaws.regions.Region;
 import com.amazonaws.regions.Regions;
@@ -35,16 +32,12 @@ import com.amazonaws.services.s3.model.AbortMultipartUploadRequest;
 import com.amazonaws.services.s3.model.CompleteMultipartUploadRequest;
 import com.amazonaws.services.s3.model.InitiateMultipartUploadRequest;
 import com.amazonaws.services.s3.model.InitiateMultipartUploadResult;
-import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.amazonaws.services.s3.model.PartETag;
 import com.amazonaws.services.s3.model.PutObjectRequest;
 import com.amazonaws.services.s3.model.UploadPartRequest;
 import com.amazonaws.services.s3.model.UploadPartResult;
-import com.example.recyclepro.dynamoDB.DynamoDBManager;
+import com.example.recyclepro.models.DynamoDBManager;
 import com.example.recyclepro.R;
-
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -53,10 +46,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
-import java.util.Map;
 import java.util.Random;
 
 public class SubmitProductSide extends AppCompatActivity {
@@ -133,13 +124,12 @@ public class SubmitProductSide extends AppCompatActivity {
             if(id.isEmpty()||customerName.isEmpty()||phone.isEmpty()||productName.isEmpty()||caseDescribe.isEmpty()||purchasedDate.isEmpty()
             ||battery.isEmpty()||screen.isEmpty()||currentTime.isEmpty()||softwareDescription.isEmpty())
             {
-                Toast.makeText(this, "You have not entered enough data", Toast.LENGTH_LONG).show(); // Added show() method
+                Toast.makeText(this, "You have not entered enough data", Toast.LENGTH_LONG).show();
             }
             else
             {
-                Log.d("CheckingPictures",urlBackOfDevice.toString()+urlFrontOfDevice.toString());
                 dynamoDBManager.SubmitProductInformationforRecycling(id, customerName, phone, productName,caseDescribe,"purchased: "+ purchasedDate+" and condition: "+softwareDescription, battery,screen, "not assessed yet", email, currentTime, urlFrontOfDevice, urlBackOfDevice);
-                Toast.makeText(this, "Submit successful", Toast.LENGTH_LONG).show(); // Added show() method
+                Toast.makeText(this, "Submit successful", Toast.LENGTH_LONG).show();
                 Intent intent=new Intent(this, CustomerMenuSide.class);
                 startActivity(intent);
             }

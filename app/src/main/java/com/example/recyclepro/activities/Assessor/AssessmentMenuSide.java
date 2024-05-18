@@ -16,7 +16,6 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.example.recyclepro.R;
-import com.example.recyclepro.activities.AssessmentAnalysis;
 import com.example.recyclepro.activities.SignIn;
 
 public class AssessmentMenuSide extends AppCompatActivity {

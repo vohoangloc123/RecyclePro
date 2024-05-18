@@ -25,15 +25,17 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.recyclepro.R;
-import com.example.recyclepro.activities.LiveData.MyViewModel;
-import com.example.recyclepro.dynamoDB.DynamoDBManager;
+import com.example.recyclepro.LiveData.MyViewModel;
+import com.example.recyclepro.models.DynamoDBManager;
 import com.example.recyclepro.models.ConfigCondition;
 import com.example.recyclepro.models.ConfigRate;
 import com.example.recyclepro.models.Rating;
 import com.example.recyclepro.services.Condition;
 
+import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 import java.util.Random;
 
 public class RecyclingAssessmentFragment extends Fragment{
@@ -314,7 +316,7 @@ public class RecyclingAssessmentFragment extends Fragment{
                 Drawable drawable = ContextCompat.getDrawable(getContext(), R.drawable.rounded_edittext);
 
                 tvFinalPrice.setBackground(drawable);
-                tvFinalPrice.setText(String.valueOf(finalPrice));
+                tvFinalPrice.setText(formatPriceInVND(finalPrice));
             }
         });
         btnSendEmail.setOnClickListener(v->{
@@ -399,6 +401,10 @@ public class RecyclingAssessmentFragment extends Fragment{
         super.onDestroyView();
         changeData(); // Cập nhật LiveData ở đây
         Log.d("Detach", "onDestroyView: ");
+    }
+    private String formatPriceInVND(double price) {
+        NumberFormat formatter = NumberFormat.getCurrencyInstance(new Locale("vi", "VN"));
+        return formatter.format(price);
     }
 }
 

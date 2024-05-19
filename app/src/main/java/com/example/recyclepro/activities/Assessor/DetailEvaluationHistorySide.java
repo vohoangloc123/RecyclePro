@@ -18,6 +18,9 @@ import com.example.recyclepro.R;
 import com.example.recyclepro.models.DynamoDBManager;
 import com.squareup.picasso.Picasso;
 
+import java.text.NumberFormat;
+import java.util.Locale;
+
 public class DetailEvaluationHistorySide extends AppCompatActivity {
     private TextView tvProductInformation, tvRatingInformation, tvConditionInformation, tvPriceAndTypeInformation;
     private String id;
@@ -98,7 +101,7 @@ public class DetailEvaluationHistorySide extends AppCompatActivity {
                     "Screen: "+screenRating+"\n"+
                     "Avg rating: "+avgRating+"\n"
             );
-            tvPriceAndTypeInformation.setText( "Final price: "+finalPrice+"\n"+
+            tvPriceAndTypeInformation.setText( "Final price: "+formatPriceInVND(finalPrice)+"\n"+
                     "State: "+state+"\n"+
                     "Type of recycle: "+typeOfRecycle
                     );
@@ -106,6 +109,10 @@ public class DetailEvaluationHistorySide extends AppCompatActivity {
             Log.d("ReceivedData", "Bundle is null");
         }
 
+    }
+    private String formatPriceInVND(double price) {
+        NumberFormat formatter = NumberFormat.getCurrencyInstance(new Locale("vi", "VN"));
+        return formatter.format(price);
     }
 
 }

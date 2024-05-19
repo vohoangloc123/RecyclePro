@@ -170,7 +170,7 @@
                     android:hint="Enter your information"
                     android:padding="10dp"
                     android:textColor="@color/black"
-                    android:textSize="12sp"
+                    android:textSize="16sp"
                     android:textStyle="bold" />
             </LinearLayout>
             <LinearLayout
@@ -345,6 +345,7 @@
                     android:layout_marginTop="16dp"
                     android:backgroundTint="@color/button_color"
                     android:drawablePadding="8dp"
+                    android:layout_marginRight="10dp"
                     android:elevation="8dp"
                     android:paddingStart="16dp"
                     android:paddingEnd="16dp"

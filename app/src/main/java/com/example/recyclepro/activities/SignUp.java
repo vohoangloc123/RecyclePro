@@ -13,7 +13,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.example.recyclepro.R;
-import com.example.recyclepro.Validation.Regex;
+import com.example.recyclepro.validation.Regex;
 import com.example.recyclepro.models.DynamoDBManager;
 
 public class SignUp extends AppCompatActivity {

@@ -108,6 +108,7 @@
             android:textColor="@color/white"
             android:textSize="20dp"
             android:textStyle="bold"
+            android:visibility="gone"
             app:cornerRadius="5dp" />
     </LinearLayout>
 

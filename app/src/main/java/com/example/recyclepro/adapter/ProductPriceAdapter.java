@@ -10,7 +10,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.recyclepro.R;
 import com.example.recyclepro.models.Price;
 
+import java.text.NumberFormat;
 import java.util.List;
+import java.util.Locale;
 
 public class ProductPriceAdapter extends RecyclerView.Adapter<ProductPriceAdapter.ProductPriceListViewHolder>{
     private List<Price> listProductPrice;
@@ -50,7 +52,7 @@ public class ProductPriceAdapter extends RecyclerView.Adapter<ProductPriceAdapte
             return;
         }
         holder.tvProductName.setText("Product: "+price.getProductName());
-        holder.tvPrice.setText("Price: "+price.getPrice());
+        holder.tvPrice.setText("Price: "+formatPriceInVND(price.getPrice()));
         holder.tvBranchName.setText("Branch: "+price.getBranchName());
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -74,6 +76,10 @@ public class ProductPriceAdapter extends RecyclerView.Adapter<ProductPriceAdapte
             tvProductName= itemView.findViewById(R.id.tvProductName);
             tvBranchName=itemView.findViewById(R.id.tvBranch);
         }
+    }
+    private String formatPriceInVND(double price) {
+        NumberFormat formatter = NumberFormat.getCurrencyInstance(new Locale("vi", "VN"));
+        return formatter.format(price);
     }
 
 }

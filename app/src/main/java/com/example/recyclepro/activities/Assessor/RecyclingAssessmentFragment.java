@@ -1,7 +1,7 @@
 package com.example.recyclepro.activities.Assessor;
 
-import static com.example.recyclepro.services.PriceCalculationService.convertRatingToPercentage;
-import static com.example.recyclepro.services.PriceCalculationService.costingPrice;
+import static com.example.recyclepro.utils.PriceCalculationService.convertRatingToPercentage;
+import static com.example.recyclepro.utils.PriceCalculationService.costingPrice;
 
 import android.content.Context;
 import android.content.Intent;
@@ -30,7 +30,7 @@ import com.example.recyclepro.models.DynamoDBManager;
 import com.example.recyclepro.models.ConfigCondition;
 import com.example.recyclepro.models.ConfigRate;
 import com.example.recyclepro.models.Rating;
-import com.example.recyclepro.services.Condition;
+import com.example.recyclepro.utils.Condition;
 
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;

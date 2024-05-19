@@ -25,8 +25,10 @@ import androidx.core.view.WindowInsetsCompat;
 import com.example.recyclepro.R;
 import com.example.recyclepro.models.DynamoDBManager;
 
+import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 public class DetailRecycleSubmissionHistorySide extends AppCompatActivity {
     private TextView tvProductInformation, tvRatingInformation, tvConditionInformation, tvPriceAndTypeInformation;
@@ -96,7 +98,7 @@ public class DetailRecycleSubmissionHistorySide extends AppCompatActivity {
                     "Screen: "+screenRating+"\n"+
                     "Avg rating: "+avgRating+"\n"
             );
-            tvPriceAndTypeInformation.setText( "Final price: "+finalPrice+"\n"+
+            tvPriceAndTypeInformation.setText( "Final price: "+formatPriceInVND(finalPrice)+"\n"+
                     "State: "+state+"\n"+
                     "Type of recycle: "+typeOfRecycle
                     );
@@ -206,5 +208,9 @@ public class DetailRecycleSubmissionHistorySide extends AppCompatActivity {
         // Định dạng thời gian hiện tại thành chuỗi
         String formattedDateTime = dateFormat.format(currentTime);
         return formattedDateTime;
+    }
+    private String formatPriceInVND(double price) {
+        NumberFormat formatter = NumberFormat.getCurrencyInstance(new Locale("vi", "VN"));
+        return formatter.format(price);
     }
 }

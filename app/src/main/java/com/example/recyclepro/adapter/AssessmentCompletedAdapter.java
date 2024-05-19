@@ -20,7 +20,9 @@ import com.example.recyclepro.activities.Assessor.DetailEvaluationHistorySide;
 import com.example.recyclepro.models.DynamoDBManager;
 import com.example.recyclepro.models.AssessmentCompleted;
 
+import java.text.NumberFormat;
 import java.util.List;
+import java.util.Locale;
 
 public class AssessmentCompletedAdapter extends RecyclerView.Adapter<AssessmentCompletedAdapter.AssessmentCompletedListViewHolder>{
     private List<AssessmentCompleted> listAssessmentCompleted;
@@ -66,7 +68,7 @@ public class AssessmentCompletedAdapter extends RecyclerView.Adapter<AssessmentC
         holder.tvProductName.setText("Product name:"+assessmentCompleted.getProductName());
         holder.tvTime.setText("Time:"+assessmentCompleted.getTime());
         String finalPrice= String.valueOf(assessmentCompleted.getFinalPrice());
-        holder.tvFinalPrice.setText("Final price: "+finalPrice);
+        holder.tvFinalPrice.setText("Final price: "+formatPriceInVND(Double.parseDouble(finalPrice)));
         String avgRating= String.valueOf(assessmentCompleted.getAvgRating());
         holder.tvAvgRating.setText("Avg rating: "+avgRating);
         holder.tvTypeOfRecycle.setText("Type: "+assessmentCompleted.getTypeOfRecycle());
@@ -159,5 +161,9 @@ public class AssessmentCompletedAdapter extends RecyclerView.Adapter<AssessmentC
         public void setContext(Context context) {
             this.context = context;
         }
+    }
+    private String formatPriceInVND(double price) {
+        NumberFormat formatter = NumberFormat.getCurrencyInstance(new Locale("vi", "VN"));
+        return formatter.format(price);
     }
 }

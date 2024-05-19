@@ -1,4 +1,4 @@
-package com.example.recyclepro.services;
+package com.example.recyclepro.utils;
 
 import com.example.recyclepro.models.ConfigRate;
 import com.example.recyclepro.models.Rating;
